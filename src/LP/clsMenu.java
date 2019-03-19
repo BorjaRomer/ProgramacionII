@@ -12,7 +12,6 @@ public class clsMenu {
 	
 	
 	/**
-	 * Hola que ase
 	 * Menu principal donde se interactua con el usuario dandole las opciones de registro de nuestrto desguace. 
 	 * Podemos dar de alta cualquier vehiculo y mostrarlos con la fecha del momento exacto del registro.
 	 */
@@ -92,6 +91,12 @@ public class clsMenu {
 		String numbastidor = UtilidadesLP.leerCadena();
 		System.out.print("Marca: ");
 		String marca = UtilidadesLP.leerCadena();
+		System.out.print("Modelo: ");
+		String modelo = UtilidadesLP.leerCadena();
+		System.out.print("Cv: ");
+		int cv = UtilidadesLP.leerEntero();
+		System.out.print("Año de Fabricación: ");
+		int aniofabricacion = UtilidadesLP.leerEntero();
 		String estado = null;
 		System.out.print("Elige el estado del vehículo: ");
 		System.out.println("\n"+
@@ -119,7 +124,7 @@ public class clsMenu {
 		System.out.print("Tamaño: ");
 		int tamaño = UtilidadesLP.leerEntero();
 		
-		objGestor.CrearMoto(numbastidor, marca, estado, fecha, color, kilometros, tipomoto, cilindrada, tamaño);
+		objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, estado, fecha, color, kilometros, tipomoto, cilindrada, tamaño);
 		
 	}
 	
@@ -132,6 +137,12 @@ public class clsMenu {
 		String numbastidor = UtilidadesLP.leerCadena();
 		System.out.print("Marca: ");
 		String marca = UtilidadesLP.leerCadena();
+		System.out.print("Modelo: ");
+		String modelo = UtilidadesLP.leerCadena();
+		System.out.print("Cv: ");
+		int cv = UtilidadesLP.leerEntero();
+		System.out.print("Año de Fabricación: ");
+		int aniofabricacion = UtilidadesLP.leerEntero();
 		String estado = null;
 		System.out.print("Elige el estado del vehículo: ");
 		System.out.println("\n"+
@@ -159,7 +170,7 @@ public class clsMenu {
 		System.out.print("Anchura: ");
 		int anchura = UtilidadesLP.leerEntero();
 		
-		objGestor.CrearCamion(numbastidor, marca, estado, fecha, color, kilometros, tipocamion, altura, anchura);
+		objGestor.CrearCamion(numbastidor, marca, modelo, cv, aniofabricacion, estado, fecha, color, kilometros, tipocamion, altura, anchura);
 		
 	}
 	
@@ -172,6 +183,14 @@ public class clsMenu {
 		String numbastidor = UtilidadesLP.leerCadena();
 		System.out.print("Marca: ");
 		String marca = UtilidadesLP.leerCadena();
+		System.out.print("Modelo: ");
+		String modelo = UtilidadesLP.leerCadena();
+		System.out.print("Cv: ");
+		int cv = UtilidadesLP.leerEntero();
+		System.out.print("Cilindrada: ");
+		String cilindrada = UtilidadesLP.leerCadena();
+		System.out.print("Año de Fabricación: ");
+		int aniofabricacion = UtilidadesLP.leerEntero();
 		String estado = null;
 		System.out.print("Elige el estado del vehículo: ");
 		System.out.println("\n"+
@@ -196,10 +215,9 @@ public class clsMenu {
 		String tipocoche = UtilidadesLP.leerCadena();
 		System.out.print("Combustible: ");
 		String combustible = UtilidadesLP.leerCadena();
-		System.out.print("Modelo: ");
-		String modelo = UtilidadesLP.leerCadena();
 		
-		objGestor.CrearCoche(numbastidor, marca, estado, fecha, color, kilometros, tipocoche, combustible, modelo);
+		
+		objGestor.CrearCoche(numbastidor, marca, modelo, cv, aniofabricacion, estado, fecha, color, kilometros, tipocoche, combustible, cilindrada);
 	}
 
 }

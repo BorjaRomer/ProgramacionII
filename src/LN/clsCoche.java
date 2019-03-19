@@ -10,14 +10,14 @@ public class clsCoche extends clsVehiculo{
 
 		String tipocoche;
 		String combustible;
-		String modelo;
+		String cilindrada;
 		
-		public clsCoche(String numbastidor, String marca, String estado, Date fecha, String color, int kilometros,
-				String tipocoche, String combustible, String modelo) {
-			super(numbastidor, marca, estado, fecha, color, kilometros);
+		public clsCoche(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, String estado, Date fecha, String color, int kilometros,
+				String tipocoche, String combustible, String cilindrada) {
+			super(numbastidor, marca, modelo, cv, aniofabricacion, estado, fecha, color, kilometros);
 			this.tipocoche = tipocoche;
 			this.combustible = combustible;
-			this.modelo = modelo;
+			this.cilindrada = cilindrada;
 		}
 		
 		public String getTipocoche() {
@@ -33,11 +33,13 @@ public class clsCoche extends clsVehiculo{
 		public void setCombustible(String combustible) {
 			this.combustible = combustible;
 		}
-		public String getModelo() {
-			return modelo;
+
+		public String getCilindrada() {
+			return cilindrada;
 		}
-		public void setModelo(String modelo) {
-			this.modelo = modelo;
+
+		public void setCilindrada(String cilindrada) {
+			this.cilindrada = cilindrada;
 		}
 		
 		public Object getProperty (String propiedad) {
@@ -46,16 +48,25 @@ public class clsCoche extends clsVehiculo{
 			
 			case "numbastidor": return this.getNumbastidor();
 			case "marca": return this.getMarca();
+			case "modelo": return this.getModelo();
+			case "cv": return this.getCv();
+			case "aniofabricacion": return this.getAniofabricacion();
 			case "estado": return this.getEstado();
 			case "fecha": return this.getFecha();
 			case "color": return this.getColor();
+			case "kilometros": return this.getKilometros();
 			case "tipocoche": return this.getTipocoche();
-			case "modelo": return this.getModelo();
 			case "combustible": return this.getCombustible();
+			case "cilindrada": return this.getCilindrada();
 			}
+			
 			return propiedad;
 			
 		}
+		
+		
+		
+		
 		
 		
 }
