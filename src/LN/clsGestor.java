@@ -30,6 +30,7 @@ public class clsGestor {
 				tipocoche, combustible, modelo);
 		
 		registros.add(objCoche);
+		
 	}
 	
 	/**
