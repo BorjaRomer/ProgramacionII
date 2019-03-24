@@ -6,6 +6,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+import Comun.clsConstantes;
+
 public class clsDatos {
 	
 		
@@ -20,16 +22,16 @@ public class clsDatos {
 			    if ( objConn != null ) {
 			    	// Preparamos la consulta 
 			    	Statement st = objConn.createStatement(); 
-			    	ResultSet rs = st.executeQuery ("select * from alumno");
+			    	ResultSet rs = st.executeQuery ("select * from coche");
 			    	
-			    	System.out.println("ALUMNOS RECUPERADOS");
+			    	System.out.println("COCHES RECUPERADOS");
 			    	System.out.println("-------------------");
 			    	
 			    	// Recorremos el resultado, mientras haya registros para leer, y escribimos el resultado en pantalla. 
 			    	while (rs.next()) 
 			    	{ 
-			    	    System.out.println (rs.getInt ("id") + " " + rs.getString ("nombre") + " " + 
-			    	    		rs.getString("apellido")  + " " + rs.getString("dni")); 
+			    	    System.out.println (rs.getInt (clsConstantes.PROPIEDAD_NUMBASTIDOR) + " " + rs.getString (clsConstantes.PROPIEDAD_MARCA)); 
+			    	    		
 			    	}
 			    	
 			    	//Cerramos el resulset
@@ -48,9 +50,7 @@ public class clsDatos {
 		    }
 		}
 
-	
-	
-		
+	 		
 		public void insertarBD(int id, String nombre, String apellido, String dni) {
 			
 			// Instancias la clase que hemos creado anteriormente
@@ -62,14 +62,13 @@ public class clsDatos {
 		    try { 
 			    if ( objConn != null ) {
 			    	// Preparamos la insert 
-			    	String query = "insert into alumno (id, nombre, apellido, dni) values (?, ?, ?, ?)";
+			    	String query = "insert into coche (numbastidor, marca) values (?, ?, ?, ?)";
 			    	
 			    	//Creamos las preparedstaments
 			    	PreparedStatement objSt = objConn.prepareStatement(query);
-			    	objSt.setInt(1, id);
-			    	objSt.setString(2, nombre);
-			    	objSt.setString(3, apellido);
-			    	objSt.setString(4, dni);
+			    	objSt.setString(1, clsConstantes.PROPIEDAD_NUMBASTIDOR);
+			    	objSt.setString(2, clsConstantes.PROPIEDAD_MARCA);
+			    	
 			    	
 			    	//Ejecutamos la query que hemos preparado
 			  		objSt.execute();
@@ -102,11 +101,11 @@ public class clsDatos {
 		    try { 
 			    if ( objConn != null ) {
 			    	// Preparamos el delete 
-			    	String query = "delete from alumno where id = ?";
+			    	String query = "delete from coche where numbastidor = ?";
 			    	 
 			    	//Creamos las preparedstaments
 			    	PreparedStatement objSt = objConn.prepareStatement(query);
-			    	objSt.setInt(1, id);
+			    	objSt.setString(1, clsConstantes.PROPIEDAD_NUMBASTIDOR);
 			    			    	
 			    	//Ejecutamos la query que hemos preparado
 			    	objSt.execute();
