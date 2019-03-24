@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-
 public class clsDatos {
 	
 		
@@ -50,7 +49,8 @@ public class clsDatos {
 		}
 
 	 		
-		public void insertarBD(String numbastidor, String marca) {
+		public void insertarBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, String color, int kilometros,
+				String tipocoche, String combustible, String cilindrada) {
 			
 			// Instancias la clase que hemos creado anteriormente
 		    clsConexionBD SQL = new clsConexionBD();
@@ -61,13 +61,20 @@ public class clsDatos {
 		    try { 
 			    if ( objConn != null ) {
 			    	// Preparamos la insert 
-			    	String query = "insert into coche (numbastidor, marca) values (?, ?,)";
+			    	String query = "insert into coche (numbastidor, marca, modelo, cv, aniofabricacion, color, kilometros, tipocoche, combustible, cilindrada) values (?,?,?,?,?,?,?,?,?,?)";
 			    	
 			    	//Creamos las preparedstaments
 			    	PreparedStatement objSt = objConn.prepareStatement(query);
 			    	objSt.setString(1, numbastidor);
 			    	objSt.setString(2, marca);
-			    	
+			    	objSt.setString(3, modelo);
+			    	objSt.setInt(4, cv);
+			    	objSt.setInt(5, aniofabricacion);
+			    	objSt.setString(6, color);
+			    	objSt.setInt(7, kilometros);
+			    	objSt.setString(8, tipocoche);
+			    	objSt.setString(9, combustible);
+			    	objSt.setString(10, cilindrada);
 			    	
 			    	//Ejecutamos la query que hemos preparado
 			  		objSt.execute();

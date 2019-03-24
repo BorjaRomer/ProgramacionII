@@ -67,7 +67,7 @@ public class clsMenu {
 		for (itfProperty v: vehiculos ) {
 			if(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR).equals(numerobastidor)) {
 				System.out.println("El vehiculo ha sido encontrado");
-			
+				objGestor.EliminarBD(numerobastidor);
 			}else
 				System.out.println("No existe ningun vehiculo con ese Nº de bastidor");
 		}

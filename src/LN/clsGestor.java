@@ -1,13 +1,13 @@
 package LN;
 
 import java.util.Date;
-
 import Comun.itfProperty;
-
 import java.util.ArrayList;
+import LD.clsDatos;
 
 public class clsGestor {
 	
+	clsDatos objDatos = new clsDatos();
 	private ArrayList<clsVehiculo> registros = new ArrayList<>();
 	
 	public ArrayList<itfProperty> DameVehiculos() {
@@ -17,6 +17,14 @@ public class clsGestor {
 			 retorno.add(a);
 		 }
 		 return retorno;
+	}
+	
+	public void RecogerBD() {
+		objDatos.consultarBD();
+	}
+	
+	public void EliminarBD(String numerobastidor) {
+		objDatos.eliminarBD(numerobastidor);
 	}
 
 	/**
@@ -29,7 +37,12 @@ public class clsGestor {
 		clsCoche objCoche = new clsCoche(numbastidor, marca, modelo, cv, aniofabricacion, estado, fecha, color, kilometros,
 				tipocoche, combustible, cilindrada);
 		
+		//Añadimos al AarrayList el objeto creado
 		registros.add(objCoche);
+		
+		//Se crea un objDatos para llamar a la funcion insertarBD
+		objDatos.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, color, kilometros,
+				tipocoche, combustible, cilindrada);
 		
 	}
 	

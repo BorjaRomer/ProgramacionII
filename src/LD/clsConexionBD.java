@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class clsConexionBD {
 	
 	//Nombre de la base de datos	
-	public String database="Desguace";
+	public String database="desguace";
 	
 	//host
 	public String hostname="localhost";
