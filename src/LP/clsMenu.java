@@ -10,8 +10,6 @@ import Comun.clsConstantes;
 
 public class clsMenu {
 	
-	
-
 	/**
 	 * Menu principal donde se interactua con el usuario dandole las opciones de registro de nuestrto desguace. 
 	 * Podemos dar de alta cualquier vehiculo y mostrarlos con la fecha del momento exacto del registro.
@@ -30,7 +28,8 @@ public class clsMenu {
                 "3) Registrar Moto.\n" +
                 "4) Mostrar registros.\n" +
                 "5) Dar de baja Vehiculo.\n" +
-                "6) Salir.\n");
+                "6) Cambiar el estado del vehiculo.\n" +
+                "7) Salir.\n");
 		
 		System.out.print("Elige la opcion: ");
 		opcion = UtilidadesLP.leerEntero();
@@ -47,10 +46,12 @@ public class clsMenu {
 		break;
 		case 5: BajaVehiculo(objGestor);
 		break;
+		case 6:
+		break;
 		
 		}
 		
-		}while(opcion!=6);
+		}while(opcion!=7);
 		
 	}
 	
@@ -63,8 +64,8 @@ public class clsMenu {
 		String numerobastidor = UtilidadesLP.leerCadena();
 		ArrayList<itfProperty> vehiculos;
 		vehiculos = objGestor.DameVehiculos();
-		for (itfProperty recorrido: vehiculos ) {
-			if(recorrido.getProperty("numbastidor").equals(numerobastidor)) {
+		for (itfProperty v: vehiculos ) {
+			if(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR).equals(numerobastidor)) {
 				System.out.println("El vehiculo ha sido encontrado");
 			
 			}else
@@ -80,15 +81,70 @@ public class clsMenu {
 	private static void MostrarRegistros(clsGestor objGestor) {
 		ArrayList<itfProperty> vehiculos;
 		vehiculos = objGestor.DameVehiculos();
-		for(itfProperty v:vehiculos) {
-			if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("optimo")) {
+		int opcion;
+		
+		do {
+			System.out.println("¿Que quieres mostrar?");
+			System.out.println(
+	                "----\n" +
+	                "1) Vehiculos optimos.\n" +
+	                "2) Vehiculos para despiece.\n" +
+	                "3) Vehiculos en chatarra.\n" +
+	                "4) Vehiculos en venta" +
+ 	                "5) Salir.\n");
+			
+			System.out.print("Elige la opcion: ");
+			opcion = UtilidadesLP.leerEntero();
+			
+			switch(opcion) {
+			
+			case 1:
+				for(itfProperty v:vehiculos) {
+				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("optimo")) {
 				System.out.println();
 				System.out.println("\n"+"Vehiculos en el taller: ");
 				System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
 				System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
+				}
+			}
+			break;
+			
+			case 2: 
+				for(itfProperty v:vehiculos) {
+					if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("desguazable")) {
+					System.out.println();
+					System.out.println("\n"+"Vehiculos para desguace: ");
+					System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
+					System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
+					}
+				}
+			break;
+			
+			case 3:
+				for(itfProperty v:vehiculos) {
+					if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("chatarra")) {
+					System.out.println();
+					System.out.println("\n"+"Vehiculos en la chatarra: ");
+					System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
+					System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
+					}
+				}
+			break;
+			
+			case 4: 
+				for(itfProperty v:vehiculos) {
+					if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("venta")) {
+					System.out.println();
+					System.out.println("\n"+"Vehiculos en venta: ");
+					System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
+					System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
+					}
+				}
+			break;
 			}
 			
-			}
+		}while(opcion!=5);
+		
 		}
 	
 

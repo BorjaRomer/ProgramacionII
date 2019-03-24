@@ -7,7 +7,7 @@ import java.sql.SQLException;
 public class clsConexionBD {
 	
 	//Nombre de la base de datos	
-	public String database="alumnoBD";
+	public String database="Desguace";
 	
 	//host
 	public String hostname="localhost";
@@ -22,7 +22,7 @@ public class clsConexionBD {
 	public String user="root";
 	
 	//Password
-	public String password="";
+	public String password="4392deusto";
 	
 	public Connection conectarBD() {
 		
