@@ -6,7 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-import Comun.clsConstantes;
 
 public class clsDatos {
 	
@@ -30,7 +29,7 @@ public class clsDatos {
 			    	// Recorremos el resultado, mientras haya registros para leer, y escribimos el resultado en pantalla. 
 			    	while (rs.next()) 
 			    	{ 
-			    	    System.out.println (rs.getInt (clsConstantes.PROPIEDAD_NUMBASTIDOR) + " " + rs.getString (clsConstantes.PROPIEDAD_MARCA)); 
+			    	    System.out.println (rs.getInt ("numbastidor") + " " + rs.getString ("marca")); 
 			    	    		
 			    	}
 			    	
@@ -51,7 +50,7 @@ public class clsDatos {
 		}
 
 	 		
-		public void insertarBD(int id, String nombre, String apellido, String dni) {
+		public void insertarBD(String numbastidor, String marca) {
 			
 			// Instancias la clase que hemos creado anteriormente
 		    clsConexionBD SQL = new clsConexionBD();
@@ -62,12 +61,12 @@ public class clsDatos {
 		    try { 
 			    if ( objConn != null ) {
 			    	// Preparamos la insert 
-			    	String query = "insert into coche (numbastidor, marca) values (?, ?, ?, ?)";
+			    	String query = "insert into coche (numbastidor, marca) values (?, ?,)";
 			    	
 			    	//Creamos las preparedstaments
 			    	PreparedStatement objSt = objConn.prepareStatement(query);
-			    	objSt.setString(1, clsConstantes.PROPIEDAD_NUMBASTIDOR);
-			    	objSt.setString(2, clsConstantes.PROPIEDAD_MARCA);
+			    	objSt.setString(1, numbastidor);
+			    	objSt.setString(2, marca);
 			    	
 			    	
 			    	//Ejecutamos la query que hemos preparado
@@ -90,7 +89,7 @@ public class clsDatos {
 		    }
 		}
 		
-		public void eliminarBD(int id) {
+		public void eliminarBD(String numbastidor) {
 			
 			// Instancias la clase que hemos creado anteriormente
 		    clsConexionBD SQL = new clsConexionBD();
@@ -105,7 +104,7 @@ public class clsDatos {
 			    	 
 			    	//Creamos las preparedstaments
 			    	PreparedStatement objSt = objConn.prepareStatement(query);
-			    	objSt.setString(1, clsConstantes.PROPIEDAD_NUMBASTIDOR);
+			    	objSt.setString(1, numbastidor);
 			    			    	
 			    	//Ejecutamos la query que hemos preparado
 			    	objSt.execute();
