@@ -84,7 +84,7 @@ public class clsMenu {
 		int opcion;
 		
 		do {
-			System.out.println("¿Que quieres mostrar?");
+			System.out.println("\n"+"¿Que quieres mostrar?");
 			System.out.println(
 	                "----\n" +
 	                "1) Vehiculos optimos.\n" +
@@ -98,44 +98,40 @@ public class clsMenu {
 			
 			switch(opcion) {
 			
-			case 1:
+			case 1: System.out.println("\n"+"Vehiculos en el taller: ");
 				for(itfProperty v:vehiculos) {
 				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("optimo")) {
 				System.out.println();
-				System.out.println("\n"+"Vehiculos en el taller: ");
 				System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
 				System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
 				}
 			}
 			break;
 			
-			case 2: 
+			case 2: System.out.println("\n"+"Vehiculos para desguace: ");
 				for(itfProperty v:vehiculos) {
 					if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("desguazable")) {
 					System.out.println();
-					System.out.println("\n"+"Vehiculos para desguace: ");
 					System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
 					System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
 					}
 				}
 			break;
 			
-			case 3:
+			case 3: System.out.println("\n"+"Vehiculos en la chatarra: ");
 				for(itfProperty v:vehiculos) {
 					if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("chatarra")) {
 					System.out.println();
-					System.out.println("\n"+"Vehiculos en la chatarra: ");
 					System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
 					System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
 					}
 				}
 			break;
 			
-			case 4: 
+			case 4: System.out.println("\n"+"Vehiculos en venta: ");
 				for(itfProperty v:vehiculos) {
 					if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("venta")) {
 					System.out.println();
-					System.out.println("\n"+"Vehiculos en venta: ");
 					System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
 					System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
 					}
@@ -212,16 +208,16 @@ public class clsMenu {
 		String estado = null;
 		System.out.print("Elige el estado del vehículo: ");
 		System.out.println("\n"+
-                "1) optimo (Taller).\n" +
-                "2) desguazable (Despiece del vehiculo).\n" +
-                "3) chatarra.\n");
+                "1) Optimo (Taller).\n" +
+                "2) Desguazable (Despiece del vehiculo).\n" +
+                "3) Chatarra.\n");
 		int est =  UtilidadesLP.leerEntero();
 		switch (est) {
-		case 1: estado = "Optimo";
+		case 1: estado = "optimo";
 		break;
-		case 2: estado = "Desguazable";
+		case 2: estado = "desguazable";
 		break;
-		case 3: estado = "Chatarra";
+		case 3: estado = "chatarra";
 		break;
 		}
 		Date fecha = new Date();
