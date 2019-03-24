@@ -2,15 +2,16 @@ package LP;
 
 import java.util.ArrayList;
 import java.util.Date;
-
 import Comun.itfProperty;
 import LN.clsGestor;
+import Comun.clsConstantes;
 
 
 
 public class clsMenu {
 	
 	
+
 	/**
 	 * Menu principal donde se interactua con el usuario dandole las opciones de registro de nuestrto desguace. 
 	 * Podemos dar de alta cualquier vehiculo y mostrarlos con la fecha del momento exacto del registro.
@@ -24,9 +25,9 @@ public class clsMenu {
 		System.out.println("\n" +
                 "MENÚ\n" +
                 "----\n" +
-                "1) Dar de alta Coche.\n" +
-                "2) Dar de alta Camion.\n" +
-                "3) Dar de alta Moto.\n" +
+                "1) Registrar Coche.\n" +
+                "2) Registrar Camion.\n" +
+                "3) Registrar Moto.\n" +
                 "4) Mostrar registros.\n" +
                 "5) Dar de baja Vehiculo.\n" +
                 "6) Salir.\n");
@@ -65,8 +66,11 @@ public class clsMenu {
 		for (itfProperty recorrido: vehiculos ) {
 			if(recorrido.getProperty("numbastidor").equals(numerobastidor)) {
 				System.out.println("El vehiculo ha sido encontrado");
-			}
+			
+			}else
+				System.out.println("No existe ningun vehiculo con ese numero de bastidor");
 		}
+		
 	}
 
 	/**
@@ -74,13 +78,19 @@ public class clsMenu {
 	 * Por eso pasamos por paramtero el objGestor.
 	 */
 	private static void MostrarRegistros(clsGestor objGestor) {
-		
 		ArrayList<itfProperty> vehiculos;
 		vehiculos = objGestor.DameVehiculos();
 		for(itfProperty v:vehiculos) {
-			System.out.println(v.getProperty("numbastidor"));
+			if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("optimo")) {
+				System.out.println();
+				System.out.println("\n"+"Vehiculos en el taller: ");
+				System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
+				System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
+			}
+			
+			}
 		}
-	}
+	
 
 	/**
 	 * Meter datos en las variables de objGestor en la funcion CrearCoche.
@@ -100,16 +110,16 @@ public class clsMenu {
 		String estado = null;
 		System.out.print("Elige el estado del vehículo: ");
 		System.out.println("\n"+
-                "1) Optimo.\n" +
-                "2) Desguazable.\n" +
+                "1) Optimo (Taller).\n" +
+                "2) Desguazable (Despiece del vehículo).\n" +
                 "3) Chatarra.\n");
 		int est =  UtilidadesLP.leerEntero();
 		switch (est) {
-		case 1: estado = "Optimo";
+		case 1: estado = "optimo";
 		break;
-		case 2: estado = "Desguazable";
+		case 2: estado = "desguazable";
 		break;
-		case 3: estado = "Chatarra";
+		case 3: estado = "chatarra";
 		break;
 		}
 		Date fecha = new Date();
@@ -146,9 +156,9 @@ public class clsMenu {
 		String estado = null;
 		System.out.print("Elige el estado del vehículo: ");
 		System.out.println("\n"+
-                "1) Optimo.\n" +
-                "2) Desguazable.\n" +
-                "3) Chatarra.\n");
+                "1) optimo (Taller).\n" +
+                "2) desguazable (Despiece del vehiculo).\n" +
+                "3) chatarra.\n");
 		int est =  UtilidadesLP.leerEntero();
 		switch (est) {
 		case 1: estado = "Optimo";
@@ -194,16 +204,16 @@ public class clsMenu {
 		String estado = null;
 		System.out.print("Elige el estado del vehículo: ");
 		System.out.println("\n"+
-                "1) Optimo.\n" +
-                "2) Desguazable.\n" +
+                "1) Optimo (Taller).\n" +
+                "2) Desguazable (Despiece del vehiculo).\n" +
                 "3) Chatarra.\n");
 		int est =  UtilidadesLP.leerEntero();
 		switch (est) {
-		case 1: estado = "Optimo";
+		case 1: estado = "optimo";
 		break;
-		case 2: estado = "Desguazable";
+		case 2: estado = "desguazable";
 		break;
-		case 3: estado = "Chatarra";
+		case 3: estado = "chatarra";
 		break;
 		}
 		Date fecha = new Date();
