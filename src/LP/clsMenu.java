@@ -68,7 +68,7 @@ public class clsMenu {
 				System.out.println("El vehiculo ha sido encontrado");
 			
 			}else
-				System.out.println("No existe ningun vehiculo con ese numero de bastidor");
+				System.out.println("No existe ningun vehiculo con ese Nº de bastidor");
 		}
 		
 	}
