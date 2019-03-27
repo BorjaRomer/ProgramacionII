@@ -5,6 +5,7 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
+import java.util.Date;
 
 public class clsDatos {
 	
@@ -49,7 +50,7 @@ public class clsDatos {
 		}
 
 	 		
-		public void insertarBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, String color, int kilometros,
+		public void insertarBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
 				String tipocoche, String combustible, String cilindrada) {
 			
 			// Instancias la clase que hemos creado anteriormente
@@ -61,7 +62,7 @@ public class clsDatos {
 		    try { 
 			    if ( objConn != null ) {
 			    	// Preparamos la insert 
-			    	String query = "insert into coche (numbastidor, marca, modelo, cv, aniofabricacion, color, kilometros, tipocoche, combustible, cilindrada) values (?,?,?,?,?,?,?,?,?,?)";
+			    	String query = "insert into coche (numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipocoche, combustible, cilindrada) values (?,?,?,?,?,?,?,?,?,?,?)";
 			    	
 			    	//Creamos las preparedstaments
 			    	PreparedStatement objSt = objConn.prepareStatement(query);
@@ -70,11 +71,12 @@ public class clsDatos {
 			    	objSt.setString(3, modelo);
 			    	objSt.setInt(4, cv);
 			    	objSt.setInt(5, aniofabricacion);
-			    	objSt.setString(6, color);
-			    	objSt.setInt(7, kilometros);
-			    	objSt.setString(8, tipocoche);
-			    	objSt.setString(9, combustible);
-			    	objSt.setString(10, cilindrada);
+			    	objSt.setDate(6, fecha);
+			    	objSt.setString(7, color);
+			    	objSt.setInt(8, kilometros);
+			    	objSt.setString(9, tipocoche);
+			    	objSt.setString(10, combustible);
+			    	objSt.setString(11, cilindrada);
 			    	
 			    	//Ejecutamos la query que hemos preparado
 			  		objSt.execute();

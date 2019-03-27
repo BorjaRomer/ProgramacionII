@@ -26,6 +26,7 @@ public class clsGestor {
 	public void EliminarBD(String numerobastidor) {
 		objDatos.eliminarBD(numerobastidor);
 	}
+	
 
 	/**
 	 * Funcion Crear coche para que se comunique con el Menu Principal y guardars los atributos en la instancia objeto coche.
@@ -41,7 +42,7 @@ public class clsGestor {
 		registros.add(objCoche);
 		
 		//Se crea un objDatos para llamar a la funcion insertarBD
-		objDatos.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, color, kilometros,
+		objDatos.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
 				tipocoche, combustible, cilindrada);
 		
 	}

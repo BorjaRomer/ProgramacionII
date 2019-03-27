@@ -17,6 +17,7 @@ public class clsMenu {
 	public static void MenuPrincipal() {
 		System.out.println("Bienvenido a la aplicacion");
 		int opcion;
+		//Creamos el objeto Gestor en el inicio de la aplicacion
 		clsGestor objGestor = new clsGestor();
 		
 		do{
@@ -66,7 +67,7 @@ public class clsMenu {
 		vehiculos = objGestor.DameVehiculos();
 		for (itfProperty v: vehiculos ) {
 			if(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR).equals(numerobastidor)) {
-				System.out.println("El vehiculo ha sido encontrado");
+				System.out.println("El vehiculo ha sido encontrado y va a ser eliminado");
 				objGestor.EliminarBD(numerobastidor);
 			}else
 				System.out.println("No existe ningun vehiculo con ese Nº de bastidor");
