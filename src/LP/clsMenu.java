@@ -13,10 +13,9 @@ public class clsMenu {
 	
 	/**
 	 * Menu principal donde se interactua con el usuario dandole las opciones de registro de nuestrto desguace. 
-	 * Podemos dar de alta cualquier vehiculo y mostrarlos con la fecha del momento exacto del registro.
-	 * @throws SQLException 
+	 * Podemos dar de alta cualquier vehiculo y mostrarlos con la fecha del momento exacto del registro. 
 	 */
-	public static void MenuPrincipal() throws SQLException {
+	public static void MenuPrincipal() {
 		System.out.println("Bienvenido a la aplicacion");
 		int opcion;
 		
@@ -24,7 +23,12 @@ public class clsMenu {
 		clsGestor objGestor = new clsGestor();
 		
 		//Recogemos todos los vehiculos de mi BBDD en el principio de la aplicación para guardarlos en el ArrayList
-		objGestor.RecogerBD();
+		try {
+			objGestor.RecogerBD();
+		} catch (SQLException e) {
+
+			System.out.println("Error de recogida de BBDD");
+		}
 		
 		do{
 		System.out.println("\n" +
@@ -74,6 +78,8 @@ public class clsMenu {
 				System.out.println("El vehiculo ha sido encontrado y va a ser eliminado");
 				//Funcion de la clase Gestor para Eliminar un vehiculo
 				objGestor.EliminarBD(numerobastidor);
+				//Tengo que eliminarlo tambien del Array......
+				
 			}else
 				System.out.println("No existe ningun vehiculo con ese Nº de bastidor");
 		} 

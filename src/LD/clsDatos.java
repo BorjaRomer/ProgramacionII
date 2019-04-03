@@ -9,16 +9,15 @@ import java.util.Date;
 
 public class clsDatos {
 	
-		
 		public ResultSet consultarBD() {
+			
 			// Instancias la clase que hemos creado anteriormente
 		    clsConexionBD SQL = new clsConexionBD();
 		    
 			// Llamas al método que tiene la clase y te devuelve una conexión
 		    Connection objConn = SQL.conectarBD();
 		    ResultSet rs = null;
-		    
-		    
+			
 		    try { 
 			    if ( objConn != null ) {
 			    	// Preparamos la consulta 
@@ -41,7 +40,7 @@ public class clsDatos {
 			    	st.close();
 			    	//Cerramos la conexión
 			    	objConn.close();
-			    	
+			    		
 			    } else {
 			    	System.out.println("No existe conexión");
 			    }
@@ -49,8 +48,7 @@ public class clsDatos {
 		    } catch (SQLException e) {
 		        System.out.println("Ha fallado la consulta: " + e);
 		    }
-		    
-		    return rs;
+		   return rs;
 		}
 
 	 		

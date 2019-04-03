@@ -40,6 +40,7 @@ public class clsGestor {
     	}
 	}
 	
+	
 	//Funcion eliminar de base de datos desde clsGestor en el que utilizamos el objeto Datos para llamar a la funcion eliminar datos
 	public void EliminarBD(String numerobastidor) {
 		objDatos.eliminarBD(numerobastidor);

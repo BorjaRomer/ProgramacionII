@@ -13,10 +13,10 @@ import static Comun.clsConstantes.PROPIEDAD_COCHE_TIPOCOCHE;
 import static Comun.clsConstantes.PROPIEDAD_COCHE_COMBUSTIBLE;
 import static Comun.clsConstantes.PROPIEDAD_COCHE_CILINDRADA;
 
-/**
- * Clase hija que se instancia en la clase Gestor.
- */
 
+
+//Clase hija que se instancia en la clase Gestor.
+ 
 public class clsCoche extends clsVehiculo{
 
 		String tipocoche;
