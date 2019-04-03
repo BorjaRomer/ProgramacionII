@@ -10,18 +10,20 @@ import java.util.Date;
 public class clsDatos {
 	
 		
-		public void consultarBD() {
+		public ResultSet consultarBD() {
 			// Instancias la clase que hemos creado anteriormente
 		    clsConexionBD SQL = new clsConexionBD();
 		    
 			// Llamas al método que tiene la clase y te devuelve una conexión
 		    Connection objConn = SQL.conectarBD();
+		    ResultSet rs = null;
+		    
 		    
 		    try { 
 			    if ( objConn != null ) {
 			    	// Preparamos la consulta 
 			    	Statement st = objConn.createStatement(); 
-			    	ResultSet rs = st.executeQuery ("select * from coche");
+			    	rs = st.executeQuery ("select * from coche");
 			    	
 			    	System.out.println("COCHES RECUPERADOS");
 			    	System.out.println("-------------------");
@@ -29,7 +31,7 @@ public class clsDatos {
 			    	// Recorremos el resultado, mientras haya registros para leer, y escribimos el resultado en pantalla. 
 			    	while (rs.next()) 
 			    	{ 
-			    	    System.out.println (rs.getInt ("numbastidor") + " " + rs.getString ("marca")); 
+			    	    System.out.println (rs.getString ("numbastidor") + " " + rs.getString ("marca")); 
 			    	    		
 			    	}
 			    	
@@ -47,11 +49,16 @@ public class clsDatos {
 		    } catch (SQLException e) {
 		        System.out.println("Ha fallado la consulta: " + e);
 		    }
+		    
+		    return rs;
 		}
 
 	 		
 		public void insertarBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
 				String tipocoche, String combustible, String cilindrada) {
+			
+			//Convertimos el tipo util.Date a sql.Date que entiende el MySQL
+			java.sql.Date fechasql = new java.sql.Date(fecha.getTime());
 			
 			// Instancias la clase que hemos creado anteriormente
 		    clsConexionBD SQL = new clsConexionBD();
@@ -71,7 +78,7 @@ public class clsDatos {
 			    	objSt.setString(3, modelo);
 			    	objSt.setInt(4, cv);
 			    	objSt.setInt(5, aniofabricacion);
-			    	objSt.setDate(6, fecha);
+			    	objSt.setDate(6, fechasql);
 			    	objSt.setString(7, color);
 			    	objSt.setInt(8, kilometros);
 			    	objSt.setString(9, tipocoche);

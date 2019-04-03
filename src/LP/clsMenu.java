@@ -1,5 +1,6 @@
 package LP;
 
+import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
 import Comun.itfProperty;
@@ -13,12 +14,17 @@ public class clsMenu {
 	/**
 	 * Menu principal donde se interactua con el usuario dandole las opciones de registro de nuestrto desguace. 
 	 * Podemos dar de alta cualquier vehiculo y mostrarlos con la fecha del momento exacto del registro.
+	 * @throws SQLException 
 	 */
-	public static void MenuPrincipal() {
+	public static void MenuPrincipal() throws SQLException {
 		System.out.println("Bienvenido a la aplicacion");
 		int opcion;
+		
 		//Creamos el objeto Gestor en el inicio de la aplicacion
 		clsGestor objGestor = new clsGestor();
+		
+		//Recogemos todos los vehiculos de mi BBDD en el principio de la aplicación para guardarlos en el ArrayList
+		objGestor.RecogerBD();
 		
 		do{
 		System.out.println("\n" +
@@ -56,10 +62,8 @@ public class clsMenu {
 		
 	}
 	
-	/**
-	 * Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList.
-	 * Todavia no hemos conseguido eliminar el array.
-	 */
+	
+	 //Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList y de la BBDD.
 	private static void BajaVehiculo(clsGestor objGestor) {
 		System.out.print("Escribe el Nº de bastidor del vehiculo: ");
 		String numerobastidor = UtilidadesLP.leerCadena();
@@ -68,11 +72,11 @@ public class clsMenu {
 		for (itfProperty v: vehiculos ) {
 			if(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR).equals(numerobastidor)) {
 				System.out.println("El vehiculo ha sido encontrado y va a ser eliminado");
+				//Funcion de la clase Gestor para Eliminar un vehiculo
 				objGestor.EliminarBD(numerobastidor);
 			}else
 				System.out.println("No existe ningun vehiculo con ese Nº de bastidor");
-		}
-		
+		} 
 	}
 
 	/**
@@ -160,21 +164,6 @@ public class clsMenu {
 		int cv = UtilidadesLP.leerEntero();
 		System.out.print("Año de Fabricación: ");
 		int aniofabricacion = UtilidadesLP.leerEntero();
-		String estado = null;
-		System.out.print("Elige el estado del vehículo: ");
-		System.out.println("\n"+
-                "1) Optimo (Taller).\n" +
-                "2) Desguazable (Despiece del vehículo).\n" +
-                "3) Chatarra.\n");
-		int est =  UtilidadesLP.leerEntero();
-		switch (est) {
-		case 1: estado = "optimo";
-		break;
-		case 2: estado = "desguazable";
-		break;
-		case 3: estado = "chatarra";
-		break;
-		}
 		Date fecha = new Date();
 		System.out.print("Color: ");
 		String color = UtilidadesLP.leerCadena();
@@ -187,7 +176,7 @@ public class clsMenu {
 		System.out.print("Tamaño: ");
 		int tamaño = UtilidadesLP.leerEntero();
 		
-		objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, estado, fecha, color, kilometros, tipomoto, cilindrada, tamaño);
+		objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipomoto, cilindrada, tamaño);
 		
 	}
 	
@@ -206,21 +195,6 @@ public class clsMenu {
 		int cv = UtilidadesLP.leerEntero();
 		System.out.print("Año de Fabricación: ");
 		int aniofabricacion = UtilidadesLP.leerEntero();
-		String estado = null;
-		System.out.print("Elige el estado del vehículo: ");
-		System.out.println("\n"+
-                "1) Optimo (Taller).\n" +
-                "2) Desguazable (Despiece del vehiculo).\n" +
-                "3) Chatarra.\n");
-		int est =  UtilidadesLP.leerEntero();
-		switch (est) {
-		case 1: estado = "optimo";
-		break;
-		case 2: estado = "desguazable";
-		break;
-		case 3: estado = "chatarra";
-		break;
-		}
 		Date fecha = new Date();
 		System.out.print("Color: ");
 		String color = UtilidadesLP.leerCadena();
@@ -233,7 +207,7 @@ public class clsMenu {
 		System.out.print("Anchura: ");
 		int anchura = UtilidadesLP.leerEntero();
 		
-		objGestor.CrearCamion(numbastidor, marca, modelo, cv, aniofabricacion, estado, fecha, color, kilometros, tipocamion, altura, anchura);
+		objGestor.CrearCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipocamion, altura, anchura);
 		
 	}
 	
@@ -254,21 +228,6 @@ public class clsMenu {
 		String cilindrada = UtilidadesLP.leerCadena();
 		System.out.print("Año de Fabricación: ");
 		int aniofabricacion = UtilidadesLP.leerEntero();
-		String estado = null;
-		System.out.print("Elige el estado del vehículo: ");
-		System.out.println("\n"+
-                "1) Optimo (Taller).\n" +
-                "2) Desguazable (Despiece del vehiculo).\n" +
-                "3) Chatarra.\n");
-		int est =  UtilidadesLP.leerEntero();
-		switch (est) {
-		case 1: estado = "optimo";
-		break;
-		case 2: estado = "desguazable";
-		break;
-		case 3: estado = "chatarra";
-		break;
-		}
 		Date fecha = new Date();
 		System.out.print("Color: ");
 		String color = UtilidadesLP.leerCadena();
@@ -280,7 +239,7 @@ public class clsMenu {
 		String combustible = UtilidadesLP.leerCadena();
 		
 		
-		objGestor.CrearCoche(numbastidor, marca, modelo, cv, aniofabricacion, estado, fecha, color, kilometros, tipocoche, combustible, cilindrada);
+		objGestor.CrearCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipocoche, combustible, cilindrada);
 	}
 
 }

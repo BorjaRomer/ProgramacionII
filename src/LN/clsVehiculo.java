@@ -14,18 +14,16 @@ public abstract class clsVehiculo implements itfProperty {
 	String modelo;
 	int cv;
 	int aniofabricacion;
-	String estado;
 	Date fecha;
 	String color;
 	int kilometros;
 	
-	public clsVehiculo(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, String estado, Date fecha, String color, int kilometros) {
+	public clsVehiculo(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros) {
 		this.numbastidor = numbastidor;
 		this.marca = marca;
 		this.modelo = modelo;
 		this.cv = cv;
 		this.aniofabricacion = aniofabricacion;
-		this.estado = estado;
 		this.fecha = fecha;
 		this.color = color;
 		this.kilometros = kilometros;
@@ -47,13 +45,6 @@ public abstract class clsVehiculo implements itfProperty {
 		this.numbastidor = numbastidor;
 	}
 
-	public String getEstado() {
-		return estado;
-	}
-
-	public void setEstado(String estado) {
-		this.estado = estado;
-	}
 
 	public Date getFecha() {
 		return fecha;

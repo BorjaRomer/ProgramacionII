@@ -6,7 +6,6 @@ import static Comun.clsConstantes.PROPIEDAD_MARCA;
 import static Comun.clsConstantes.PROPIEDAD_MODELO; 
 import static Comun.clsConstantes.PROPIEDAD_ANIOFABRICACION;
 import static Comun.clsConstantes.PROPIEDAD_CV;
-import static Comun.clsConstantes.PROPIEDAD_ESTADO;
 import static Comun.clsConstantes.PROPIEDAD_FECHA;
 import static Comun.clsConstantes.PROPIEDAD_COLOR;
 import static Comun.clsConstantes.PROPIEDAD_KILOMETROS;
@@ -24,9 +23,9 @@ public class clsCamion extends clsVehiculo {
 	int altura;
 	int anchura;
 	
-	public clsCamion(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, String estado, Date fecha, String color, int kilometros,
+	public clsCamion(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
 			String tipocamion, int altura, int anchura) {
-		super(numbastidor, marca, modelo, cv, aniofabricacion, estado, fecha, color, kilometros);
+		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros);
 		this.tipocamion = tipocamion;
 		this.altura = altura;
 		this.anchura = anchura;
@@ -66,7 +65,6 @@ public class clsCamion extends clsVehiculo {
 		case PROPIEDAD_MODELO: return this.getModelo();
 		case PROPIEDAD_CV: return this.getCv();
 		case PROPIEDAD_ANIOFABRICACION: return this.getAniofabricacion();
-		case PROPIEDAD_ESTADO: return this.getEstado();
 		case PROPIEDAD_FECHA: return this.getFecha();
 		case PROPIEDAD_COLOR: return this.getColor();
 		case PROPIEDAD_KILOMETROS: return this.getKilometros();
