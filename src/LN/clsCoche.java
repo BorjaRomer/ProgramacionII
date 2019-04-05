@@ -1,22 +1,9 @@
 package LN;
 
 import java.util.Date;
-import static Comun.clsConstantes.PROPIEDAD_NUMBASTIDOR;
-import static Comun.clsConstantes.PROPIEDAD_MARCA;
-import static Comun.clsConstantes.PROPIEDAD_MODELO; 
-import static Comun.clsConstantes.PROPIEDAD_ANIOFABRICACION;
-import static Comun.clsConstantes.PROPIEDAD_CV;
-import static Comun.clsConstantes.PROPIEDAD_FECHA;
-import static Comun.clsConstantes.PROPIEDAD_COLOR;
-import static Comun.clsConstantes.PROPIEDAD_KILOMETROS;
-import static Comun.clsConstantes.PROPIEDAD_COCHE_TIPOCOCHE;
-import static Comun.clsConstantes.PROPIEDAD_COCHE_COMBUSTIBLE;
-import static Comun.clsConstantes.PROPIEDAD_COCHE_CILINDRADA;
+import static Comun.clsConstantes.*;
 
-
-
-//Clase hija que se instancia en la clase Gestor.
- 
+//Clase Coche hijo de clsVehiculo  
 public class clsCoche extends clsVehiculo{
 
 		String tipocoche;
@@ -24,8 +11,8 @@ public class clsCoche extends clsVehiculo{
 		String cilindrada;
 		
 		public clsCoche(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-				String tipocoche, String combustible, String cilindrada) {
-			super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros);
+				String tipocoche, String combustible, String cilindrada, int idestado) {
+			super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado);
 			this.tipocoche = tipocoche;
 			this.combustible = combustible;
 			this.cilindrada = cilindrada;
@@ -65,6 +52,7 @@ public class clsCoche extends clsVehiculo{
 			case PROPIEDAD_FECHA: return this.getFecha();
 			case PROPIEDAD_COLOR: return this.getColor();
 			case PROPIEDAD_KILOMETROS: return this.getKilometros();
+			case PROPIEDAD_IDESTADO: return this.getIdestado();
 			case PROPIEDAD_COCHE_TIPOCOCHE: return this.getTipocoche();
 			case PROPIEDAD_COCHE_COMBUSTIBLE: return this.getCombustible();
 			case PROPIEDAD_COCHE_CILINDRADA: return this.getCilindrada();

@@ -7,8 +7,6 @@ import Comun.itfProperty;
 import LN.clsGestor;
 import Comun.clsConstantes;
 
-
-
 public class clsMenu {
 	
 	/**
@@ -16,19 +14,23 @@ public class clsMenu {
 	 * Podemos dar de alta cualquier vehiculo y mostrarlos con la fecha del momento exacto del registro. 
 	 */
 	public static void MenuPrincipal() {
-		System.out.println("Bienvenido a la aplicacion");
-		int opcion;
 		
 		//Creamos el objeto Gestor en el inicio de la aplicacion
 		clsGestor objGestor = new clsGestor();
 		
-		//Recogemos todos los vehiculos de mi BBDD en el principio de la aplicación para guardarlos en el ArrayList
+		//Creamos los estados que van a contener los Vehiculos
+		objGestor.CrearEstados();
+		
+		//Recogemos todos los vehiculos de la BBDD
 		try {
 			objGestor.RecogerBD();
 		} catch (SQLException e) {
-
-			System.out.println("Error de recogida de BBDD");
+			// TODO Auto-generated catch block
+			e.printStackTrace();
 		}
+		
+		System.out.println("Bienvenido a la aplicacion");
+		int opcion;
 		
 		do{
 		System.out.println("\n" +
@@ -37,7 +39,7 @@ public class clsMenu {
                 "1) Registrar Coche.\n" +
                 "2) Registrar Camion.\n" +
                 "3) Registrar Moto.\n" +
-                "4) Mostrar registros.\n" +
+                "4) Mostrar vehículos.\n" +
                 "5) Dar de baja Vehiculo.\n" +
                 "6) Cambiar el estado del vehiculo.\n" +
                 "7) Salir.\n");
@@ -66,20 +68,20 @@ public class clsMenu {
 		
 	}
 	
-	
-	 //Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList y de la BBDD.
-	private static void BajaVehiculo(clsGestor objGestor) {
+		//Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList y de la BBDD.
+		private static void BajaVehiculo(clsGestor objGestor) {
 		System.out.print("Escribe el Nº de bastidor del vehiculo: ");
 		String numerobastidor = UtilidadesLP.leerCadena();
+		
 		ArrayList<itfProperty> vehiculos;
 		vehiculos = objGestor.DameVehiculos();
 		for (itfProperty v: vehiculos ) {
 			if(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR).equals(numerobastidor)) {
 				System.out.println("El vehiculo ha sido encontrado y va a ser eliminado");
+				
 				//Funcion de la clase Gestor para Eliminar un vehiculo
 				objGestor.EliminarBD(numerobastidor);
-				//Tengo que eliminarlo tambien del Array......
-				
+
 			}else
 				System.out.println("No existe ningun vehiculo con ese Nº de bastidor");
 		} 
@@ -111,11 +113,9 @@ public class clsMenu {
 			
 			case 1: System.out.println("\n"+"Vehiculos en el taller: ");
 				for(itfProperty v:vehiculos) {
-				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("optimo")) {
-				System.out.println();
 				System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
 				System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
-				}
+				
 			}
 			break;
 			
@@ -181,8 +181,28 @@ public class clsMenu {
 		int cilindrada = UtilidadesLP.leerEntero();	
 		System.out.print("Tamaño: ");
 		int tamaño = UtilidadesLP.leerEntero();
+		System.out.println("Estado del coche: \n"+
+        		"----\n" +
+        "1) Optimo.\n" +
+        "2) Despiece.\n" +
+        "3) Chatarra.\n" +
+        "4) Venta.\n" );
+		System.out.println("Elige una opcion: ");
+		int idestado = 0;
+		int opcion = UtilidadesLP.leerEntero();
+		switch (opcion) {
 		
-		objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipomoto, cilindrada, tamaño);
+		case 1: idestado=1;
+		break;
+		case 2: idestado=2;
+		break;
+		case 3: idestado=3;
+		break;
+		case 4: idestado=4;
+		break;
+		}
+		
+		objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipomoto, cilindrada, tamaño, idestado);
 		
 	}
 	
@@ -212,8 +232,28 @@ public class clsMenu {
 		int altura = UtilidadesLP.leerEntero();
 		System.out.print("Anchura: ");
 		int anchura = UtilidadesLP.leerEntero();
+		System.out.println("Estado del coche: \n"+
+        		"----\n" +
+        "1) Optimo.\n" +
+        "2) Despiece.\n" +
+        "3) Chatarra.\n" +
+        "4) Venta.\n" );
+		System.out.println("Elige una opcion: ");
+		int idestado = 0;
+		int opcion = UtilidadesLP.leerEntero();
+		switch (opcion) {
 		
-		objGestor.CrearCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipocamion, altura, anchura);
+		case 1: idestado=1;
+		break;
+		case 2: idestado=2;
+		break;
+		case 3: idestado=3;
+		break;
+		case 4: idestado=4;
+		break;
+		}
+		
+		objGestor.CrearCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipocamion, altura, anchura, idestado);
 		
 	}
 	
@@ -243,9 +283,28 @@ public class clsMenu {
 		String tipocoche = UtilidadesLP.leerCadena();
 		System.out.print("Combustible: ");
 		String combustible = UtilidadesLP.leerCadena();
+		System.out.println("Estado del coche: \n"+
+                		"----\n" +
+                "1) Optimo.\n" +
+                "2) Despiece.\n" +
+                "3) Chatarra.\n" +
+                "4) Venta.\n" );
+		System.out.println("Elige una opcion: ");
+		int idestado = 0;
+		int opcion = UtilidadesLP.leerEntero();
+		switch (opcion) {
 		
+		case 1: idestado=1;
+		break;
+		case 2: idestado=2;
+		break;
+		case 3: idestado=3;
+		break;
+		case 4: idestado=4;
+		break;
+		}
 		
-		objGestor.CrearCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipocoche, combustible, cilindrada);
+		objGestor.CrearCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipocoche, combustible, cilindrada, idestado);
 	}
 
 }

@@ -7,6 +7,7 @@ import static Comun.clsConstantes.PROPIEDAD_MODELO;
 import static Comun.clsConstantes.PROPIEDAD_ANIOFABRICACION;
 import static Comun.clsConstantes.PROPIEDAD_CV;
 import static Comun.clsConstantes.PROPIEDAD_FECHA;
+import static Comun.clsConstantes.PROPIEDAD_IDESTADO;
 import static Comun.clsConstantes.PROPIEDAD_COLOR;
 import static Comun.clsConstantes.PROPIEDAD_KILOMETROS;
 import static Comun.clsConstantes.PROPIEDAD_MOTO_TIPOMOTO;
@@ -24,8 +25,8 @@ public class clsMoto extends clsVehiculo{
 	int tamaño;
 	
 	public clsMoto(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-			String tipomoto, int cilindrada, int tamaño) {
-		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros);
+			String tipomoto, int cilindrada, int tamaño, int idestado) {
+		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado);
 		this.tipomoto = tipomoto;
 		this.cilindrada = cilindrada;
 		this.tamaño = tamaño;
@@ -67,6 +68,7 @@ public Object getProperty (String propiedad) {
 		case PROPIEDAD_FECHA: return this.getFecha();
 		case PROPIEDAD_COLOR: return this.getColor();
 		case PROPIEDAD_KILOMETROS: return this.getKilometros();
+		case PROPIEDAD_IDESTADO: return this.getIdestado();
 		case PROPIEDAD_MOTO_TIPOMOTO: return this.getTipomoto();
 		case PROPIEDAD_MOTO_CILINDRADA: return this.getCilindrada();
 		case PROPIEDAD_MOTO_TAMAÑO: return this.getTamaño();
