@@ -26,17 +26,17 @@ public class clsConexionBD {
 	
 	public Connection conectarBD() {
 		
-        Connection objConn = null;
+        Connection objConexion = null;
 
         try { 
         	
-        	objConn = DriverManager.getConnection (url, user, password);
+        	objConexion = DriverManager.getConnection (url, user, password);
         
         } catch (SQLException e) {
             System.out.println("Ha fallado la conexión" + e);
         }
 
-        return objConn;
+        return objConexion;
 
 	}	
 	
@@ -47,7 +47,7 @@ public class clsConexionBD {
         	conexion.close();
         	
         } catch (SQLException e) {
-            System.out.println("Ha fallado la desconexión");
+            System.out.println("Ha fallado la desconexión" +  e);
         }
 
 	}

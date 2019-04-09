@@ -1,7 +1,8 @@
 package LN;
 import static Comun.clsConstantes.*;
+import Comun.itfProperty;
 
-public class clsEstado {
+public class clsEstado implements itfProperty{
 	
 	//Atributo id del estado
 	int idestado;
@@ -39,9 +40,5 @@ public class clsEstado {
 		return propiedad;
 		
 	}
-	
-	
-	
-	
 
 }

@@ -27,5 +27,15 @@ public class clsConstantes {
 	
 	public static final String PROPIEDAD_ESTADO_ID = "idestado";
 	public static final String PROPIEDAD_ESTADO_DESCRIPCION = "descripcion";
+	
+	public static final String PROPIEDAD_TIPOCOCHE_ID = "idtipocoche";
+	public static final String PROPIEDAD_TIPOCOCHE_DESCRIPCION = "descripcion";
+	
+	public static final String PROPIEDAD_TIPOMOTO_ID = "idtipomoto";
+	public static final String PROPIEDAD_TIPOMOTO_DESCRIPCION = "descripcion";
+	
+	public static final String PROPIEDAD_TIPOCAMION_ID = "idtipocamion";
+	public static final String PROPIEDAD_TIPOCAMION_DESCRIPCION = "descripcion";
 
+	
 }

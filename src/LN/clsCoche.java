@@ -4,7 +4,7 @@ import java.util.Date;
 import static Comun.clsConstantes.*;
 
 //Clase Coche hijo de clsVehiculo  
-public class clsCoche extends clsVehiculo{
+public class clsCoche extends clsVehiculo {
 
 		String tipocoche;
 		String combustible;

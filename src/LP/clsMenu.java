@@ -26,6 +26,7 @@ public class clsMenu {
 			objGestor.RecogerBD();
 		} catch (SQLException e) {
 			// TODO Auto-generated catch block
+			System.out.println("No se han podido recoger bien los registros de la BBDD");
 			e.printStackTrace();
 		}
 		

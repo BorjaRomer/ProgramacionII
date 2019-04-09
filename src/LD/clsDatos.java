@@ -13,31 +13,27 @@ public class clsDatos {
 public ResultSet consultarBD() {
 		
 		// Instancias la clase que hemos creado anteriormente
-	    clsConexionBD SQL = new clsConexionBD();
-	    
+	    clsConexionBD objConexionBD = new clsConexionBD();
+	   
 		// Llamas al método que tiene la clase y te devuelve una conexión
-	    Connection objConn = SQL.conectarBD();
-	    ResultSet rs = null;
-		
+	    Connection objConexion = objConexionBD.conectarBD();
+	   
+	
     try { 
-	    if ( objConn != null ) {
+	    if ( objConexion != null ) {
+	    	
+	    	//Creamos la Tabla para recoger de BBDD
+		    ResultSet rs = null;
 	    	// Preparamos la consulta 
-	    	Statement st = objConn.createStatement(); 
+	    	Statement st = objConexion.createStatement(); 
 	    	rs = st.executeQuery ("select * from coche");
 	    	
-	    	System.out.println("COCHES RECUPERADOS");
-	    	System.out.println("-------------------");
-	    	
 	    	// Recorremos el resultado, mientras haya registros para leer, y escribimos el resultado en pantalla. 
-	    	while (rs.next()) 
-	    	{ 
-	    	    System.out.println (rs.getString ("numbastidor") + " " + rs.getString ("marca")); 		
-	    	    return rs;
+	    	while (rs.next()) {
+	    		rs.getString ("numbastidor");
+	    		rs.getString("marca");
+	    	return rs;
 	    	}
-	    	
-	    	//Cerramos la conexión
-	    	objConn.close();
-	    		
 	    } else {
 	    	System.out.println("No existe conexión");
 	    }
@@ -45,7 +41,9 @@ public ResultSet consultarBD() {
     } catch (SQLException e) {
         System.out.println("Ha fallado la consulta: " + e);
     }
-   return null;
+    objConexionBD.desconectarBD(objConexion);
+    
+	return null;
 }
 
 
