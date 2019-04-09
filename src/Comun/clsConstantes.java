@@ -13,15 +13,15 @@ public class clsConstantes {
 	public static final String PROPIEDAD_KILOMETROS = "kilometros";
 	public static final String PROPIEDAD_IDESTADO = "idestado";
 	
-	public static final String PROPIEDAD_COCHE_TIPOCOCHE = "tipocoche";
+	public static final String PROPIEDAD_COCHE_IDTIPOCOCHE = "idtipocoche";
 	public static final String PROPIEDAD_COCHE_COMBUSTIBLE = "combustible";
 	public static final String PROPIEDAD_COCHE_CILINDRADA = "cilindrada";
 	
-	public static final String PROPIEDAD_MOTO_TIPOMOTO = "tipomoto";
+	public static final String PROPIEDAD_MOTO_IDTIPOMOTO = "idtipomoto";
 	public static final String PROPIEDAD_MOTO_CILINDRADA = "cilindrada";
 	public static final String PROPIEDAD_MOTO_TAMAÑO = "tamaño";
 	
-	public static final String PROPIEDAD_CAMION_TIPOCAMION = "tipocamion";
+	public static final String PROPIEDAD_CAMION_IDTIPOCAMION = "idtipocamion";
 	public static final String PROPIEDAD_CAMION_ALTURA = "altura";
 	public static final String PROPIEDAD_CAMION_ANCHURA = "anchura";
 	

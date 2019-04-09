@@ -1,18 +1,8 @@
 package LN;
 
 import java.util.Date;
-import static Comun.clsConstantes.PROPIEDAD_NUMBASTIDOR;
-import static Comun.clsConstantes.PROPIEDAD_MARCA;
-import static Comun.clsConstantes.PROPIEDAD_MODELO; 
-import static Comun.clsConstantes.PROPIEDAD_ANIOFABRICACION;
-import static Comun.clsConstantes.PROPIEDAD_CV;
-import static Comun.clsConstantes.PROPIEDAD_FECHA;
-import static Comun.clsConstantes.PROPIEDAD_IDESTADO;
-import static Comun.clsConstantes.PROPIEDAD_COLOR;
-import static Comun.clsConstantes.PROPIEDAD_KILOMETROS;
-import static Comun.clsConstantes.PROPIEDAD_CAMION_TIPOCAMION;
-import static Comun.clsConstantes.PROPIEDAD_CAMION_ALTURA;
-import static Comun.clsConstantes.PROPIEDAD_CAMION_ANCHURA;
+import static Comun.clsConstantes.*;
+
 
 /**
  * Clase hija que se instancia en la clase Gestor.
@@ -20,24 +10,24 @@ import static Comun.clsConstantes.PROPIEDAD_CAMION_ANCHURA;
 
 public class clsCamion extends clsVehiculo {
 
-	String tipocamion;
+	int idtipocamion;
 	int altura;
 	int anchura;
 	
 	public clsCamion(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-			String tipocamion, int altura, int anchura, int idestado) {
+			int idtipocamion, int altura, int anchura, int idestado) {
 		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado);
-		this.tipocamion = tipocamion;
+		this.idtipocamion = idtipocamion;
 		this.altura = altura;
 		this.anchura = anchura;
 	}
 
-	public String getTipocamion() {
-		return tipocamion;
+	public int getIdtipocamion() {
+		return idtipocamion;
 	}
 
-	public void setTipocamion(String tipocamion) {
-		this.tipocamion = tipocamion;
+	public void setIdtipocamion(int idtipocamion) {
+		this.idtipocamion = idtipocamion;
 	}
 
 
@@ -70,7 +60,7 @@ public class clsCamion extends clsVehiculo {
 		case PROPIEDAD_COLOR: return this.getColor();
 		case PROPIEDAD_KILOMETROS: return this.getKilometros();
 		case PROPIEDAD_IDESTADO: return this.getIdestado();
-		case PROPIEDAD_CAMION_TIPOCAMION: return this.getTipocamion();
+		case PROPIEDAD_TIPOCAMION_ID: return this.getIdtipocamion();
 		case PROPIEDAD_CAMION_ALTURA: return this.getAltura();
 		case PROPIEDAD_CAMION_ANCHURA: return this.getAnchura();
 		}

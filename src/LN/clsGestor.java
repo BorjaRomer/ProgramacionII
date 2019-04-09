@@ -16,6 +16,16 @@ public class clsGestor {
 	//ArrayList donde van a contener los estados de los vehiculos
 	private ArrayList<clsEstado> estados = new ArrayList<>();
 	
+	//ArrayList donde van a contener los tipo de coches
+	private ArrayList<clsTipoCoche> tipocoche = new ArrayList<>();
+	
+	//ArrayList donde van a contener los tipos de motos
+	private ArrayList<clsTipoMoto> tipomoto = new ArrayList<>();
+	
+	//ArrayList donde van a contener los tipos de camiones
+	private ArrayList<clsTipoCamion> tipocamion = new ArrayList<>();
+	
+	
 	//Creamos ArrayList de vehiculos
 	private ArrayList<clsVehiculo> registros = new ArrayList<>();
 	
@@ -37,7 +47,7 @@ public class clsGestor {
     	{ 
 		  clsCoche objCoche = new clsCoche(rs.getString ("numbastidor"), rs.getString ("marca"), rs.getString ("modelo"), rs.getInt ("cv"),
 				  rs.getInt ("aniofabricacion"), rs.getDate ("fecha"), rs.getString ("color"), rs.getInt ("kilometros"),
-				  rs.getString ("tipocoche"), rs.getString ("combustible"), rs.getString ("cilindrada"), rs.getInt ("idestado"));
+				  rs.getInt ("idtipocoche"), rs.getString ("combustible"), rs.getString ("cilindrada"), rs.getInt ("idestado"));
 		  
 		  registros.add(objCoche);
     	}
@@ -59,16 +69,23 @@ public class clsGestor {
 		objDatos.eliminarBD(numerobastidor);
 	}
 	
-	public void CrearEstados() {
-		clsEstado objEstado1 = new clsEstado(1, "optimo");
-		estados.add(objEstado1);
-		clsEstado objEstado2 = new clsEstado(2, "despiece");
-		estados.add(objEstado2);
-		clsEstado objEstado3 = new clsEstado(3, "chatarra");
-		estados.add(objEstado3);
-		clsEstado objEstado4 = new clsEstado(4, "venta");
-		estados.add(objEstado4);
+	
+	public void RecogerEstados() {
+		
 	}
+	
+	public void RecogerTipocoche() {
+		
+	}
+	
+	public void RecogerTipomoto() {
+		
+	}
+	
+	public void RecogerTipocamion() {
+		
+	}
+	
 	
 
 	/**
@@ -76,17 +93,17 @@ public class clsGestor {
 	 * De esta manera solo se comunica con el Menu Principal la Clase Gestor. 
 	 */
 	public void CrearCoche(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-			String tipocoche, String combustible, String cilindrada, int idestado) {
+			int idtipocoche, String combustible, String cilindrada, int idestado) {
 		
 		clsCoche objCoche = new clsCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
-				tipocoche, combustible, cilindrada, idestado);
+				idtipocoche, combustible, cilindrada, idestado);
 		
 		//Añadimos al AarrayList el objeto creado
 		registros.add(objCoche);
 		
 		//Se crea un objDatos para llamar a la funcion insertarBD
 		objDatos.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
-				tipocoche, combustible, cilindrada, idestado);
+				idtipocoche, combustible, cilindrada, idestado);
 		
 	}
 	
@@ -95,9 +112,9 @@ public class clsGestor {
 	 * De esta manera solo se comunica con el Menu Principal la Clase Gestor. 
 	 */
 	public void CrearCamion(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-			String tipocamion, int altura, int anchura, int idestado) {
+			int idtipocamion, int altura, int anchura, int idestado) {
 		
-		clsCamion objCamion = new clsCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipocamion, altura, anchura, idestado);
+		clsCamion objCamion = new clsCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,idtipocamion, altura, anchura, idestado);
 		
 		//Añadimos al ArrayList el objeto creado
 		registros.add(objCamion);
@@ -108,12 +125,12 @@ public class clsGestor {
 	 * De esta manera solo se comunica con el Menu Principal la Clase Gestor. 
 	 */
 	public void CrearMoto(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-			String tipomoto, int cilindrada, int tamaño, int idestado) {
+			int idtipomoto, int cilindrada, int tamaño, int idestado) {
 		
-		clsMoto objMoto = new clsMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipomoto, cilindrada, tamaño, idestado);
+		clsMoto objMoto = new clsMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipomoto, cilindrada, tamaño, idestado);
 		
 		////Añadimos al ArrayList el objeto creado
 		registros.add(objMoto);
 	}
-	
+
 }

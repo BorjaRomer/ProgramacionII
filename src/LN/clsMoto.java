@@ -1,18 +1,7 @@
 package LN;
 
 import java.util.Date;
-import static Comun.clsConstantes.PROPIEDAD_NUMBASTIDOR;
-import static Comun.clsConstantes.PROPIEDAD_MARCA;
-import static Comun.clsConstantes.PROPIEDAD_MODELO; 
-import static Comun.clsConstantes.PROPIEDAD_ANIOFABRICACION;
-import static Comun.clsConstantes.PROPIEDAD_CV;
-import static Comun.clsConstantes.PROPIEDAD_FECHA;
-import static Comun.clsConstantes.PROPIEDAD_IDESTADO;
-import static Comun.clsConstantes.PROPIEDAD_COLOR;
-import static Comun.clsConstantes.PROPIEDAD_KILOMETROS;
-import static Comun.clsConstantes.PROPIEDAD_MOTO_TIPOMOTO;
-import static Comun.clsConstantes.PROPIEDAD_MOTO_CILINDRADA;
-import static Comun.clsConstantes.PROPIEDAD_MOTO_TAMAÑO;
+import static Comun.clsConstantes.*;
 
 /**
  * Clase hija que se instancia en la clase Gestor.
@@ -20,24 +9,24 @@ import static Comun.clsConstantes.PROPIEDAD_MOTO_TAMAÑO;
 
 public class clsMoto extends clsVehiculo{
 			
-	String tipomoto;
+	int idtipomoto;
 	int cilindrada;
 	int tamaño;
 	
 	public clsMoto(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-			String tipomoto, int cilindrada, int tamaño, int idestado) {
+			int idtipomoto, int cilindrada, int tamaño, int idestado) {
 		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado);
-		this.tipomoto = tipomoto;
+		this.idtipomoto = idtipomoto;
 		this.cilindrada = cilindrada;
 		this.tamaño = tamaño;
 	}
 
-	public String getTipomoto() {
-		return tipomoto; 
+	public int getIdtipomoto() {
+		return idtipomoto; 
 	}
 
-	public void setTipomoto(String tipomoto) {
-		this.tipomoto = tipomoto;
+	public void setIdtipomoto(int idtipomoto) {
+		this.idtipomoto = idtipomoto;
 	}
 
 	public int getCilindrada() {
@@ -69,7 +58,7 @@ public Object getProperty (String propiedad) {
 		case PROPIEDAD_COLOR: return this.getColor();
 		case PROPIEDAD_KILOMETROS: return this.getKilometros();
 		case PROPIEDAD_IDESTADO: return this.getIdestado();
-		case PROPIEDAD_MOTO_TIPOMOTO: return this.getTipomoto();
+		case PROPIEDAD_TIPOMOTO_ID: return this.getIdtipomoto();
 		case PROPIEDAD_MOTO_CILINDRADA: return this.getCilindrada();
 		case PROPIEDAD_MOTO_TAMAÑO: return this.getTamaño();
 		}

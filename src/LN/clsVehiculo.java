@@ -104,13 +104,5 @@ public abstract class clsVehiculo implements itfProperty {
 	public void setIdestado(int idestado) {
 		this.idestado = idestado;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 }

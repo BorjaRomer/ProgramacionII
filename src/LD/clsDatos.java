@@ -49,7 +49,7 @@ public ResultSet consultarBD() {
 
 
 public void insertarBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-		String tipocoche, String combustible, String cilindrada, int idestado) {
+		int idtipocoche, String combustible, String cilindrada, int idestado) {
 	
 	//Convertimos el tipo util.Date a sql.Date que entiende el MySQL
 	java.sql.Date fechasql = new java.sql.Date(fecha.getTime());
@@ -63,7 +63,7 @@ public void insertarBD(String numbastidor, String marca, String modelo, int cv, 
     try { 
 	    if ( objConn != null ) {
 	    	// Preparamos la insert 
-	    	String query = "insert into coche (numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipocoche, combustible, cilindrada, idestado) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+	    	String query = "insert into coche (numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche, combustible, cilindrada, idestado) values (?,?,?,?,?,?,?,?,?,?,?,?)";
 	    	
 	    	//Creamos las preparedstaments
 	    	PreparedStatement objSt = objConn.prepareStatement(query);
@@ -75,7 +75,7 @@ public void insertarBD(String numbastidor, String marca, String modelo, int cv, 
 	    	objSt.setDate(6, fechasql);
 	    	objSt.setString(7, color);
 	    	objSt.setInt(8, kilometros);
-	    	objSt.setString(9, tipocoche);
+	    	objSt.setInt(9, idtipocoche);
 	    	objSt.setString(10, combustible);
 	    	objSt.setString(11, cilindrada);
 	    	objSt.setInt(12, idestado);

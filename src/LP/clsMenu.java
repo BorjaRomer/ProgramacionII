@@ -18,8 +18,15 @@ public class clsMenu {
 		//Creamos el objeto Gestor en el inicio de la aplicacion
 		clsGestor objGestor = new clsGestor();
 		
-		//Creamos los estados que van a contener los Vehiculos
-		objGestor.CrearEstados();
+		//Recogemos los objetos estados que van a contener los Vehiculos
+		objGestor.RecogerEstados();
+		//Recogemos los objetos tipocoche de la BD
+		objGestor.RecogerTipocoche();
+		//Recogemos los objetos tipomoto de la BD
+		objGestor.RecogerTipomoto();
+		//Recogemos los objetos tipocamion de la BD
+		objGestor.RecogerTipocamion();
+		
 		
 		//Recogemos todos los vehiculos de la BBDD
 		try {
@@ -177,7 +184,7 @@ public class clsMenu {
 		System.out.print("Kilometros: ");
 		int kilometros = UtilidadesLP.leerEntero();
 		System.out.print("Tipo de moto: ");
-		String tipomoto = UtilidadesLP.leerCadena();
+		int idtipomoto = UtilidadesLP.leerEntero();
 		System.out.print("Cilindrada: ");
 		int cilindrada = UtilidadesLP.leerEntero();	
 		System.out.print("Tamaño: ");
@@ -203,7 +210,7 @@ public class clsMenu {
 		break;
 		}
 		
-		objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipomoto, cilindrada, tamaño, idestado);
+		objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipomoto, cilindrada, tamaño, idestado);
 		
 	}
 	
@@ -228,7 +235,7 @@ public class clsMenu {
 		System.out.print("Kilometros: ");
 		int kilometros = UtilidadesLP.leerEntero();
 		System.out.print("Tipo de camion: ");
-		String tipocamion = UtilidadesLP.leerCadena();
+		int idtipocamion = UtilidadesLP.leerEntero();
 		System.out.print("Altura: ");
 		int altura = UtilidadesLP.leerEntero();
 		System.out.print("Anchura: ");
@@ -254,7 +261,7 @@ public class clsMenu {
 		break;
 		}
 		
-		objGestor.CrearCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipocamion, altura, anchura, idestado);
+		objGestor.CrearCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocamion, altura, anchura, idestado);
 		
 	}
 	
@@ -280,10 +287,27 @@ public class clsMenu {
 		String color = UtilidadesLP.leerCadena();
 		System.out.print("Kilometros: ");
 		int kilometros = UtilidadesLP.leerEntero();
-		System.out.print("Tipo de coche: ");
-		String tipocoche = UtilidadesLP.leerCadena();
 		System.out.print("Combustible: ");
 		String combustible = UtilidadesLP.leerCadena();
+		System.out.println("Tipo de coche: \n"+
+		        		"----\n" +
+		        "1) Deportivo.\n" +
+		        "2) Todoterreno.\n" +
+		        "3) Monovolumen.\n" +
+		        "4) Electrico.\n" );
+		int idtipocoche = 0;
+		int opc = UtilidadesLP.leerEntero();
+		switch(opc) {
+		case 1: idtipocoche=1;
+		break;
+		case 2: idtipocoche=2;
+		break;
+		case 3: idtipocoche=3;
+		break;
+		case 4: idtipocoche=4;
+		break;
+		}
+		
 		System.out.println("Estado del coche: \n"+
                 		"----\n" +
                 "1) Optimo.\n" +
@@ -305,7 +329,7 @@ public class clsMenu {
 		break;
 		}
 		
-		objGestor.CrearCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, tipocoche, combustible, cilindrada, idestado);
+		objGestor.CrearCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche, combustible, cilindrada, idestado);
 	}
 
 }
