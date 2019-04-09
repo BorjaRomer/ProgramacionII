@@ -1,6 +1,7 @@
 package LD;
 
 import java.sql.Connection;
+import java.sql.DriverManager;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
@@ -10,20 +11,60 @@ import java.util.Date;
 
 public class clsDatos {
 	
+	//Nombre de la base de datos	
+	public String database="desguace";
+	
+	//host
+	public String hostname="localhost";
+	
+	//puerto
+	public String port="3306";
+	
+	//Ruta de la base de datos (jdbc:mysql://localhost:3306/alumnoBD?useTimezone=true&serverTimezone=GMT&useSSL=false)
+	public String url="jdbc:mysql://" + hostname + ":" + port + "/" + database + "?useTimezone=true&serverTimezone=GMT&useSSL=false";
+	
+	//Nombre de usuario
+	public String user="root";
+	
+	//Password
+	public String password="4392deusto";
+	
+	 Connection objConexion = null;
+	
+public Connection conectarBD() {
+	
+    try { 
+    	
+    	objConexion = DriverManager.getConnection (url, user, password);
+    
+    } catch (SQLException e) {
+        System.out.println("Ha fallado la conexión" + e);
+    }
+    
+    return objConexion;
+}	
+	
+public void desconectarBD(Connection conexion) {
+	
+    try { 
+    	
+    	conexion.close();
+    	
+    } catch (SQLException e) {
+        System.out.println("Ha fallado la desconexión" +  e);
+    }
+
+}
+
+
 public ResultSet consultarBD() {
-		
-		// Instancias la clase que hemos creado anteriormente
-	    clsConexionBD objConexionBD = new clsConexionBD();
-	   
-		// Llamas al método que tiene la clase y te devuelve una conexión
-	    Connection objConexion = objConexionBD.conectarBD();
-	   
+	
+	//Creamos la Tabla para recoger de BBDD
+    ResultSet rs = null;
 	
     try { 
 	    if ( objConexion != null ) {
 	    	
-	    	//Creamos la Tabla para recoger de BBDD
-		    ResultSet rs = null;
 	    	// Preparamos la consulta 
 	    	Statement st = objConexion.createStatement(); 
 	    	rs = st.executeQuery ("select * from coche");
@@ -32,8 +73,10 @@ public ResultSet consultarBD() {
 	    	while (rs.next()) {
 	    		rs.getString ("numbastidor");
 	    		rs.getString("marca");
-	    	return rs;
+	    		return rs;
 	    	}
+	    	
+	    	
 	    } else {
 	    	System.out.println("No existe conexión");
 	    }
@@ -41,9 +84,8 @@ public ResultSet consultarBD() {
     } catch (SQLException e) {
         System.out.println("Ha fallado la consulta: " + e);
     }
-    objConexionBD.desconectarBD(objConexion);
-    
-	return null;
+	
+   return null;
 }
 
 
@@ -53,20 +95,14 @@ public void insertarBD(String numbastidor, String marca, String modelo, int cv, 
 	
 	//Convertimos el tipo util.Date a sql.Date que entiende el MySQL
 	java.sql.Date fechasql = new java.sql.Date(fecha.getTime());
-	
-	// Instancias la clase que hemos creado anteriormente
-    clsConexionBD SQL = new clsConexionBD();
-    
-	// Llamas al método que tiene la clase y te devuelve una conexión
-    Connection objConn = SQL.conectarBD();
     
     try { 
-	    if ( objConn != null ) {
+	    if ( objConexion != null ) {
 	    	// Preparamos la insert 
 	    	String query = "insert into coche (numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche, combustible, cilindrada, idestado) values (?,?,?,?,?,?,?,?,?,?,?,?)";
 	    	
 	    	//Creamos las preparedstaments
-	    	PreparedStatement objSt = objConn.prepareStatement(query);
+	    	PreparedStatement objSt = objConexion.prepareStatement(query);
 	    	objSt.setString(1, numbastidor);
 	    	objSt.setString(2, marca);
 	    	objSt.setString(3, modelo);
@@ -88,9 +124,6 @@ public void insertarBD(String numbastidor, String marca, String modelo, int cv, 
 	    	//Cerramos el preparedStatement
 	    	objSt.close();
 	    	
-	    	//Cerramos la conexión
-	    	objConn.close();
-	    	
 	    } else {
 	    	System.out.println("No existe conexión");
 	    }
@@ -101,32 +134,20 @@ public void insertarBD(String numbastidor, String marca, String modelo, int cv, 
 }
 
 public void eliminarBD(String numbastidor) {
-	
-	// Instancias la clase que hemos creado anteriormente
-    clsConexionBD SQL = new clsConexionBD();
-    
-	// Llamas al método que tiene la clase y te devuelve una conexión
-    Connection objConn = SQL.conectarBD();
     
     try { 
-	    if ( objConn != null ) {
+	    if ( objConexion != null ) {
 	    	// Preparamos el delete 
 	    	String query = "delete from coche where numbastidor = ?";
 	    	 
 	    	//Creamos las preparedstaments
-	    	PreparedStatement objSt = objConn.prepareStatement(query);
+	    	PreparedStatement objSt = objConexion.prepareStatement(query);
 	    	objSt.setString(1, numbastidor);
 	    			    	
 	    	//Ejecutamos la query que hemos preparado
 	    	objSt.execute();
 	    	
 	    	System.out.println("Se ha eliminado el registro correctamente");
-	    	
-	    	//Cerramos el preparedStatement
-	    	objSt.close();
-	    	
-	    	//Cerramos la conexión
-	    	objConn.close();
 	    	
 	    } else {
 	    	System.out.println("No existe conexión");

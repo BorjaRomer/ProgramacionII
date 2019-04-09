@@ -1,9 +1,9 @@
 package LN;
-
 import java.util.Date;
 import Comun.itfProperty;
 import java.util.ArrayList;
 import LD.clsDatos;
+import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -40,33 +40,41 @@ public class clsGestor {
 	}
 	
 	//Funcion recoger de base de datos desde clsGestor en el que utilizamos el objeto Datos para llamar a la funcion consultar datos
-	public void RecogerBD() throws SQLException {
+	public void RecogercocheBD() throws SQLException {
+		Connection conexion = objDatos.conectarBD();
 		ResultSet rs;
 		rs = objDatos.consultarBD();
-		while (rs.next()) 
-    	{ 
+		while (rs.next()) { 
+    	
 		  clsCoche objCoche = new clsCoche(rs.getString ("numbastidor"), rs.getString ("marca"), rs.getString ("modelo"), rs.getInt ("cv"),
 				  rs.getInt ("aniofabricacion"), rs.getDate ("fecha"), rs.getString ("color"), rs.getInt ("kilometros"),
 				  rs.getInt ("idtipocoche"), rs.getString ("combustible"), rs.getString ("cilindrada"), rs.getInt ("idestado"));
 		  
 		  registros.add(objCoche);
     	}
+		objDatos.desconectarBD(conexion);
 	}
 	
 	
 	//Funcion eliminar de base de datos desde clsGestor en el que utilizamos el objeto Datos para llamar a la funcion eliminar datos
-	public void EliminarBD(String numerobastidor) {
-		
+	public void EliminarcocheBD(String numerobastidor) {
+		Connection conexion = objDatos.conectarBD();
 		//Eliminar del ArrayList
 		for (clsVehiculo e: registros) {
 			if(e.numbastidor.equals(numerobastidor)) {
 				registros.remove(e);
 				System.out.println("Se ha eliminado del AarrayList");
+				
+				//Funcion de clsDatos para eliminar el objeto de la BBDD
+				objDatos.eliminarBD(numerobastidor);
+				
+				objDatos.desconectarBD(conexion);
+				
+			}else {
+				System.out.println("No coincide con el numbastidor");
 			}
 		}
 		
-		//Funcion de clsDatos para eliminar el objeto de la BBDD
-		objDatos.eliminarBD(numerobastidor);
 	}
 	
 	
@@ -101,10 +109,12 @@ public class clsGestor {
 		//Añadimos al AarrayList el objeto creado
 		registros.add(objCoche);
 		
+		Connection conexion = objDatos.conectarBD();
 		//Se crea un objDatos para llamar a la funcion insertarBD
 		objDatos.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
 				idtipocoche, combustible, cilindrada, idestado);
 		
+		objDatos.desconectarBD(conexion);
 	}
 	
 	/**

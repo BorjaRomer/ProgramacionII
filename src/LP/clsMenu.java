@@ -30,9 +30,8 @@ public class clsMenu {
 		
 		//Recogemos todos los vehiculos de la BBDD
 		try {
-			objGestor.RecogerBD();
+			objGestor.RecogercocheBD();
 		} catch (SQLException e) {
-			// TODO Auto-generated catch block
 			System.out.println("No se han podido recoger bien los registros de la BBDD");
 			e.printStackTrace();
 		}
@@ -88,7 +87,7 @@ public class clsMenu {
 				System.out.println("El vehiculo ha sido encontrado y va a ser eliminado");
 				
 				//Funcion de la clase Gestor para Eliminar un vehiculo
-				objGestor.EliminarBD(numerobastidor);
+				objGestor.EliminarcocheBD(numerobastidor);
 
 			}else
 				System.out.println("No existe ningun vehiculo con ese Nº de bastidor");
@@ -111,7 +110,7 @@ public class clsMenu {
 	                "1) Vehiculos optimos.\n" +
 	                "2) Vehiculos para despiece.\n" +
 	                "3) Vehiculos en chatarra.\n" +
-	                "4) Vehiculos en venta" +
+	                "4) Vehiculos en venta.\n" +
  	                "5) Salir.\n");
 			
 			System.out.print("Elige la opcion: ");
