@@ -79,25 +79,18 @@ public class clsMenu {
 		private static void BajaVehiculo(clsGestor objGestor) {
 		System.out.print("Escribe el Nº de bastidor del vehiculo: ");
 		String numerobastidor = UtilidadesLP.leerCadena();
-		
-		ArrayList<itfProperty> vehiculos;
-		vehiculos = objGestor.DameVehiculos();
-		for (itfProperty v: vehiculos ) {
-			if(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR).equals(numerobastidor)) {
-				System.out.println("El vehiculo ha sido encontrado y va a ser eliminado");
-				
-				//Funcion de la clase Gestor para Eliminar un vehiculo
+	
+			try {
 				objGestor.EliminarcocheBD(numerobastidor);
-
-			}else
-				System.out.println("No existe ningun vehiculo con ese Nº de bastidor");
-		} 
-	}
-
-	/**
-	 * Funcion para leer el ArrayList instanciado en clsGesotr y que se encuentra en el objGestor que hemos creado en el Menu Principal.
-	 * Por eso pasamos por paramtero el objGestor.
-	 */
+			} catch (SQLException e) {
+				System.out.println("El vehiculo no se ha eliminado correctamente");
+				e.printStackTrace();
+			}
+		}
+	
+	/*Funcion para leer el ArrayList instanciado en clsGesotr y que se encuentra en el objGestor que hemos creado en el Menu Principal.
+  	Por eso pasamos por paramtero el objGestor.*/
+	 
 	private static void MostrarRegistros(clsGestor objGestor) {
 		ArrayList<itfProperty> vehiculos;
 		vehiculos = objGestor.DameVehiculos();
@@ -120,8 +113,10 @@ public class clsMenu {
 			
 			case 1: System.out.println("\n"+"Vehiculos en el taller: ");
 				for(itfProperty v:vehiculos) {
-				System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
+				System.out.println("");
+				System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA ));
 				System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
+				System.out.println("");
 				
 			}
 			break;
