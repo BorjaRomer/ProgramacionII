@@ -61,9 +61,8 @@ public Object getProperty (String propiedad) {
 		case PROPIEDAD_TIPOMOTO_ID: return this.getIdtipomoto();
 		case PROPIEDAD_MOTO_CILINDRADA: return this.getCilindrada();
 		case PROPIEDAD_MOTO_TAMAÑO: return this.getTamaño();
+		default: throw new RuntimeException("Propiedad no existente");
 		}
-		
-		return propiedad;
 		
 	}
 	

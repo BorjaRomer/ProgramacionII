@@ -37,11 +37,9 @@ public class clsTipoMoto implements itfProperty {
 		
 		switch(propiedad) {
 		case PROPIEDAD_TIPOMOTO_ID: return this.getIdtipomoto();
-		case PROPIEDAD_TIPOMOTO_DESCRIPCION: return this.getDescripcion() ;
+		case PROPIEDAD_TIPOMOTO_DESCRIPCION: return this.getDescripcion();
+		default: throw new RuntimeException("Propiedad no existente");
 		}
-		
-	
-		return propiedad;
 			
 	}
 	

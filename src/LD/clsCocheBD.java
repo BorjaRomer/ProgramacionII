@@ -49,7 +49,7 @@ public class clsCocheBD {
 		// Ejecutamos la query que hemos preparado
 		objSt.execute();
 
-		System.out.println("Se ha insertado el registro correctamente");
+		System.out.println("Se ha insertado el registro correctamente en la BD");
 
 		// Cerramos el preparedStatement
 		objSt.close();
@@ -68,6 +68,11 @@ public class clsCocheBD {
 
 		// Ejecutamos la query que hemos preparado
 		objSt.execute();
+		
+		System.out.println("Se ha eliminado de la BD");
+		
+		// Cerramos el preparedStatement
+		objSt.close();
 
 	}
 

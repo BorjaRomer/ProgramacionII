@@ -36,10 +36,10 @@ public class clsTipoCamion implements itfProperty{
 		
 		switch(propiedad) {
 		case PROPIEDAD_TIPOCAMION_ID: return this.getIdtipocamion();
-		case PROPIEDAD_TIPOCAMION_DESCRIPCION: return this.getDescripcion() ;
+		case PROPIEDAD_TIPOCAMION_DESCRIPCION: return this.getDescripcion();
+		default: throw new RuntimeException("Propiedad no existente");
 		}
 		
-		return propiedad;
 	}
 	
 	

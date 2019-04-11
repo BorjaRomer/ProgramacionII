@@ -63,9 +63,9 @@ public class clsCamion extends clsVehiculo {
 		case PROPIEDAD_TIPOCAMION_ID: return this.getIdtipocamion();
 		case PROPIEDAD_CAMION_ALTURA: return this.getAltura();
 		case PROPIEDAD_CAMION_ANCHURA: return this.getAnchura();
+		default: throw new RuntimeException("Propiedad no existente");
 		}
-		
-		return propiedad;
+
 		
 	}
 	

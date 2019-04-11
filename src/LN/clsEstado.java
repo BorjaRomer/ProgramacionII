@@ -34,10 +34,10 @@ public class clsEstado implements itfProperty{
 		
 		switch(propiedad) {
 		case PROPIEDAD_ESTADO_ID: return this.getIdestado();
-		case PROPIEDAD_ESTADO_DESCRIPCION: return this.getDescripcion() ;
+		case PROPIEDAD_ESTADO_DESCRIPCION: return this.getDescripcion();
+		default: throw new RuntimeException("Propiedad no existente");
 		}
 		
-		return propiedad;
 		
 	}
 

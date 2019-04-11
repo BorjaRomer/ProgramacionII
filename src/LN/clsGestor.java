@@ -151,13 +151,13 @@ public class clsGestor {
 		for (clsVehiculo e : registros) {
 			if (e.numbastidor.equals(numerobastidor)) {
 				registros.remove(e);
-				System.out.println("Se ha eliminado del AarrayList");
+				System.out.println("Se ha eliminado del ArrayList");
 
 				// Funcion de clsDatos para eliminar el objeto de la BBDD
 				objDatos.eliminarcocheBD(numerobastidor, conexion);
 
 			} else {
-				System.out.println("No coincide con el numbastidor");
+				throw new RuntimeException("El numero de bastidor no existe");
 			}
 		}
 		// Desconectar la BD

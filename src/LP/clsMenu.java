@@ -6,6 +6,7 @@ import java.util.Date;
 import Comun.itfProperty;
 import LN.clsGestor;
 import Comun.clsConstantes;
+import Comun.clsExcepcionNB;
 
 public class clsMenu {
 	
@@ -75,19 +76,21 @@ public class clsMenu {
 	}
 	
 		//Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList y de la BBDD.
-		private static void BajaVehiculo(clsGestor objGestor) {
+	private static void BajaVehiculo(clsGestor objGestor) {
+		
 		System.out.print("Escribe el Nº de bastidor del vehiculo: ");
 		String numerobastidor = UtilidadesLP.leerCadena();
-	
-			try {
-				objGestor.EliminarcocheBD(numerobastidor);
-			} catch (SQLException e) {
-				System.out.println("El vehiculo no se ha eliminado correctamente");
-				e.printStackTrace();
-			}
+		
+		try {
+			objGestor.EliminarcocheBD(numerobastidor);
+		} catch (SQLException e) {
+			System.out.println("El vehiculo no se ha eliminado correctamente");
+			e.printStackTrace();
 		}
 	
-	/*Funcion para leer el ArrayList instanciado en clsGesotr y que se encuentra en el objGestor que hemos creado en el Menu Principal.
+	}
+	
+	/*Funcion para leer el ArrayList instanciado en clsGestor y que se encuentra en el objGestor que hemos creado en el Menu Principal.
   	Por eso pasamos por paramtero el objGestor.*/
 	 
 	private static void MostrarRegistros(clsGestor objGestor) {
@@ -160,9 +163,12 @@ public class clsMenu {
 	 * Meter datos en las variables de objGestor en la funcion CrearCoche.
 	 */
 	
-	private static void AltaMoto(clsGestor objGestor) {
+	private static void AltaMoto(clsGestor objGestor) throws clsExcepcionNB {
 		System.out.print("Numero de bastidor: ");
 		String numbastidor = UtilidadesLP.leerCadena();
+		if(numbastidor.length()<4) {
+			throw new clsExcepcionNB();
+		}
 		System.out.print("Marca: ");
 		String marca = UtilidadesLP.leerCadena();
 		System.out.print("Modelo: ");
@@ -211,9 +217,12 @@ public class clsMenu {
 	 * Meter datos en las variables de objGestor en la funcion CrearCamion.
 	 */
 
-	private static void AltaCamion(clsGestor objGestor) {
+	private static void AltaCamion(clsGestor objGestor) throws clsExcepcionNB {
 		System.out.print("Numero de bastidor: ");
 		String numbastidor = UtilidadesLP.leerCadena();
+		if(numbastidor.length()<4) {
+			throw new clsExcepcionNB();
+		}
 		System.out.print("Marca: ");
 		String marca = UtilidadesLP.leerCadena();
 		System.out.print("Modelo: ");
@@ -262,9 +271,12 @@ public class clsMenu {
 	 * Meter datos en las variables de objGestor en la funcion CrearMoto.
 	 */
 
-	private static void AltaCoche(clsGestor objGestor) {
+	private static void AltaCoche(clsGestor objGestor) throws clsExcepcionNB {
 		System.out.print("Numero de bastidor: ");
 		String numbastidor = UtilidadesLP.leerCadena();
+		if(numbastidor.length()<4) {
+			throw new clsExcepcionNB();
+		}
 		System.out.print("Marca: ");
 		String marca = UtilidadesLP.leerCadena();
 		System.out.print("Modelo: ");
