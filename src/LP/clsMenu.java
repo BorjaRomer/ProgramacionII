@@ -18,19 +18,18 @@ public class clsMenu {
 		//Creamos el objeto Gestor en el inicio de la aplicacion
 		clsGestor objGestor = new clsGestor();
 		
-		//Recogemos los objetos estados que van a contener los Vehiculos
-		objGestor.RecogerEstados();
-		//Recogemos los objetos tipocoche de la BD
-		objGestor.RecogerTipocoche();
-		//Recogemos los objetos tipomoto de la BD
-		objGestor.RecogerTipomoto();
-		//Recogemos los objetos tipocamion de la BD
-		objGestor.RecogerTipocamion();
-		
-		
-		//Recogemos todos los vehiculos de la BBDD
+		//Recogemos todo de la BD
 		try {
+			//Recogemos todos los coches de la BD
 			objGestor.RecogercocheBD();
+			//Recogemos los estados de la BD
+			objGestor.RecogerestadosBD();
+			//Recogemos los tipos de coches de la BD
+			objGestor.RecogertipococheBD();
+			//Recogemos los tipos de motos de la BD
+			objGestor.RecogertipomotoBD();
+			//Recogemos los tipos de camiones de la BD
+			objGestor.RecogertipocamionBD();
 		} catch (SQLException e) {
 			System.out.println("No se han podido recoger bien los registros de la BBDD");
 			e.printStackTrace();
@@ -323,7 +322,12 @@ public class clsMenu {
 		break;
 		}
 		
-		objGestor.CrearCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche, combustible, cilindrada, idestado);
+		try {
+			objGestor.CrearCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche, combustible, cilindrada, idestado);
+		} catch (SQLException e) {
+			System.out.println("Error al regitrar un coche");
+			e.printStackTrace();
+		}
 	}
 
 }
