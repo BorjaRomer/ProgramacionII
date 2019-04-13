@@ -1,8 +1,11 @@
 package LN;
 
 import java.util.Date;
+
+import Comun.clsComparatorMarca;
 import Comun.itfProperty;
 import java.util.ArrayList;
+import java.util.Collections;
 import LD.clsDatos;
 import java.sql.Connection;
 import java.sql.ResultSet;
@@ -15,6 +18,15 @@ public class clsGestor {
 
 	// ArrayList donde van a contener los estados de los vehiculos
 	private ArrayList<clsEstado> estados = new ArrayList<>();
+	
+	// Funcion ArrayList donde se guardan los estados
+	public ArrayList<itfProperty> DameEstados() {
+		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
+		for (clsEstado a : estados) {
+			retorno.add(a);
+		}
+		return retorno;
+	}
 
 	// ArrayList donde van a contener los tipo de coches
 	private ArrayList<clsTipoCoche> tipocoche = new ArrayList<>();
@@ -26,17 +38,24 @@ public class clsGestor {
 	private ArrayList<clsTipoCamion> tipocamion = new ArrayList<>();
 
 	// Creamos ArrayList de vehiculos
-	private ArrayList<clsVehiculo> registros = new ArrayList<>();
+	private ArrayList<clsVehiculo> vehiculos = new ArrayList<>();
 
 	// Funcion ArrayList donde se guardan los vehiculos
 	public ArrayList<itfProperty> DameVehiculos() {
-		ArrayList<itfProperty> retorno;
-		retorno = new ArrayList<itfProperty>();
-		for (clsVehiculo a : registros) {
+		
+		//Se instancia la clase Comparator con el metodo CompareTo
+		clsComparatorMarca comparadormarca = new clsComparatorMarca();
+		
+		//Con el metodo sort ordenamos los vehiculos mediante la clase Comparator creada
+		Collections.sort(vehiculos, comparadormarca);
+		
+		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
+		for (clsVehiculo a : vehiculos) {
 			retorno.add(a);
 		}
 		return retorno;
 	}
+	
 
 	public void RecogertipococheBD() throws SQLException {
 		// Se crea conexion con BD
@@ -119,25 +138,25 @@ public class clsGestor {
 	// Funcion recoger de base de datos desde clsGestor en el que utilizamos el
 	// objeto Datos para llamar a la funcion consultar datos
 	public void RecogercocheBD() throws SQLException {
-		
-		//Se crea conexion con BD
+
+		// Se crea conexion con BD
 		Connection conexion = objDatos.conectarBD();
 		ResultSet rs;
-		
-		//Funcion recoger coches de la BD
+
+		// Funcion recoger coches de la BD
 		rs = objDatos.recogercocheBD(conexion);
-		
-		//Se recorre el ResultSet añadiendo los objetos en el ArrayList
+
+		// Se recorre el ResultSet añadiendo los objetos en el ArrayList
 		while (rs.next()) {
 			clsCoche objCoche = new clsCoche(rs.getString("numbastidor"), rs.getString("marca"), rs.getString("modelo"),
 					rs.getInt("cv"), rs.getInt("aniofabricacion"), rs.getDate("fecha"), rs.getString("color"),
 					rs.getInt("kilometros"), rs.getInt("idtipocoche"), rs.getString("combustible"),
 					rs.getString("cilindrada"), rs.getInt("idestado"));
 
-			registros.add(objCoche);
+			vehiculos.add(objCoche);
 		}
-		
-		//Se desconecta la BD
+
+		// Se desconecta la BD
 		objDatos.desconectarBD(conexion);
 	}
 
@@ -148,9 +167,9 @@ public class clsGestor {
 		// Establecer conexion con BD
 		Connection conexion = objDatos.conectarBD();
 
-		for (clsVehiculo e : registros) {
+		for (clsVehiculo e : vehiculos) {
 			if (e.numbastidor.equals(numerobastidor)) {
-				registros.remove(e);
+				vehiculos.remove(e);
 				System.out.println("Se ha eliminado del ArrayList");
 
 				// Funcion de clsDatos para eliminar el objeto de la BBDD
@@ -178,9 +197,6 @@ public class clsGestor {
 		clsCoche objCoche = new clsCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
 				idtipocoche, combustible, cilindrada, idestado);
 
-		// Añadimos al AarrayList el objeto creado
-		registros.add(objCoche);
-
 		// Se conecta la BD
 		Connection conexion = objDatos.conectarBD();
 
@@ -190,6 +206,9 @@ public class clsGestor {
 
 		// Se desconecta la BD
 		objDatos.desconectarBD(conexion);
+
+		// Añadimos al AarrayList el objeto creado
+		vehiculos.add(objCoche);
 	}
 
 	/**
@@ -204,7 +223,7 @@ public class clsGestor {
 				idtipocamion, altura, anchura, idestado);
 
 		// Añadimos al ArrayList el objeto creado
-		registros.add(objCamion);
+		vehiculos.add(objCamion);
 	}
 
 	/**
@@ -219,7 +238,7 @@ public class clsGestor {
 				idtipomoto, cilindrada, tamaño, idestado);
 
 		//// Añadimos al ArrayList el objeto creado
-		registros.add(objMoto);
+		vehiculos.add(objMoto);
 	}
 
 }

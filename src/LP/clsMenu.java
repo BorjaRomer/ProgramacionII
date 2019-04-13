@@ -10,13 +10,12 @@ import Comun.clsExcepcionNB;
 
 public class clsMenu {
 	
-	/**
-	 * Menu principal donde se interactua con el usuario dandole las opciones de registro de nuestrto desguace. 
-	 * Podemos dar de alta cualquier vehiculo y mostrarlos con la fecha del momento exacto del registro. 
-	 */
-	public static void MenuPrincipal() {
+	
+	/**Menu principal donde se interactua con el usuario dandole las opciones de registro de nuestrto desguace. 
+	 Podemos dar de alta cualquier vehiculo y mostrarlos.*/ 
+	 public static void MenuPrincipal() {
 		
-		//Creamos el objeto Gestor en el inicio de la aplicacion
+		/**Creamos el objeto Gestor en el inicio de la aplicacion.*/
 		clsGestor objGestor = new clsGestor();
 		
 		//Recogemos todo de la BD
@@ -78,6 +77,7 @@ public class clsMenu {
 		//Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList y de la BBDD.
 	private static void BajaVehiculo(clsGestor objGestor) {
 		
+		//Pedimos al usuario que coche quiere eliminar
 		System.out.print("Escribe el Nº de bastidor del vehiculo: ");
 		String numerobastidor = UtilidadesLP.leerCadena();
 		
@@ -96,6 +96,7 @@ public class clsMenu {
 	private static void MostrarRegistros(clsGestor objGestor) {
 		ArrayList<itfProperty> vehiculos;
 		vehiculos = objGestor.DameVehiculos();
+		
 		int opcion;
 		
 		do {
@@ -106,7 +107,8 @@ public class clsMenu {
 	                "2) Vehiculos para despiece.\n" +
 	                "3) Vehiculos en chatarra.\n" +
 	                "4) Vehiculos en venta.\n" +
- 	                "5) Salir.\n");
+	                "5) Coches en orden alfabetico por marca.\n"+
+ 	                "6) Salir.\n");
 			
 			System.out.print("Elige la opcion: ");
 			opcion = UtilidadesLP.leerEntero();
@@ -114,49 +116,45 @@ public class clsMenu {
 			switch(opcion) {
 			
 			case 1: System.out.println("\n"+"Vehiculos en el taller: ");
-				for(itfProperty v:vehiculos) {
-				System.out.println("");
-				System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA ));
-				System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
-				System.out.println("");
-				
-			}
-			break;
-			
-			case 2: System.out.println("\n"+"Vehiculos para desguace: ");
-				for(itfProperty v:vehiculos) {
-					if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("desguazable")) {
-					System.out.println();
-					System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
-					System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
-					}
+			for(itfProperty v:vehiculos) {
+				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO_ID).equals(1)) {
+					System.out.println(vehiculos);
 				}
-			break;
-			
-			case 3: System.out.println("\n"+"Vehiculos en la chatarra: ");
-				for(itfProperty v:vehiculos) {
-					if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("chatarra")) {
-					System.out.println();
-					System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
-					System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
-					}
-				}
-			break;
-			
-			case 4: System.out.println("\n"+"Vehiculos en venta: ");
-				for(itfProperty v:vehiculos) {
-					if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO).equals("venta")) {
-					System.out.println();
-					System.out.println(v.getProperty(clsConstantes.PROPIEDAD_MARCA));
-					System.out.print(v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR));
-					}
-				}
-			break;
 			}
 			
-		}while(opcion!=5);
-		
+			break;
+			case 2: System.out.println("\n"+"Vehiculos para despiece: ");
+			for(itfProperty v:vehiculos) {
+				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO_ID).equals(2)) {
+					System.out.println(vehiculos);
+			}
 		}
+			break;
+			
+			case 3: System.out.println("\n"+"Vehiculos en el taller: ");
+			for(itfProperty v:vehiculos) {
+				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO_ID).equals(3)) {
+					System.out.println(vehiculos);
+			}
+		}
+		
+			break;
+			case 4: System.out.println("\n"+"Vehiculos para despiece: ");
+			for(itfProperty v:vehiculos) {
+				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO_ID).equals(4)) {
+					System.out.println(vehiculos);
+			}
+		}	
+			
+			break;
+			case 5:
+				System.out.println("\n"+"Coche ordenados alfabeticamente por la marca: ");
+				System.out.println(vehiculos);
+			}
+		}while(opcion!=6);
+	}
+	
+
 	
 
 	/**
@@ -338,7 +336,6 @@ public class clsMenu {
 			objGestor.CrearCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche, combustible, cilindrada, idestado);
 		} catch (SQLException e) {
 			System.out.println("Error al regitrar un coche");
-			e.printStackTrace();
 		}
 	}
 

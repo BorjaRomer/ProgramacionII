@@ -105,4 +105,31 @@ public abstract class clsVehiculo implements itfProperty {
 		this.idestado = idestado;
 	}
 
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result + ((numbastidor == null) ? 0 : numbastidor.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		clsVehiculo other = (clsVehiculo) obj;
+		if (numbastidor == null) {
+			if (other.numbastidor != null)
+				return false;
+		} else if (!numbastidor.equals(other.numbastidor))
+			return false;
+		return true;
+	}
+	
+	
+
 }

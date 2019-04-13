@@ -7,7 +7,6 @@ public class clsConstantes {
 	public static final String PROPIEDAD_MODELO = "modelo";
 	public static final String PROPIEDAD_CV = "cv";
 	public static final String PROPIEDAD_ANIOFABRICACION = "aniofabricacion";
-	public static final String PROPIEDAD_ESTADO = "estado";
 	public static final String PROPIEDAD_FECHA = "fecha";
 	public static final String PROPIEDAD_COLOR = "color";
 	public static final String PROPIEDAD_KILOMETROS = "kilometros";
