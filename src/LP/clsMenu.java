@@ -118,7 +118,7 @@ public class clsMenu {
 			case 1: System.out.println("\n"+"Vehiculos en el taller: ");
 			for(itfProperty v:vehiculos) {
 				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO_ID).equals(1)) {
-					System.out.println(vehiculos);
+					System.out.println(v);
 				}
 			}
 			
@@ -126,7 +126,7 @@ public class clsMenu {
 			case 2: System.out.println("\n"+"Vehiculos para despiece: ");
 			for(itfProperty v:vehiculos) {
 				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO_ID).equals(2)) {
-					System.out.println(vehiculos);
+					System.out.println(v);
 			}
 		}
 			break;
@@ -134,7 +134,7 @@ public class clsMenu {
 			case 3: System.out.println("\n"+"Vehiculos en el taller: ");
 			for(itfProperty v:vehiculos) {
 				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO_ID).equals(3)) {
-					System.out.println(vehiculos);
+					System.out.println(v);
 			}
 		}
 		
@@ -142,14 +142,18 @@ public class clsMenu {
 			case 4: System.out.println("\n"+"Vehiculos para despiece: ");
 			for(itfProperty v:vehiculos) {
 				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO_ID).equals(4)) {
-					System.out.println(vehiculos);
+					System.out.println(v);
 			}
 		}	
 			
 			break;
 			case 5:
-				System.out.println("\n"+"Coche ordenados alfabeticamente por la marca: ");
-				System.out.println(vehiculos);
+				System.out.println("\n"+"COCHES ORDENADO ALFABETICAMENTE POR MARCA: ");
+				int i=0;
+				for(itfProperty v: vehiculos) {
+					i++;
+				System.out.println(i+". -->"+v+"");
+				}
 			}
 		}while(opcion!=6);
 	}

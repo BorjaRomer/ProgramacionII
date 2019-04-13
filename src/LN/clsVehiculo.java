@@ -1,5 +1,4 @@
 package LN;
-
 import java.util.Date;
 
 import Comun.itfProperty;
@@ -7,12 +6,12 @@ import Comun.itfProperty;
 /**
  * Clase Padre que es abstracta porque nunca se va a instanciar.
  */
-public abstract class clsVehiculo implements itfProperty {
+public abstract class clsVehiculo implements itfProperty, Comparable <clsVehiculo> {
 	
 	String numbastidor;
 	String marca;
 	String modelo;
-	int cv;
+	Integer cv;
 	int aniofabricacion;
 	Date fecha;
 	String color;
@@ -73,7 +72,7 @@ public abstract class clsVehiculo implements itfProperty {
 		this.modelo = modelo;
 	}
 
-	public int getCv() {
+	public Integer getCv() {
 		return cv;
 	}
 
@@ -130,6 +129,10 @@ public abstract class clsVehiculo implements itfProperty {
 		return true;
 	}
 	
+	public int compareTo(clsVehiculo v) {
+		
+		return v.cv.compareTo(this.cv);
 	
+	}
 
 }

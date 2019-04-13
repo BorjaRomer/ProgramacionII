@@ -1,7 +1,6 @@
 package LN;
 
 import java.util.Date;
-
 import Comun.clsComparatorMarca;
 import Comun.itfProperty;
 import java.util.ArrayList;
@@ -43,11 +42,13 @@ public class clsGestor {
 	// Funcion ArrayList donde se guardan los vehiculos
 	public ArrayList<itfProperty> DameVehiculos() {
 		
+		Collections.sort(vehiculos);
+		
 		//Se instancia la clase Comparator con el metodo CompareTo
-		clsComparatorMarca comparadormarca = new clsComparatorMarca();
+		//clsComparatorMarca comparadormarca = new clsComparatorMarca();
 		
 		//Con el metodo sort ordenamos los vehiculos mediante la clase Comparator creada
-		Collections.sort(vehiculos, comparadormarca);
+		//Collections.sort(vehiculos, comparadormarca);
 		
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
 		for (clsVehiculo a : vehiculos) {

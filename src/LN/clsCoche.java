@@ -65,7 +65,7 @@ import static Comun.clsConstantes.*;
 	
 	public String toString() {
 		
-		return "Nº Bastidor: " + this.numbastidor + "; MARCA: " + this.marca + "; FECHA: " + this.fecha;
+		return "\n Nº Bastidor: " + this.numbastidor + "; MARCA: " + this.marca + "; FECHA: " + this.fecha + "; CV: " + this.cv;
 		
 	}
 	
