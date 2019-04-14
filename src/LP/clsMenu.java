@@ -17,17 +17,17 @@ public class clsMenu {
 		/**Creamos el objeto Gestor en el inicio de la aplicacion.*/
 		clsGestor objGestor = new clsGestor();
 		
-		//Recogemos todo de la BD
+		/**Recogemos todo de la BD*/
 		try {
-			//Recogemos todos los coches de la BD
+			/**Recogemos todos los coches de la BD*/
 			objGestor.RecogercocheBD();
-			//Recogemos los estados de la BD
+			/**Recogemos los estados de la BD*/
 			objGestor.RecogerestadosBD();
-			//Recogemos los tipos de coches de la BD
+			/**Recogemos los tipos de coches de la BD*/
 			objGestor.RecogertipococheBD();
-			//Recogemos los tipos de motos de la BD
+			/**Recogemos los tipos de motos de la BD*/
 			objGestor.RecogertipomotoBD();
-			//Recogemos los tipos de camiones de la BD
+			/**Recogemos los tipos de camiones de la BD*/
 			objGestor.RecogertipocamionBD();
 		} catch (SQLException e) {
 			System.out.println("No se han podido recoger bien los registros de la BBDD");
@@ -76,10 +76,10 @@ public class clsMenu {
 		
 	}
 	
-		//Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList y de la BBDD.
+	 /**Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList y de la BBDD*/
 	private static void BajaCoche(clsGestor objGestor) {
 		
-		//Pedimos al usuario que coche quiere eliminar
+		/**Pedimos al usuario que coche quiere eliminar*/
 		System.out.print("Escribe el Nº de bastidor del vehiculo: ");
 		String numerobastidor = UtilidadesLP.leerCadena();
 		
@@ -100,7 +100,7 @@ public class clsMenu {
 		
 	}
 	
-	/*Funcion para leer el ArrayList instanciado en clsGestor y que se encuentra en el objGestor que hemos creado en el Menu Principal.
+	/**Funcion para leer el ArrayList instanciado en clsGestor y que se encuentra en el objGestor que hemos creado en el Menu Principal.
   	Por eso pasamos por paramtero el objGestor.*/
 	 
 	private static void MostrarCoches(clsGestor objGestor) {

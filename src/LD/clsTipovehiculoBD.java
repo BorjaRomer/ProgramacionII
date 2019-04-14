@@ -9,10 +9,10 @@ public class clsTipovehiculoBD {
 
 	public ResultSet recogertipococheBD(Connection objConexion) throws SQLException {
 
-		// Creamos la Tabla para recoger de BBDD
+		/**Creamos la Tabla para recoger de BBDD*/
 		ResultSet rs = null;
 
-		// Preparamos la consulta
+		/**Preparamos la consulta*/
 		Statement st = objConexion.createStatement();
 		rs = st.executeQuery("select * from tipocoche");
 
@@ -22,10 +22,10 @@ public class clsTipovehiculoBD {
 
 	public ResultSet recogertipocamionBD(Connection objConexion) throws SQLException {
 
-		// Creamos la Tabla para recoger de BBDD
+		/** Creamos la Tabla para recoger de BBDD*/
 		ResultSet rs = null;
 
-		// Preparamos la consulta
+		/** Preparamos la consulta*/
 		Statement st = objConexion.createStatement();
 		rs = st.executeQuery("select * from tipocamion");
 
@@ -35,10 +35,10 @@ public class clsTipovehiculoBD {
 
 	public ResultSet recogertipomotoBD(Connection objConexion) throws SQLException {
 
-		// Creamos la Tabla para recoger de BBDD
+		/** Creamos la Tabla para recoger de BBDD*/
 		ResultSet rs = null;
 
-		// Preparamos la consulta
+		/** Preparamos la consulta*/
 		Statement st = objConexion.createStatement();
 		rs = st.executeQuery("select * from tipomoto");
 

@@ -3,14 +3,14 @@ package LN;
 import java.util.Date;
 import static Comun.clsConstantes.*;
 
-	//Clase Coche hijo de clsVehiculo  
+/**Clase Coche hijo de clsVehiculo  */
 	public class clsCoche extends clsVehiculo {
 
 	int idtipocoche;
 	String combustible;
 	String cilindrada;
 	
-	//Constructor de clsCoche
+	/**Constructor de clsCoche*/
 	public clsCoche(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
 			int idtipocoche, String combustible, String cilindrada, int idestado) {
 		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado);
@@ -63,6 +63,9 @@ import static Comun.clsConstantes.*;
 		
 	}
 	
+	/**
+	 * Metodo toString para devolver los parametros cuando queremos mostrarlo
+	 */
 	public String toString() {
 		
 		return "\n Nº Bastidor: " + this.numbastidor + "; MARCA: " + this.marca + "; FECHA: " + this.fecha + "; CV: " + this.cv;

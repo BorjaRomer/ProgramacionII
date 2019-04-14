@@ -104,6 +104,9 @@ public abstract class clsVehiculo implements itfProperty, Comparable <clsVehicul
 		this.idestado = idestado;
 	}
 
+	/**
+	 * Metodo hasCode que evitala repeticion de un mismo objeto con un atributo en particular, en este caso el numero de bastidor
+	 */
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -112,6 +115,9 @@ public abstract class clsVehiculo implements itfProperty, Comparable <clsVehicul
 		return result;
 	}
 
+	/**
+	 * Metodo equals que evitala repeticion de un mismo objeto con un atributo en particular, en este caso el numero de bastidor
+	 */
 	@Override
 	public boolean equals(Object obj) {
 		if (this == obj)
@@ -129,6 +135,9 @@ public abstract class clsVehiculo implements itfProperty, Comparable <clsVehicul
 		return true;
 	}
 	
+	/**
+	 * Metodo para comparar los objetos vehiculo o que hereden de el con la Interfaz Comparable
+	 */
 	public int compareTo(clsVehiculo v) {
 		
 		return v.cv.compareTo(this.cv);
