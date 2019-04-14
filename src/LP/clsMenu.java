@@ -1,5 +1,4 @@
 package LP;
-
 import java.sql.SQLException;
 import java.util.ArrayList;
 import java.util.Date;
@@ -45,10 +44,11 @@ public class clsMenu {
                 "1) Registrar Coche.\n" +
                 "2) Registrar Camion.\n" +
                 "3) Registrar Moto.\n" +
-                "4) Mostrar vehículos.\n" +
-                "5) Dar de baja Vehiculo.\n" +
-                "6) Cambiar el estado del vehiculo.\n" +
-                "7) Salir.\n");
+                "4) Mostrar Coches.\n" +
+                "5) Dar de baja Coche.\n" +
+                "6) Dar de baja Camion.\n"+
+                "7) Dar de baja Moto.\n"+
+                "8) Salir.\n");
 		
 		System.out.print("Elige la opcion: ");
 		opcion = UtilidadesLP.leerEntero();
@@ -61,21 +61,23 @@ public class clsMenu {
 		break;
 		case 3: AltaMoto(objGestor);
 		break;
-		case 4: MostrarRegistros(objGestor);
+		case 4: MostrarCoches(objGestor);
 		break;
-		case 5: BajaVehiculo(objGestor);
+		case 5: BajaCoche(objGestor);
 		break;
-		case 6:
+		case 6: BajaCamion(objGestor);
+		break;
+		case 7: BajaMoto(objGestor);
 		break;
 		
 		}
 		
-		}while(opcion!=7);
+		}while(opcion!=8);
 		
 	}
 	
 		//Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList y de la BBDD.
-	private static void BajaVehiculo(clsGestor objGestor) {
+	private static void BajaCoche(clsGestor objGestor) {
 		
 		//Pedimos al usuario que coche quiere eliminar
 		System.out.print("Escribe el Nº de bastidor del vehiculo: ");
@@ -90,13 +92,26 @@ public class clsMenu {
 	
 	}
 	
+	private static void BajaCamion(clsGestor objGestor) {
+		
+	}
+	
+	private static void BajaMoto(clsGestor objGestor) {
+		
+	}
+	
 	/*Funcion para leer el ArrayList instanciado en clsGestor y que se encuentra en el objGestor que hemos creado en el Menu Principal.
   	Por eso pasamos por paramtero el objGestor.*/
 	 
-	private static void MostrarRegistros(clsGestor objGestor) {
-		ArrayList<itfProperty> vehiculos;
-		vehiculos = objGestor.DameVehiculos();
+	private static void MostrarCoches(clsGestor objGestor) {
 		
+		int orden = 0;
+		System.out.println("Ordenar por: ---> 1)Marca  ---> 2)Potencia(cv)");
+		orden = UtilidadesLP.leerEntero();
+		
+		ArrayList<itfProperty> vehiculos;
+		vehiculos = objGestor.DameCoches(orden);
+		int i = 0;
 		int opcion;
 		
 		do {
@@ -107,8 +122,7 @@ public class clsMenu {
 	                "2) Vehiculos para despiece.\n" +
 	                "3) Vehiculos en chatarra.\n" +
 	                "4) Vehiculos en venta.\n" +
-	                "5) Coches en orden alfabetico por marca.\n"+
- 	                "6) Salir.\n");
+ 	                "5) Salir.\n");
 			
 			System.out.print("Elige la opcion: ");
 			opcion = UtilidadesLP.leerEntero();
@@ -117,49 +131,41 @@ public class clsMenu {
 			
 			case 1: System.out.println("\n"+"Vehiculos en el taller: ");
 			for(itfProperty v:vehiculos) {
+				i++;
 				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO_ID).equals(1)) {
-					System.out.println(v);
+					System.out.println(i+". -->"+v+"");
 				}
 			}
 			
 			break;
 			case 2: System.out.println("\n"+"Vehiculos para despiece: ");
 			for(itfProperty v:vehiculos) {
+				i++;
 				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO_ID).equals(2)) {
-					System.out.println(v);
+					System.out.println(i+". -->"+v+"");
 			}
 		}
 			break;
 			
-			case 3: System.out.println("\n"+"Vehiculos en el taller: ");
+			case 3: System.out.println("\n"+"Vehiculos para chatarra: ");
 			for(itfProperty v:vehiculos) {
+				i++;
 				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO_ID).equals(3)) {
-					System.out.println(v);
+					System.out.println(i+". -->"+v+"");
 			}
 		}
 		
 			break;
-			case 4: System.out.println("\n"+"Vehiculos para despiece: ");
+			case 4: System.out.println("\n"+"Vehiculos en venta: ");
 			for(itfProperty v:vehiculos) {
+				i++;
 				if(v.getProperty(clsConstantes.PROPIEDAD_ESTADO_ID).equals(4)) {
-					System.out.println(v);
+					System.out.println(i+". -->"+v+"");
 			}
 		}	
-			
-			break;
-			case 5:
-				System.out.println("\n"+"COCHES ORDENADO ALFABETICAMENTE POR MARCA: ");
-				int i=0;
-				for(itfProperty v: vehiculos) {
-					i++;
-				System.out.println(i+". -->"+v+"");
-				}
-			}
-		}while(opcion!=6);
 	}
-	
-
-	
+		}while(opcion!=5);
+	}
 
 	/**
 	 * Meter datos en las variables de objGestor en la funcion CrearCoche.

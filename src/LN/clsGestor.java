@@ -40,23 +40,32 @@ public class clsGestor {
 	private ArrayList<clsVehiculo> vehiculos = new ArrayList<>();
 
 	// Funcion ArrayList donde se guardan los vehiculos
-	public ArrayList<itfProperty> DameVehiculos() {
+	public ArrayList<itfProperty> DameCoches(int orden) throws RuntimeException {
+	
+		if(orden==1) {
+			//Se instancia la clase Comparator con el metodo CompareTo
+			clsComparatorMarca comparadormarca = new clsComparatorMarca();
+			
+			//Con el metodo sort ordenamos los vehiculos mediante la clase Comparator creada
+			Collections.sort(vehiculos, comparadormarca);
+		}
 		
+		if(orden==2) {
+		//Interfaz Comparable implementada en vehiculos que ordena por potencia en caballos	
 		Collections.sort(vehiculos);
-		
-		//Se instancia la clase Comparator con el metodo CompareTo
-		//clsComparatorMarca comparadormarca = new clsComparatorMarca();
-		
-		//Con el metodo sort ordenamos los vehiculos mediante la clase Comparator creada
-		//Collections.sort(vehiculos, comparadormarca);
+		}
 		
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
+		
 		for (clsVehiculo a : vehiculos) {
+			if(a instanceof clsCoche) {
 			retorno.add(a);
+			}else {
+				throw new RuntimeException();
+			}
 		}
-		return retorno;
+		return retorno;	
 	}
-	
 
 	public void RecogertipococheBD() throws SQLException {
 		// Se crea conexion con BD
