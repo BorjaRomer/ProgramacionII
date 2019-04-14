@@ -106,7 +106,10 @@ public class clsMenu {
 	private static void MostrarCoches(clsGestor objGestor) {
 		
 		int orden = 0;
-		System.out.println("Ordenar por: ---> 1)Marca  ---> 2)Potencia(cv)");
+		System.out.println("\nOrdenar por:\n"+
+				       "1)Marca.\n"+
+				       "2)Potencia(cv).\n");
+		System.out.print("Elige la opcion: ");
 		orden = UtilidadesLP.leerEntero();
 		
 		ArrayList<itfProperty> vehiculos;

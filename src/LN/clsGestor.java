@@ -6,7 +6,6 @@ import Comun.itfProperty;
 import java.util.ArrayList;
 import java.util.Collections;
 import LD.clsDatos;
-import java.sql.Connection;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -61,7 +60,7 @@ public class clsGestor {
 			if(a instanceof clsCoche) {
 			retorno.add(a);
 			}else {
-				throw new RuntimeException();
+				throw new RuntimeException("No hay coches en la BD");
 			}
 		}
 		return retorno;	
@@ -69,11 +68,11 @@ public class clsGestor {
 
 	public void RecogertipococheBD() throws SQLException {
 		// Se crea conexion con BD
-		Connection conexion = objDatos.conectarBD();
+		objDatos.conectarBD();
 		ResultSet rs;
 
 		// Se llama a la funcion recoger tipos de coche de la clase Datos
-		rs = objDatos.recogertipococheBD(conexion);
+		rs = objDatos.recogertipococheBD();
 
 		// Recorre el ResultSet añadiendo los objetos en el ArrayList
 		while (rs.next()) {
@@ -82,18 +81,18 @@ public class clsGestor {
 		}
 
 		// Se desconecta la BD
-		objDatos.desconectarBD(conexion);
+		objDatos.desconectarBD();
 
 	}
 
 	public void RecogertipomotoBD() throws SQLException {
 
 		// Se crea conexion con BD
-		Connection conexion = objDatos.conectarBD();
+		objDatos.conectarBD();
 		ResultSet rs;
 
 		// Se llama a la funcion recoger tipos de moto de la clase Datos
-		rs = objDatos.recogertipomotoBD(conexion);
+		rs = objDatos.recogertipomotoBD();
 
 		// Recorre el ResultSet añadiendo los objetos en el ArrayList
 		while (rs.next()) {
@@ -102,18 +101,18 @@ public class clsGestor {
 		}
 
 		// Se desconecta la BD
-		objDatos.desconectarBD(conexion);
+		objDatos.desconectarBD();
 
 	}
 
 	public void RecogertipocamionBD() throws SQLException {
 
 		// Se crea conexion con BD
-		Connection conexion = objDatos.conectarBD();
+		objDatos.conectarBD();
 		ResultSet rs;
 
 		// Se llama a la funcion recoger tipos de coche de la clase Datos
-		rs = objDatos.recogertipocamionBD(conexion);
+		rs = objDatos.recogertipocamionBD();
 
 		// Recorre el ResultSet añadiendo los objetos en el ArrayList
 		while (rs.next()) {
@@ -122,18 +121,18 @@ public class clsGestor {
 		}
 
 		// Se desconecta la BD
-		objDatos.desconectarBD(conexion);
+		objDatos.desconectarBD();
 
 	}
 
 	public void RecogerestadosBD() throws SQLException {
 
 		// Se crea conexion con BD
-		Connection conexion = objDatos.conectarBD();
+		objDatos.conectarBD();
 		ResultSet rs;
 
 		// Se llama a la funcion recoger estados de la clase Datos
-		rs = objDatos.recogerestadoBD(conexion);
+		rs = objDatos.recogerestadoBD();
 
 		// Recorre el ResultSet añadiendo los objetos en el ArrayList
 		while (rs.next()) {
@@ -142,7 +141,7 @@ public class clsGestor {
 		}
 
 		// Se desconecta la BD
-		objDatos.desconectarBD(conexion);
+		objDatos.desconectarBD();
 	}
 
 	// Funcion recoger de base de datos desde clsGestor en el que utilizamos el
@@ -150,11 +149,11 @@ public class clsGestor {
 	public void RecogercocheBD() throws SQLException {
 
 		// Se crea conexion con BD
-		Connection conexion = objDatos.conectarBD();
+		objDatos.conectarBD();
 		ResultSet rs;
 
 		// Funcion recoger coches de la BD
-		rs = objDatos.recogercocheBD(conexion);
+		rs = objDatos.recogercocheBD();
 
 		// Se recorre el ResultSet añadiendo los objetos en el ArrayList
 		while (rs.next()) {
@@ -167,7 +166,7 @@ public class clsGestor {
 		}
 
 		// Se desconecta la BD
-		objDatos.desconectarBD(conexion);
+		objDatos.desconectarBD();
 	}
 
 	// Funcion eliminar de base de datos desde clsGestor en el que utilizamos el
@@ -175,22 +174,23 @@ public class clsGestor {
 	public void EliminarcocheBD(String numerobastidor) throws SQLException {
 
 		// Establecer conexion con BD
-		Connection conexion = objDatos.conectarBD();
+		objDatos.conectarBD();
 
 		for (clsVehiculo e : vehiculos) {
+			if(e instanceof clsCoche) {
 			if (e.numbastidor.equals(numerobastidor)) {
+
 				vehiculos.remove(e);
 				System.out.println("Se ha eliminado del ArrayList");
-
+				
 				// Funcion de clsDatos para eliminar el objeto de la BBDD
-				objDatos.eliminarcocheBD(numerobastidor, conexion);
+				objDatos.eliminarcocheBD(numerobastidor);
 
-			} else {
-				throw new RuntimeException("El numero de bastidor no existe");
 			}
 		}
+	}
 		// Desconectar la BD
-		objDatos.desconectarBD(conexion);
+		objDatos.desconectarBD();
 	}
 
 	/**
@@ -208,14 +208,14 @@ public class clsGestor {
 				idtipocoche, combustible, cilindrada, idestado);
 
 		// Se conecta la BD
-		Connection conexion = objDatos.conectarBD();
+		objDatos.conectarBD();
 
 		// Se pasa por parámetro los atributos para introducirlos en la BD
 		objDatos.insertarcocheBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche,
-				combustible, cilindrada, idestado, conexion);
+				combustible, cilindrada, idestado);
 
 		// Se desconecta la BD
-		objDatos.desconectarBD(conexion);
+		objDatos.desconectarBD();
 
 		// Añadimos al AarrayList el objeto creado
 		vehiculos.add(objCoche);

@@ -16,6 +16,9 @@ public class clsDatos {
 
 	// Objeto clsTipovehiculoBD
 	clsTipovehiculoBD objTipovehiculoBD = new clsTipovehiculoBD();
+	
+	// OBjeto clsCamion BD
+	clsCamionBD ObjCamionBD = new clsCamionBD();
 
 	// Nombre de la base de datos
 	public String database = "desguace";
@@ -41,7 +44,7 @@ public class clsDatos {
 	Connection objConexion = null;
 
 	// Conectar BD
-	public Connection conectarBD() {
+	public void conectarBD() {
 
 		try {
 
@@ -51,15 +54,14 @@ public class clsDatos {
 			System.out.println("Ha fallado la conexión" + e);
 		}
 
-		return objConexion;
 	}
 
 	// Desconectar BD
-	public void desconectarBD(Connection conexion) {
+	public void desconectarBD() {
 
 		try {
 
-			conexion.close();
+			objConexion.close();
 
 		} catch (SQLException e) {
 			System.out.println("Ha fallado la desconexión" + e);
@@ -68,47 +70,47 @@ public class clsDatos {
 	}
 
 	// Recoger tipos de coche en BD
-	public ResultSet recogertipococheBD(Connection conexion) throws SQLException {
+	public ResultSet recogertipococheBD() throws SQLException {
 
 		// Nos devuelve un ResultSet donde contiene los tipos de coches
-		ResultSet rs = objTipovehiculoBD.recogertipococheBD(conexion);
+		ResultSet rs = objTipovehiculoBD.recogertipococheBD(objConexion);
 
 		return rs;
 	}
 
 	// Recoger tipos de camion en BD
-	public ResultSet recogertipocamionBD(Connection conexion) throws SQLException {
+	public ResultSet recogertipocamionBD() throws SQLException {
 
 		// Nos devuelve un ResultSet donde contiene los tipos de camion
-		ResultSet rs = objTipovehiculoBD.recogertipocamionBD(conexion);
+		ResultSet rs = objTipovehiculoBD.recogertipocamionBD(objConexion);
 
 		return rs;
 	}
 
 	// Recoger tipos de motos en BD
-	public ResultSet recogertipomotoBD(Connection conexion) throws SQLException {
+	public ResultSet recogertipomotoBD() throws SQLException {
 
 		// Nos devuelve un ResultSet donde contiene los tipos de moto
-		ResultSet rs = objTipovehiculoBD.recogertipomotoBD(conexion);
+		ResultSet rs = objTipovehiculoBD.recogertipomotoBD(objConexion);
 
 		return rs;
 	}
 
 	// Recoger estados en BD
-	public ResultSet recogerestadoBD(Connection conexion) throws SQLException {
+	public ResultSet recogerestadoBD() throws SQLException {
 
 		// Nos devuelve un ResultSet donde contiene los estados
-		ResultSet rs = objEstadoBD.recogerBD(conexion);
+		ResultSet rs = objEstadoBD.recogerBD(objConexion);
 
 		return rs;
 	}
 
 	// Recoger coches en BD
-	public ResultSet recogercocheBD(Connection conexion) throws SQLException {
+	public ResultSet recogercocheBD() throws SQLException {
 
 		// La funcion recoger de la clase CocheBD nos devuelve un ResultSet que contiene
 		// todos los coches que estan en MySQL
-		ResultSet rs = objCocheBD.recogerBD(conexion);
+		ResultSet rs = objCocheBD.recogerBD(objConexion);
 
 		return rs;
 	}
@@ -116,18 +118,18 @@ public class clsDatos {
 	// Insertar coche en BD
 	public void insertarcocheBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion,
 			Date fecha, String color, int kilometros, int idtipocoche, String combustible, String cilindrada,
-			int idestado, Connection conexion) throws SQLException {
+			int idestado) throws SQLException {
 
 		// Funcion insertar en la clase CocheBD para hacer una Insert en MySQL
 		objCocheBD.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche,
-				combustible, cilindrada, idestado, conexion);
+				combustible, cilindrada, idestado, objConexion);
 	}
 
 	// Eliminar un coche en BD
-	public void eliminarcocheBD(String numbastidor, Connection conexion) throws SQLException {
+	public void eliminarcocheBD(String numbastidor) throws SQLException {
 
 		// Funcion eliminar en la clase CocheBD para hacer Delete en MySQL
-		objCocheBD.eliminarBD(numbastidor, conexion);
+		objCocheBD.eliminarBD(numbastidor, objConexion);
 	}
 
 }
