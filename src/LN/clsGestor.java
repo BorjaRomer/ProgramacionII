@@ -18,6 +18,7 @@ public class clsGestor {
 	private ArrayList<clsEstado> estados = new ArrayList<>();
 	
 	/**Funcion ArrayList donde se guardan los estados*/
+	
 	public ArrayList<itfProperty> DameEstados() {
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
 		for (clsEstado a : estados) {

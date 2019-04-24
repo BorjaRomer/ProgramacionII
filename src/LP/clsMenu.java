@@ -6,12 +6,15 @@ import Comun.itfProperty;
 import LN.clsGestor;
 import Comun.clsConstantes;
 import Comun.clsExcepcionNB;
+import LP.Frame;
 
 public class clsMenu {
 	
 	
 	/**Menu principal donde se interactua con el usuario dandole las opciones de registro de nuestrto desguace. 
 	 Podemos dar de alta cualquier vehiculo y mostrarlos.*/ 
+	
+	
 	 public static void MenuPrincipal() {
 		
 		/**Creamos el objeto Gestor en el inicio de la aplicacion.*/
@@ -34,24 +37,16 @@ public class clsMenu {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Bienvenido a la aplicacion");
-		int opcion;
+		//System.out.println("Bienvenido a la aplicacion");
+		
+		
+		/**Creamos el Frame*/
+		
+		Frame miventana = new Frame();
+		miventana.setVisible(true);
+		int opcion = miventana.getOpcombo();
 		
 		do{
-		System.out.println("\n" +
-                "MENÚ\n" +
-                "----\n" +
-                "1) Registrar Coche.\n" +
-                "2) Registrar Camion.\n" +
-                "3) Registrar Moto.\n" +
-                "4) Mostrar Coches.\n" +
-                "5) Dar de baja Coche.\n" +
-                "6) Dar de baja Camion.\n"+
-                "7) Dar de baja Moto.\n"+
-                "8) Salir.\n");
-		
-		System.out.print("Elige la opcion: ");
-		opcion = UtilidadesLP.leerEntero();
 		
 		switch(opcion) {
 		
@@ -171,7 +166,7 @@ public class clsMenu {
 	}
 
 	/**
-	 * Meter datos en las variables de objGestor en la funcion CrearCoche.
+	 * Meter datos en las variables de objGestor en la funcion CrearMotos.
 	 */
 	
 	private static void AltaMoto(clsGestor objGestor) throws clsExcepcionNB {
@@ -279,40 +274,45 @@ public class clsMenu {
 	}
 	
 	/**
-	 * Meter datos en las variables de objGestor en la funcion CrearMoto.
+	 * Meter datos en las variables de objGestor en la funcion CrearCoche.
 	 */
 
 	private static void AltaCoche(clsGestor objGestor) throws clsExcepcionNB {
-		System.out.print("Numero de bastidor: ");
-		String numbastidor = UtilidadesLP.leerCadena();
+		
+		
+		Frame_Altacoche menualtacoche = new Frame_Altacoche();
+		menualtacoche.setVisible(true);
+		
+		
+		String numbastidor = menualtacoche.getNumbastidor().getText();
 		if(numbastidor.length()<4) {
 			throw new clsExcepcionNB();
 		}
-		System.out.print("Marca: ");
-		String marca = UtilidadesLP.leerCadena();
-		System.out.print("Modelo: ");
-		String modelo = UtilidadesLP.leerCadena();
-		System.out.print("Cv: ");
-		int cv = UtilidadesLP.leerEntero();
-		System.out.print("Cilindrada: ");
-		String cilindrada = UtilidadesLP.leerCadena();
-		System.out.print("Año de Fabricación: ");
-		int aniofabricacion = UtilidadesLP.leerEntero();
+		
+		String marca = menualtacoche.getMarca().getText();
+		
+		String modelo = menualtacoche.getModelo().getText();
+		
+		String cv1 = menualtacoche.getCv().getText();
+		int cv = Integer.parseInt(cv1);
+		
+		String cilindrada = menualtacoche.getCilindrada().getText();
+		
+		String aniofabricacion1 = menualtacoche.getAniofabricacion().getText();
+		int aniofabricacion = Integer.parseInt(aniofabricacion1);
+		
+		String color = menualtacoche.getColor().getText();
+		
+		String kilometros1 = menualtacoche.getKilometros().getText();
+		int kilometros = Integer.parseInt(kilometros1);
+		
 		Date fecha = new Date();
-		System.out.print("Color: ");
-		String color = UtilidadesLP.leerCadena();
-		System.out.print("Kilometros: ");
-		int kilometros = UtilidadesLP.leerEntero();
-		System.out.print("Combustible: ");
-		String combustible = UtilidadesLP.leerCadena();
-		System.out.println("Tipo de coche: \n"+
-		        		"----\n" +
-		        "1) Deportivo.\n" +
-		        "2) Todoterreno.\n" +
-		        "3) Monovolumen.\n" +
-		        "4) Electrico.\n" );
+		
+		String combustible = menualtacoche.getOpcombustible();
+		
 		int idtipocoche = 0;
-		int opc = UtilidadesLP.leerEntero();
+		int opc = menualtacoche.getTipocoche();
+		
 		switch(opc) {
 		case 1: idtipocoche=1;
 		break;
@@ -323,16 +323,11 @@ public class clsMenu {
 		case 4: idtipocoche=4;
 		break;
 		}
+			
 		
-		System.out.println("Estado del coche: \n"+
-                		"----\n" +
-                "1) Optimo.\n" +
-                "2) Despiece.\n" +
-                "3) Chatarra.\n" +
-                "4) Venta.\n" );
-		System.out.println("Elige una opcion: ");
 		int idestado = 0;
-		int opcion = UtilidadesLP.leerEntero();
+		int opcion = menualtacoche.getOpestado();
+		
 		switch (opcion) {
 		
 		case 1: idestado=1;
@@ -348,7 +343,7 @@ public class clsMenu {
 		try {
 			objGestor.CrearCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche, combustible, cilindrada, idestado);
 		} catch (SQLException e) {
-			System.out.println("Error al regitrar un coche");
+			System.out.println("Error al registrar un coche");
 		}
 	}
 
