@@ -85,17 +85,41 @@ public class clsMenu {
 		try {
 			objGestor.EliminarcocheBD(numerobastidor);
 		} catch (SQLException e) {
-			System.out.println("El vehiculo no se ha eliminado correctamente");
+			System.out.println("El coche no se ha eliminado correctamente");
 			e.printStackTrace();
 		}
 	
 	}
 	
+	 /**Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList y de la BBDD*/
 	private static void BajaCamion(clsGestor objGestor) {
+		
+		/**Pedimos al usuario que coche quiere eliminar*/
+		System.out.print("Escribe el Nº de bastidor del vehiculo: ");
+		String numerobastidor = UtilidadesLP.leerCadena();
+		
+		try {
+			objGestor.EliminarcamionBD(numerobastidor);
+		} catch (SQLException e) {
+			System.out.println("El camion no se ha eliminado correctamente");
+			e.printStackTrace();
+		}
 		
 	}
 	
+	 /**Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList y de la BBDD*/
 	private static void BajaMoto(clsGestor objGestor) {
+		
+		/**Pedimos al usuario que coche quiere eliminar*/
+		System.out.print("Escribe el Nº de bastidor del vehiculo: ");
+		String numerobastidor = UtilidadesLP.leerCadena();
+		
+		try {
+			objGestor.EliminarmotoBD(numerobastidor);
+		} catch (SQLException e) {
+			System.out.println("La moto no se ha eliminado correctamente");
+			e.printStackTrace();
+		}
 		
 	}
 	
