@@ -24,6 +24,10 @@ public class clsMenu {
 		try {
 			/**Recogemos todos los coches de la BD*/
 			objGestor.RecogercocheBD();
+			/**Recogemos todos las motos de la BD*/
+			objGestor.RecogermotoBD();
+			/**Recogemos todos los camiones de la BD*/
+			objGestor.RecogercamionBD();
 			/**Recogemos los estados de la BD*/
 			objGestor.RecogerestadosBD();
 			/**Recogemos los tipos de coches de la BD*/
@@ -37,7 +41,7 @@ public class clsMenu {
 			e.printStackTrace();
 		}
 		
-		//System.out.println("Bienvenido a la aplicacion");
+		System.out.println("Bienvenido a la aplicacion");
 		
 		
 		/**Creamos el Frame*/
@@ -287,7 +291,11 @@ public class clsMenu {
 		break;
 		}
 		
-		objGestor.CrearCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocamion, altura, anchura, idestado);
+		try {
+			objGestor.CrearCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocamion, altura, anchura, idestado);
+		} catch (SQLException e) {
+			System.out.println("Error al registrar un camion");
+		}
 		
 	}
 	
