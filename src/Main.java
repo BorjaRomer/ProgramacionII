@@ -2,6 +2,7 @@
 import java.awt.EventQueue;
 
 import LP.Frame;
+import java.awt.EventQueue;
 import LP.clsMenu;
 
 public class Main {

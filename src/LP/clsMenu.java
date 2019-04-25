@@ -170,28 +170,46 @@ public class clsMenu {
 	 */
 	
 	private static void AltaMoto(clsGestor objGestor) throws clsExcepcionNB {
-		System.out.print("Numero de bastidor: ");
-		String numbastidor = UtilidadesLP.leerCadena();
+		
+		
+		Frame_Altamoto menualtamoto = new Frame_Altamoto();
+		menualtamoto.setVisible(true);
+		
+		String numbastidor = menualtamoto.getNumbastidor().getText();
 		if(numbastidor.length()<4) {
 			throw new clsExcepcionNB();
 		}
-		System.out.print("Marca: ");
-		String marca = UtilidadesLP.leerCadena();
-		System.out.print("Modelo: ");
-		String modelo = UtilidadesLP.leerCadena();
-		System.out.print("Cv: ");
-		int cv = UtilidadesLP.leerEntero();
-		System.out.print("Año de Fabricación: ");
-		int aniofabricacion = UtilidadesLP.leerEntero();
+		
+		String marca = menualtamoto.getMarca().getText();
+		
+		String modelo = menualtamoto.getModelo().getText();
+		
+		String cv1 = menualtamoto.getCv().getText();
+		int cv = Integer.parseInt(cv1);
+		
+		String cilindrada = menualtamoto.getCilindrada().getText();
+		
+		String aniofabricacion1 = menualtamoto.getAniofabricacion().getText();
+		int aniofabricacion = Integer.parseInt(aniofabricacion1);
+		
+		String color = menualtamoto.getColor().getText();
+		
+		String kilometros1 = menualtamoto.getKilometros().getText();
+		int kilometros = Integer.parseInt(kilometros1);
+		
+		String tamano1 = menualtamoto.getTamano().getText();
+		int tamano = Integer.parseInt(tamano1);
+		
+		
 		Date fecha = new Date();
-		System.out.print("Color: ");
-		String color = UtilidadesLP.leerCadena();
-		System.out.print("Kilometros: ");
-		int kilometros = UtilidadesLP.leerEntero();
+		
+	
+		int opc = menualtamoto.getTipomoto();
+		
+		
 		System.out.print("Tipo de moto: ");
 		int idtipomoto = UtilidadesLP.leerEntero();
-		System.out.print("Cilindrada: ");
-		int cilindrada = UtilidadesLP.leerEntero();	
+
 		System.out.print("Tamaño: ");
 		int tamaño = UtilidadesLP.leerEntero();
 		System.out.println("Estado del coche: \n"+

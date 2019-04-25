@@ -1,23 +1,22 @@
 package LP;
 
 import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
-import javax.swing.JFrame;
-import javax.swing.JPanel;
-import javax.swing.border.EmptyBorder;
-import javax.swing.JLabel;
-import java.awt.GridBagLayout;
 import java.awt.GridBagConstraints;
+import java.awt.GridBagLayout;
 import java.awt.Insets;
-import javax.swing.JTextField;
-import javax.swing.JComboBox;
-import javax.swing.JButton;
-import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
-import javax.swing.DefaultComboBoxModel;
+import java.awt.event.ActionListener;
 
-public class Frame_Altacoche extends JFrame implements ActionListener {
+import javax.swing.DefaultComboBoxModel;
+import javax.swing.JButton;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JPanel;
+import javax.swing.JTextField;
+import javax.swing.border.EmptyBorder;
+
+public class Frame_Altamoto extends JFrame implements ActionListener {
 
 	private JPanel contentPane;
 	private JTextField numbastidor;
@@ -28,13 +27,11 @@ public class Frame_Altacoche extends JFrame implements ActionListener {
 	private JTextField aniofabricacion;
 	private JTextField color;
 	private JTextField kilometros;
-	private JComboBox<String> comb_combustible = new JComboBox<>();
-	private JComboBox<String>comb_estado = new JComboBox<>();
-	private JComboBox<String> comb_tipocoche = new JComboBox<>();
-	private String opcombustible="";
+	private JComboBox<String> comb_estado = new JComboBox<>();
+	private JComboBox<String>comb_tipomoto = new JComboBox<>();
 	private int opestado;
-	private int tipocoche;
-	
+	private JTextField tamano;
+
 	
 	
 	public void setNumbastidor(JTextField numbastidor) {
@@ -69,30 +66,29 @@ public class Frame_Altacoche extends JFrame implements ActionListener {
 		this.kilometros = kilometros;
 	}
 
-
-
-	public void setOpcombustible(String opcombustible) {
-		this.opcombustible = opcombustible;
-	}
-
 	public void setOpestado(int opestado) {
 		this.opestado = opestado;
 	}
 
-	public void setTipocoche(int tipocoche) {
-		this.tipocoche = tipocoche;
+
+	public JComboBox<String> getComb_estado() {
+		return comb_estado;
 	}
 
-	public String getOpcombustible() {
-		return opcombustible;
+	public JComboBox<String> getComb_tipomoto() {
+		return comb_tipomoto;
+	}
+
+	public void setComb_estado(JComboBox<String> comb_estado) {
+		this.comb_estado = comb_estado;
+	}
+
+	public void setComb_tipomoto(JComboBox<String> comb_tipomoto) {
+		this.comb_tipomoto = comb_tipomoto;
 	}
 
 	public int getOpestado() {
 		return opestado;
-	}
-
-	public int getTipocoche() {
-		return tipocoche;
 	}
 
 	public JTextField getCv() {
@@ -130,7 +126,7 @@ public class Frame_Altacoche extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("unchecked") public Frame_Altacoche() {
+	public Frame_Altamoto() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 504, 450);
 		contentPane = new JPanel();
@@ -276,47 +272,42 @@ public class Frame_Altacoche extends JFrame implements ActionListener {
 		contentPane.add(kilometros, gbc_textField_7);
 		kilometros.setColumns(10);
 		
+		JLabel lblTamao = new JLabel("Tama\u00F1o");
+		GridBagConstraints gbc_lblTamao = new GridBagConstraints();
+		gbc_lblTamao.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTamao.gridx = 0;
+		gbc_lblTamao.gridy = 9;
+		contentPane.add(lblTamao, gbc_lblTamao);
+		
+		tamano = new JTextField();
+		GridBagConstraints gbc_textField_8 = new GridBagConstraints();
+		gbc_textField_8.insets = new Insets(0, 0, 5, 0);
+		gbc_textField_8.fill = GridBagConstraints.HORIZONTAL;
+		gbc_textField_8.gridx = 2;
+		gbc_textField_8.gridy = 9;
+		contentPane.add(tamano, gbc_textField_8);
+		tamano.setColumns(10);
+		
+		JLabel lblTipoDeMoto = new JLabel("Tipo de Moto");
+		GridBagConstraints gbc_lblTipoDeMoto = new GridBagConstraints();
+		gbc_lblTipoDeMoto.insets = new Insets(0, 0, 5, 5);
+		gbc_lblTipoDeMoto.gridx = 0;
+		gbc_lblTipoDeMoto.gridy = 10;
+		contentPane.add(lblTipoDeMoto, gbc_lblTipoDeMoto);
 		
 		
 		
 		
 		
-		JLabel lblCombustible = new JLabel("Combustible");
-		GridBagConstraints gbc_lblCombustible = new GridBagConstraints();
-		gbc_lblCombustible.insets = new Insets(0, 0, 5, 5);
-		gbc_lblCombustible.gridx = 0;
-		gbc_lblCombustible.gridy = 9;
-		contentPane.add(lblCombustible, gbc_lblCombustible);
 		
-		JComboBox<String> comb_combustible = new JComboBox<>();
-		comb_combustible.setModel(new DefaultComboBoxModel(new String[] {"Gasolina", "Diesel"}));
+		JComboBox <String>comboBox = new JComboBox<>();
+		comboBox.setModel(new DefaultComboBoxModel(new String[] {"Naked", "Deportiva", "Custom", "Enduro", "Trial", "Supermotard"}));
 		GridBagConstraints gbc_comboBox = new GridBagConstraints();
 		gbc_comboBox.insets = new Insets(0, 0, 5, 0);
 		gbc_comboBox.fill = GridBagConstraints.HORIZONTAL;
 		gbc_comboBox.gridx = 2;
-		gbc_comboBox.gridy = 9;
-		contentPane.add(comb_combustible, gbc_comboBox);
-		comb_combustible.addActionListener(this);
-		
-	
-		
-		JLabel lblTipoDeCoche = new JLabel("Tipo de coche");
-		GridBagConstraints gbc_lblTipoDeCoche = new GridBagConstraints();
-		gbc_lblTipoDeCoche.insets = new Insets(0, 0, 5, 5);
-		gbc_lblTipoDeCoche.gridx = 0;
-		gbc_lblTipoDeCoche.gridy = 10;
-		contentPane.add(lblTipoDeCoche, gbc_lblTipoDeCoche);
-		
-		JComboBox <String>comb_tipocoche = new JComboBox<>();
-		comb_tipocoche.setModel(new DefaultComboBoxModel(new String[] {"Deportivo ", "Monovolumen", "Todoterreno", "Coupe"}));
-		GridBagConstraints gbc_comboBox_1 = new GridBagConstraints();
-		gbc_comboBox_1.insets = new Insets(0, 0, 5, 0);
-		gbc_comboBox_1.fill = GridBagConstraints.HORIZONTAL;
-		gbc_comboBox_1.gridx = 2;
-		gbc_comboBox_1.gridy = 10;
-		contentPane.add(comb_tipocoche, gbc_comboBox_1);
-		comb_tipocoche.addActionListener(this);
-		
+		gbc_comboBox.gridy = 10;
+		contentPane.add(comboBox, gbc_comboBox);
 		
 		
 		JLabel lblEstado = new JLabel("Estado");
@@ -325,6 +316,11 @@ public class Frame_Altacoche extends JFrame implements ActionListener {
 		gbc_lblEstado.gridx = 0;
 		gbc_lblEstado.gridy = 11;
 		contentPane.add(lblEstado, gbc_lblEstado);
+		
+		
+		
+		
+		
 		
 		JComboBox <String>comb_estado = new JComboBox<>();
 		comb_estado.setModel(new DefaultComboBoxModel(new String[] {"Optimo", "Despiece", "Chatarra", "Venta"}));
@@ -359,19 +355,15 @@ public class Frame_Altacoche extends JFrame implements ActionListener {
 	}
 	
 	
-	public void actionPerformed(ActionEvent e) {
-		
-		if(e.getSource() == comb_combustible){
-			
-			if(comb_combustible.getSelectedItem().equals("Gasolina")){
-				opcombustible = "gasolina";
-				}
-			
-			if(comb_combustible.getSelectedItem().equals("Diesel")){
-				opcombustible = "diesel";
-				}
+	public JTextField getTamano() {
+		return tamano;
+	}
 
-		}
+	public void setTamano(JTextField tamano) {
+		this.tamano = tamano;
+	}
+
+	public void actionPerformed(ActionEvent e) {
 		
 		if(e.getSource() == comb_estado){
 			if(comb_estado.getSelectedItem().equals("Optimo")){	
@@ -388,36 +380,36 @@ public class Frame_Altacoche extends JFrame implements ActionListener {
 			
 			if(comb_estado.getSelectedItem().equals("Venta")){	
 			opestado = 4;	
-			}
-			
-			
-		
+			}	
 			
 		}
-	}
-
-	public JComboBox<String> getComb_combustible() {
-		return comb_combustible;
-	}
-
-	public JComboBox<String> getComb_estado() {
-		return comb_estado;
-	}
-
-	public JComboBox<String> getComb_tipocoche() {
-		return comb_tipocoche;
-	}
-
-	public void setComb_combustible(JComboBox<String> comb_combustible) {
-		this.comb_combustible = comb_combustible;
-	}
-
-	public void setComb_estado(JComboBox<String> comb_estado) {
-		this.comb_estado = comb_estado;
-	}
-
-	public void setComb_tipocoche(JComboBox<String> comb_tipocoche) {
-		this.comb_tipocoche = comb_tipocoche;
+		if(e.getSource() == comb_tipomoto){
+			if(comb_estado.getSelectedItem().equals("Naked")){	
+			opestado = 1;	
+			}
+			
+			if(comb_estado.getSelectedItem().equals("Deportiva")){	
+			opestado = 2;	
+			}
+			
+			if(comb_estado.getSelectedItem().equals("Enduro")){	
+			opestado = 3;	
+			}
+		
+			
+			if(comb_estado.getSelectedItem().equals("Trial")){	
+			opestado = 4;	
+			}
+			
+			if(comb_estado.getSelectedItem().equals("Custom")){	
+			opestado = 5;	
+			}
+				
+			if(comb_estado.getSelectedItem().equals("Supermotard")){	
+			opestado = 6;	
+			}
+				
+		}
 	}
 }
 	
