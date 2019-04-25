@@ -226,12 +226,23 @@ public class clsGestor {
 	 * Funcion Crear camion para que se comunique con el Menu Principal y guardars
 	 * los atributos en la instancia objeto camion. De esta manera solo se comunica
 	 * con el Menu Principal la Clase Gestor.
+	 * @throws SQLException 
 	 */
 	public void CrearCamion(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipocamion, int altura, int anchura, int idestado) {
+			String color, int kilometros, int idtipocamion, int altura, int anchura, int idestado) throws SQLException {
 
 		clsCamion objCamion = new clsCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
 				idtipocamion, altura, anchura, idestado);
+		
+		/**Se conecta la BD*/
+		objDatos.conectarBD();
+
+		/**Se pasa por parámetro los atributos para introducirlos en la BD*/
+		objDatos.insertarcamionBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
+				idtipocamion, altura, anchura, idestado);
+
+		/**Se desconecta la BD*/
+		objDatos.desconectarBD();
 
 		/**Añadimos al ArrayList el objeto creado*/
 		vehiculos.add(objCamion);
@@ -241,12 +252,23 @@ public class clsGestor {
 	 * Funcion Crear moto para que se comunique con el Menu Principal y guardars los
 	 * atributos en la instancia objeto moto. De esta manera solo se comunica con el
 	 * Menu Principal la Clase Gestor.
+	 * @throws SQLException 
 	 */
 	public void CrearMoto(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipomoto, int cilindrada, int tamaño, int idestado) {
+			String color, int kilometros, int idtipomoto, int cilindrada, int tamaño, int idestado) throws SQLException {
 
 		clsMoto objMoto = new clsMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
 				idtipomoto, cilindrada, tamaño, idestado);
+		
+		/**Se conecta la BD*/
+		objDatos.conectarBD();
+
+		/**Se pasa por parámetro los atributos para introducirlos en la BD*/
+		objDatos.insertarmotoBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
+				idtipomoto, cilindrada, tamaño, idestado);
+
+		/**Se desconecta la BD*/
+		objDatos.desconectarBD();
 
 		/**Añadimos al ArrayList el objeto creado*/
 		vehiculos.add(objMoto);

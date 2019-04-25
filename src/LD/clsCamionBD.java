@@ -9,6 +9,7 @@ import java.util.Date;
 
 public class clsCamionBD {
 	
+	/**Recoger de BBDD todos los camiones*/
 	public ResultSet recogerBD(Connection objConexion) throws SQLException {
 
 		/** Creamos la Tabla para recoger de BBDD*/
@@ -21,6 +22,7 @@ public class clsCamionBD {
 		return rs;
 	}
 
+	/**Insertar en BBDD un camion*/
 	public void insertarBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
 			String color, int kilometros, int idtipocamion, int altura, int anchura, int idestado,
 			Connection objConexion) throws SQLException {

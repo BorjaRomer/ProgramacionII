@@ -18,7 +18,11 @@ public class clsDatos {
 	clsTipovehiculoBD objTipovehiculoBD = new clsTipovehiculoBD();
 	
 	/**OBjeto clsCamion BD*/
-	clsCamionBD ObjCamionBD = new clsCamionBD();
+	clsCamionBD objCamionBD = new clsCamionBD();
+	
+	/**OBjeto clsMoto BD*/
+	clsMotoBD objMotoBD = new clsMotoBD();
+	
 
 	/**Nombre de la base de datos*/
 	public String database = "desguace";
@@ -104,12 +108,67 @@ public class clsDatos {
 
 		return rs;
 	}
+	
+	/**Recoger camiones en BD*/
+	public ResultSet recogercamionBD() throws SQLException {
+
+		/**La funcion recoger de la clase CamionBD nos devuelve un ResultSet que contiene
+		todos los coches que estan en MySQL*/
+		ResultSet rs = objCamionBD.recogerBD(objConexion);
+
+		return rs;
+	}
+
+	/**Insertar camion en BD*/
+	public void insertarcamionBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
+			String color, int kilometros, int idtipocamion, int altura, int anchura, int idestado) throws SQLException {
+
+		// Funcion insertar en la clase CamionBD para hacer una Insert en MySQL*/
+		objCamionBD.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
+				idtipocamion, altura, anchura, idestado, objConexion);
+	}
+
+	/**Eliminar una camion en BD*/
+	public void eliminarcamionBD(String numbastidor) throws SQLException {
+
+		/**Funcion eliminar en la clase CamionBD para hacer Delete en MySQL*/
+		objCamionBD.eliminarBD(numbastidor, objConexion);
+	}
+	
+	
+	/**Recoger motos en BD*/
+	public ResultSet recogermotoBD() throws SQLException {
+
+		/**La funcion recoger de la clase MotoBD nos devuelve un ResultSet que contiene
+		todos los coches que estan en MySQL*/
+		ResultSet rs = objMotoBD.recogerBD(objConexion);
+
+		return rs;
+	}
+
+	/**Insertar moto en BD*/
+	public void insertarmotoBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
+			String color, int kilometros, int idtipomoto, int cilindrada, int tamaño, int idestado) throws SQLException {
+
+		// Funcion insertar en la clase MotoBD para hacer una Insert en MySQL*/
+		objMotoBD.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
+				idtipomoto, cilindrada, tamaño, idestado, objConexion);
+	}
+
+	/**Eliminar una moto en BD*/
+	public void eliminarmotoBD(String numbastidor) throws SQLException {
+
+		/**Funcion eliminar en la clase MotoBD para hacer Delete en MySQL*/
+		objMotoBD.eliminarBD(numbastidor, objConexion);
+	}
+	
+	
 
 	/**Recoger coches en BD*/
 	public ResultSet recogercocheBD() throws SQLException {
 
-		/**La funcion recoger de la clase CocheBD nos devuelve un ResultSet que contiene*/
-		/**todos los coches que estan en MySQL*/
+		/**La funcion recoger de la clase CocheBD nos devuelve un ResultSet que contiene
+		todos los coches que estan en MySQL*/
 		ResultSet rs = objCocheBD.recogerBD(objConexion);
 
 		return rs;
