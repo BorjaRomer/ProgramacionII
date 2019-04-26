@@ -13,8 +13,6 @@ public class clsMenu {
 	
 	/**Menu principal donde se interactua con el usuario dandole las opciones de registro de nuestrto desguace. 
 	 Podemos dar de alta cualquier vehiculo y mostrarlos.*/ 
-	
-	
 	 public static void MenuPrincipal() {
 		
 		/**Creamos el objeto Gestor en el inicio de la aplicacion.*/
@@ -22,6 +20,8 @@ public class clsMenu {
 		
 		/**Recogemos todo de la BD*/
 		try {
+			/**Recogemos todos los operarios de la BD*/
+			objGestor.RecogeroperariosBD();
 			/**Recogemos todos los coches de la BD*/
 			objGestor.RecogercocheBD();
 			/**Recogemos todos las motos de la BD*/
@@ -41,11 +41,21 @@ public class clsMenu {
 			e.printStackTrace();
 		}
 		
-		System.out.println("Bienvenido a la aplicacion");
+		ArrayList<itfProperty> operarios;
+		operarios = objGestor.DameOperarios();
+		
+		for(itfProperty o : operarios) {
+			
+			System.out.println(o);
+		}
+		
+		
+		/**Ventana inicial donde el operario se logea*/
+		JFrame_Loging loging = new JFrame_Loging();
+		loging.setVisible(true);
 		
 		
 		/**Creamos el Frame*/
-		
 		Frame miventana = new Frame();
 		miventana.setVisible(true);
 		int opcion = miventana.getOpcombo();
@@ -232,7 +242,7 @@ public class clsMenu {
 		Date fecha = new Date();
 		
 	
-		int opc = menualtamoto.getTipomoto();
+		//int opc = menualtamoto.getTipomoto();
 		
 		
 		System.out.print("Tipo de moto: ");
@@ -261,7 +271,7 @@ public class clsMenu {
 		break;
 		}
 		
-		objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipomoto, cilindrada, tamaño, idestado);
+		//objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipomoto, cilindrada, tamaño, idestado);
 		
 	}
 	

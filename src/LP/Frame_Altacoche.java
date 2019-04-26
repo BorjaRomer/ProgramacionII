@@ -1,8 +1,5 @@
 package LP;
 
-import java.awt.BorderLayout;
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -19,6 +16,8 @@ import javax.swing.DefaultComboBoxModel;
 
 public class Frame_Altacoche extends JFrame implements ActionListener {
 
+	private static final long serialVersionUID = 1L;
+	
 	private JPanel contentPane;
 	private JTextField numbastidor;
 	private JTextField marca;

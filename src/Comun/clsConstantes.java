@@ -35,6 +35,10 @@ public class clsConstantes {
 	
 	public static final String PROPIEDAD_TIPOCAMION_ID = "idtipocamion";
 	public static final String PROPIEDAD_TIPOCAMION_DESCRIPCION = "descripcion";
+	
+	public static final String PROPIEDAD_USUARIO_IDOPERARIO = "idoperario";
+	public static final String PROPIEDAD_USUARIO_CONTRASEÑA = "contraseña";
+
 
 	
 }

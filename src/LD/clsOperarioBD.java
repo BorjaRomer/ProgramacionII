@@ -5,8 +5,8 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
-public class clsEstadoBD {
-
+public class clsOperarioBD {
+	
 	public static ResultSet recogerBD(Connection objConexion) throws SQLException {
 
 		/**Creamos la Tabla para recoger de BBDD*/
@@ -14,8 +14,9 @@ public class clsEstadoBD {
 
 		/**Preparamos la consulta*/
 		Statement st = objConexion.createStatement();
-		rs = st.executeQuery("select * from estado");
+		rs = st.executeQuery("select * from operario");
 
 		return rs;
 	}
+
 }

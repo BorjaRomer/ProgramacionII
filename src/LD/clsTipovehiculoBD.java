@@ -7,7 +7,7 @@ import java.sql.Statement;
 
 public class clsTipovehiculoBD {
 
-	public ResultSet recogertipococheBD(Connection objConexion) throws SQLException {
+	public static ResultSet recogertipococheBD(Connection objConexion) throws SQLException {
 
 		/**Creamos la Tabla para recoger de BBDD*/
 		ResultSet rs = null;
@@ -20,7 +20,7 @@ public class clsTipovehiculoBD {
 
 	}
 
-	public ResultSet recogertipocamionBD(Connection objConexion) throws SQLException {
+	public static ResultSet recogertipocamionBD(Connection objConexion) throws SQLException {
 
 		/** Creamos la Tabla para recoger de BBDD*/
 		ResultSet rs = null;
@@ -33,7 +33,7 @@ public class clsTipovehiculoBD {
 
 	}
 
-	public ResultSet recogertipomotoBD(Connection objConexion) throws SQLException {
+	public static ResultSet recogertipomotoBD(Connection objConexion) throws SQLException {
 
 		/** Creamos la Tabla para recoger de BBDD*/
 		ResultSet rs = null;

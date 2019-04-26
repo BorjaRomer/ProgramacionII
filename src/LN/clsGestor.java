@@ -17,11 +17,22 @@ public class clsGestor {
 	/**ArrayList donde van a contener los estados de los vehiculos*/
 	private ArrayList<clsEstado> estados = new ArrayList<>();
 	
-	/**Funcion ArrayList donde se guardan los estados*/
-	
+	/**Funcion ArrayList donde se devuelven los estados a la logica de presentaicion*/
 	public ArrayList<itfProperty> DameEstados() {
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
 		for (clsEstado a : estados) {
+			retorno.add(a);
+		}
+		return retorno;
+	}
+	
+	/**ArrayList donde se va a contener a los usuarios*/
+	private ArrayList<clsOperario> operarios = new ArrayList<>();
+	
+	/**Funcion ArrayList donde se devuelven los usuarios a la logica de presentaicion*/
+	public ArrayList<itfProperty> DameOperarios(){
+		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
+		for (clsOperario a : operarios) {
 			retorno.add(a);
 		}
 		return retorno;
@@ -65,6 +76,26 @@ public class clsGestor {
 			}
 		}
 		return retorno;	
+	}
+	
+	
+	public void RecogeroperariosBD() throws SQLException {
+		/** Se crea conexion con BD*/
+		objDatos.conectarBD();
+		ResultSet rs;
+
+		/** Se llama a la funcion recoger tipos de coche de la clase Datos*/
+		rs = objDatos.recogeroperariosBD();
+
+		/** Recorre el ResultSet añadiendo los objetos en el ArrayList*/
+		while (rs.next()) {
+			clsOperario objOperario = new clsOperario(rs.getString("idoperario"), rs.getString("contraseña"));
+			operarios.add(objOperario);
+		}
+
+		/** Se desconecta la BD*/
+		objDatos.desconectarBD();
+
 	}
 
 	public void RecogertipococheBD() throws SQLException {

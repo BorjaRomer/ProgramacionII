@@ -9,7 +9,7 @@ import java.util.Date;
 
 public class clsCocheBD {
 
-	public ResultSet recogerBD(Connection objConexion) throws SQLException {
+	public static ResultSet recogerBD(Connection objConexion) throws SQLException {
 
 		/**Creamos la Tabla para recoger de BBDD*/
 		ResultSet rs = null;
@@ -21,7 +21,7 @@ public class clsCocheBD {
 		return rs;
 	}
 
-	public void insertarBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
+	public static void insertarBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
 			String color, int kilometros, int idtipocoche, String combustible, String cilindrada, int idestado,
 			Connection objConexion) throws SQLException {
 
@@ -57,7 +57,7 @@ public class clsCocheBD {
 	}
 
 	/** Elimnar de la query un coche*/
-	public void eliminarBD(String numbastidor, Connection objConexion) throws SQLException {
+	public static void eliminarBD(String numbastidor, Connection objConexion) throws SQLException {
 
 		/** Preparamos la query con la sentencia de MySQL*/
 		String query = "delete from coche where numbastidor = ?";
