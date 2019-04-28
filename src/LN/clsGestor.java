@@ -78,7 +78,19 @@ public class clsGestor {
 		return retorno;	
 	}
 	
-	
+	public boolean comprobarOperario(String operario, String contraseña) {
+		
+		String operario1 = "Borja";
+		String contraseña1 =  "1234";
+		
+		if(operario1.equals(operario) && contraseña1.equals(contraseña)) {
+			return true;
+		}else {
+			return false;
+		}
+		
+	}
+
 	public void RecogeroperariosBD() throws SQLException {
 		/** Se crea conexion con BD*/
 		objDatos.conectarBD();

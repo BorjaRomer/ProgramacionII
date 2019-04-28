@@ -1,7 +1,5 @@
 package LP;
 
-import Comun.clsConstantes;
-import Comun.itfProperty;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -12,8 +10,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
-import java.util.ArrayList;
 import java.awt.event.ActionEvent;
+import javax.swing.JPasswordField;
 
 public class JFrame_Loging extends JFrame {
 
@@ -22,12 +20,12 @@ public class JFrame_Loging extends JFrame {
 	
 	private JPanel contentPane;
 	private JTextField Textoperario;
-	private JTextField Textcontraseña;
-
-	/**
-	 * Se crea el frame.
-	 */
+	private JPasswordField Textcontraseña;
+	
+	
 	public JFrame_Loging() {
+		
+		JFrame_VentanaPrincipal ventanaprincipal = new JFrame_VentanaPrincipal();
 		
 		clsGestor objGestor = new clsGestor();
 		
@@ -44,7 +42,7 @@ public class JFrame_Loging extends JFrame {
 		Operario.setFont(new Font("Tahoma", Font.PLAIN, 14));
 		Operario.setBounds(99, 50, 62, 27);
 		contentPane.add(Operario);
-		
+	
 		Textoperario = new JTextField();
 		Textoperario.setBounds(206, 55, 86, 20);
 		contentPane.add(Textoperario);
@@ -55,27 +53,24 @@ public class JFrame_Loging extends JFrame {
 		Contrasea.setBounds(99, 101, 86, 27);
 		contentPane.add(Contrasea);
 		
-		Textcontraseña = new JTextField();
-		Textcontraseña.setColumns(10);
+		Textcontraseña = new JPasswordField();
 		Textcontraseña.setBounds(206, 106, 86, 20);
 		contentPane.add(Textcontraseña);
 		
+		
 		JButton Entrar = new JButton("Entrar");
 		Entrar.addActionListener(new ActionListener() {
+			@SuppressWarnings("deprecation")
 			public void actionPerformed(ActionEvent arg0) {
+
+			if(objGestor.comprobarOperario(Textoperario.getText(), Textcontraseña.getText())== true) {
+				JOptionPane.showInternalMessageDialog(null, "Usuario correcto");
+				ventanaprincipal.setVisible(true);
+				dispose();
 				
-				ArrayList<itfProperty> operarios;
-				operarios = objGestor.DameOperarios();
-				
-				for(itfProperty o : operarios) {
-					
-					if(o.getProperty(clsConstantes.PROPIEDAD_USUARIO_IDOPERARIO).equals(getTextoperario()) && o.getProperty(clsConstantes.PROPIEDAD_USUARIO_CONTRASEÑA).equals(getTextcontraseña())) {
-						
-						JOptionPane.showMessageDialog(null, "Buenvenido a la aplicacion");
-					}
-						
-				}
-				JOptionPane.showMessageDialog(null, "Usuario o contraseña incorrecto");	
+			}else{
+				JOptionPane.showInternalMessageDialog(null, "Usuario o contraseña incorrecto");
+			}
 			}
 		});
 		
@@ -93,21 +88,4 @@ public class JFrame_Loging extends JFrame {
 		
 	}
 
-	public JTextField getTextoperario() {
-		return Textoperario;
-	}
-
-	public void setTextoperario(JTextField textoperario) {
-		Textoperario = textoperario;
-	}
-
-	public JTextField getTextcontraseña() {
-		return Textcontraseña;
-	}
-
-	public void setTextcontraseña(JTextField textcontraseña) {
-		Textcontraseña = textcontraseña;
-	}
-	
-	
 }

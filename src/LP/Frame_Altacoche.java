@@ -129,7 +129,8 @@ public class Frame_Altacoche extends JFrame implements ActionListener {
 	/**
 	 * Create the frame.
 	 */
-	@SuppressWarnings("unchecked") public Frame_Altacoche() {
+	@SuppressWarnings("unchecked") 
+	public Frame_Altacoche() {
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 504, 450);
 		contentPane = new JPanel();

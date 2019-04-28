@@ -39,16 +39,7 @@ public class clsMenu {
 		} catch (SQLException e) {
 			System.out.println("No se han podido recoger bien los registros de la BBDD");
 			e.printStackTrace();
-		}
-		
-		ArrayList<itfProperty> operarios;
-		operarios = objGestor.DameOperarios();
-		
-		for(itfProperty o : operarios) {
-			
-			System.out.println(o);
-		}
-		
+		}	
 		
 		/**Ventana inicial donde el operario se logea*/
 		JFrame_Loging loging = new JFrame_Loging();
