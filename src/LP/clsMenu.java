@@ -10,7 +10,6 @@ import LP.Frame;
 
 public class clsMenu {
 	
-	
 	/**Menu principal donde se interactua con el usuario dandole las opciones de registro de nuestrto desguace. 
 	 Podemos dar de alta cualquier vehiculo y mostrarlos.*/ 
 	 public static void MenuPrincipal() {
@@ -216,8 +215,7 @@ public class clsMenu {
 		String cv1 = menualtamoto.getCv().getText();
 		int cv = Integer.parseInt(cv1);
 		
-		String cilindrada1 = menualtamoto.getCilindrada().getText();
-		int cilindrada = Integer.parseInt(cilindrada1);
+		String cilindrada = menualtamoto.getCilindrada().getText();
 		
 		String aniofabricacion1 = menualtamoto.getAniofabricacion().getText();
 		int aniofabricacion = Integer.parseInt(aniofabricacion1);
@@ -232,29 +230,26 @@ public class clsMenu {
 		
 		
 		Date fecha = new Date();
+		
+	
+		//int opc = menualtamoto.getTipomoto();
+		
+		
+		System.out.print("Tipo de moto: ");
+		int idtipomoto = UtilidadesLP.leerEntero();
 
-		int idtipomoto=0;
-		int opcion = menualtamoto.getOptipomoto();
-		
-		switch (opcion) {
-		
-		case 1: idtipomoto=1;
-		break;
-		case 2: idtipomoto=2;
-		break;
-		case 3: idtipomoto=3;
-		break;
-		case 4: idtipomoto=4;
-		break;
-		case 5: idtipomoto=5;
-		break;
-		case 6: idtipomoto=6;
-		break;
-		}
-		
+		System.out.print("Tamaño: ");
+		int tamaño = UtilidadesLP.leerEntero();
+		System.out.println("Estado del coche: \n"+
+        		"----\n" +
+        "1) Optimo.\n" +
+        "2) Despiece.\n" +
+        "3) Chatarra.\n" +
+        "4) Venta.\n" );
+		System.out.println("Elige una opcion: ");
 		int idestado = 0;
-		int opcion1 = menualtamoto.getOpestado();
-		switch (opcion1) {
+		int opcion = UtilidadesLP.leerEntero();
+		switch (opcion) {
 		
 		case 1: idestado=1;
 		break;
@@ -266,12 +261,7 @@ public class clsMenu {
 		break;
 		}
 		
-		try {
-			objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipomoto, cilindrada, tamano, idestado);
-		} catch (SQLException e) {
-			System.out.println("Error al registrar una moto");
-		}
-		
+		//objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipomoto, cilindrada, tamaño, idestado);
 		
 	}
 	
@@ -280,7 +270,6 @@ public class clsMenu {
 	 */
 
 	private static void AltaCamion(clsGestor objGestor) throws clsExcepcionNB {
-		
 		System.out.print("Numero de bastidor: ");
 		String numbastidor = UtilidadesLP.leerCadena();
 		if(numbastidor.length()<4) {

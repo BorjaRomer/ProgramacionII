@@ -12,6 +12,7 @@ import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
+import java.awt.Toolkit;
 
 public class JFrame_Loging extends JFrame {
 
@@ -24,6 +25,7 @@ public class JFrame_Loging extends JFrame {
 	
 	
 	public JFrame_Loging() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
 		
 		JFrame_VentanaPrincipal ventanaprincipal = new JFrame_VentanaPrincipal();
 		

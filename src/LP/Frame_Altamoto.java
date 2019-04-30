@@ -1,6 +1,6 @@
 package LP;
 
-
+import java.awt.BorderLayout;
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -18,7 +18,6 @@ import javax.swing.border.EmptyBorder;
 
 public class Frame_Altamoto extends JFrame implements ActionListener {
 
-	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField numbastidor;
 	private JTextField marca;
@@ -31,7 +30,6 @@ public class Frame_Altamoto extends JFrame implements ActionListener {
 	private JComboBox<String> comb_estado = new JComboBox<>();
 	private JComboBox<String>comb_tipomoto = new JComboBox<>();
 	private int opestado;
-	private int optipomoto;
 	private JTextField tamano;
 
 	
@@ -387,39 +385,31 @@ public class Frame_Altamoto extends JFrame implements ActionListener {
 		}
 		if(e.getSource() == comb_tipomoto){
 			if(comb_estado.getSelectedItem().equals("Naked")){	
-			optipomoto = 1;	
+			opestado = 1;	
 			}
 			
 			if(comb_estado.getSelectedItem().equals("Deportiva")){	
-			optipomoto = 2;	
+			opestado = 2;	
 			}
 			
 			if(comb_estado.getSelectedItem().equals("Enduro")){	
-			optipomoto = 3;	
+			opestado = 3;	
 			}
 		
 			
 			if(comb_estado.getSelectedItem().equals("Trial")){	
-			optipomoto = 4;	
+			opestado = 4;	
 			}
 			
 			if(comb_estado.getSelectedItem().equals("Custom")){	
-			optipomoto = 5;	
+			opestado = 5;	
 			}
 				
 			if(comb_estado.getSelectedItem().equals("Supermotard")){	
-			optipomoto = 6;	
+			opestado = 6;	
 			}
 				
 		}
-	}
-
-	public int getOptipomoto() {
-		return optipomoto;
-	}
-
-	public void setOptipomoto(int optipomoto) {
-		this.optipomoto = optipomoto;
 	}
 }
 	
