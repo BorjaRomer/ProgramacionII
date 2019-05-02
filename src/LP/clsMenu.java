@@ -6,7 +6,7 @@ import Comun.itfProperty;
 import LN.clsGestor;
 import Comun.clsConstantes;
 import Comun.clsExcepcionNB;
-import LP.Frame;
+
 
 public class clsMenu {
 	
@@ -45,35 +45,53 @@ public class clsMenu {
 		loging.setVisible(true);
 		
 		
-		/**Creamos el Frame*/
-		Frame miventana = new Frame();
-		miventana.setVisible(true);
-		int opcion = miventana.getOpcombo();
+		/**Menu Coche**/ 
 		
-		do{
+		 Frame_Menucoche menucoche = new Frame_Menucoche();
+		 menucoche.setVisible(true);
+		 
+		 int opcion1 = menucoche.getOpcion(); 
+		 
+		 switch (opcion1) {
+		 case 1: AltaCoche(objGestor);
+			break;
+		 case 2: BajaCoche(objGestor);
+			break;
+		 case 3: MostrarCoches(objGestor);
+		 }
+	
+		/**Menu Moto*/
+		 
+		 Frame_Menumoto menumoto = new Frame_Menumoto();
+		 menumoto.setVisible(true);
+		 
+		 int opcion2 = menumoto.getOpcion(); 
+		 
+		 switch (opcion2) {
+		 case 1: AltaMoto(objGestor);
+			break;
+		 case 2: BajaMoto(objGestor);
+			break;
+		 case 3: MostrarMotos(objGestor);
+		 }
+	 
+	 
+		 /** Menu Camion*/
+		 
+		 Frame_Menucamion menucamion = new Frame_Menucamion();
+		 menucamion.setVisible(true);
+		 
+		 int opcion3 = menucoche.getOpcion(); 
+		 
+		 switch (opcion3) {
+		 case 1: AltaCamion(objGestor);
+			break;
+		 case 2: BajaCamion(objGestor);
+			break;
+		 case 3: MostrarCamiones(objGestor);
+		 }
 		
-		switch(opcion) {
-		
-		case 1: AltaCoche(objGestor);
-		break;
-		case 2: AltaCamion(objGestor);
-		break;
-		case 3: AltaMoto(objGestor);
-		break;
-		case 4: MostrarCoches(objGestor);
-		break;
-		case 5: BajaCoche(objGestor);
-		break;
-		case 6: BajaCamion(objGestor);
-		break;
-		case 7: BajaMoto(objGestor);
-		break;
-		
-		}
-		
-		}while(opcion!=8);
-		
-	}
+	 }
 	
 	 /**Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList y de la BBDD*/
 	private static void BajaCoche(clsGestor objGestor) {
@@ -120,6 +138,14 @@ public class clsMenu {
 			System.out.println("La moto no se ha eliminado correctamente");
 			e.printStackTrace();
 		}
+		
+	}
+	
+	private static void MostrarCamiones(clsGestor objGestor) {
+		
+	}
+	
+	private static void MostrarMotos(clsGestor objGestor) {
 		
 	}
 	
@@ -215,7 +241,8 @@ public class clsMenu {
 		String cv1 = menualtamoto.getCv().getText();
 		int cv = Integer.parseInt(cv1);
 		
-		String cilindrada = menualtamoto.getCilindrada().getText();
+		String cilindrada1 = menualtamoto.getCilindrada().getText();
+		int cilindrada = Integer.parseInt(cilindrada1);
 		
 		String aniofabricacion1 = menualtamoto.getAniofabricacion().getText();
 		int aniofabricacion = Integer.parseInt(aniofabricacion1);
@@ -230,27 +257,31 @@ public class clsMenu {
 		
 		
 		Date fecha = new Date();
+		int idtipomoto=0;
+		int opcion = menualtamoto.getOptipomoto();
 		
-	
-		//int opc = menualtamoto.getTipomoto();
 		
-		
-		System.out.print("Tipo de moto: ");
-		int idtipomoto = UtilidadesLP.leerEntero();
-
-		System.out.print("Tamaño: ");
-		int tamaño = UtilidadesLP.leerEntero();
-		System.out.println("Estado del coche: \n"+
-        		"----\n" +
-        "1) Optimo.\n" +
-        "2) Despiece.\n" +
-        "3) Chatarra.\n" +
-        "4) Venta.\n" );
-		System.out.println("Elige una opcion: ");
-		int idestado = 0;
-		int opcion = UtilidadesLP.leerEntero();
 		switch (opcion) {
+			case 1: idtipomoto=1;
+				break;
+				case 2: idtipomoto=2;
+				break;
+				case 3: idtipomoto=3;
+				break;
+				case 4: idtipomoto=4;
+				break;
+				case 5: idtipomoto=5;
+				break;
+				case 6: idtipomoto=6;
+				break;
+		}
+	
+
+		int opcion1 = menualtamoto.getOpestado();
+		int idestado = 0;
 		
+		switch (opcion1){
+
 		case 1: idestado=1;
 		break;
 		case 2: idestado=2;
@@ -261,7 +292,12 @@ public class clsMenu {
 		break;
 		}
 		
-		//objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipomoto, cilindrada, tamaño, idestado);
+		try {
+			objGestor.CrearMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipomoto, cilindrada, tamano, idestado);
+		} catch (SQLException e) {
+			System.out.println("Error al registrar una moto");
+		}
+		
 		
 	}
 	
@@ -270,39 +306,35 @@ public class clsMenu {
 	 */
 
 	private static void AltaCamion(clsGestor objGestor) throws clsExcepcionNB {
-		System.out.print("Numero de bastidor: ");
-		String numbastidor = UtilidadesLP.leerCadena();
+		
+		Frame_Altacamion menualtacamion = new Frame_Altacamion();
+		menualtacamion.setVisible(true);
+		
+		String numbastidor = menualtacamion.getNumbastidor().getText();
 		if(numbastidor.length()<4) {
 			throw new clsExcepcionNB();
 		}
-		System.out.print("Marca: ");
-		String marca = UtilidadesLP.leerCadena();
-		System.out.print("Modelo: ");
-		String modelo = UtilidadesLP.leerCadena();
-		System.out.print("Cv: ");
-		int cv = UtilidadesLP.leerEntero();
-		System.out.print("Año de Fabricación: ");
-		int aniofabricacion = UtilidadesLP.leerEntero();
+		
+		String marca = menualtacamion.getMarca().getText();
+		
+		String modelo = menualtacamion.getModelo().getText();
+		
+		String cv1 = menualtacamion.getCv().getText();
+		int cv = Integer.parseInt(cv1);
+				
+		String aniofabricacion1 = menualtacamion.getAniofabricacion().getText();
+		int aniofabricacion = Integer.parseInt(aniofabricacion1);
+		
+		String color = menualtacamion.getColor().getText();
+		
+		String kilometros1 = menualtacamion.getKilometros().getText();
+		int kilometros = Integer.parseInt(kilometros1);
+		
 		Date fecha = new Date();
-		System.out.print("Color: ");
-		String color = UtilidadesLP.leerCadena();
-		System.out.print("Kilometros: ");
-		int kilometros = UtilidadesLP.leerEntero();
-		System.out.print("Tipo de camion: ");
-		int idtipocamion = UtilidadesLP.leerEntero();
-		System.out.print("Altura: ");
-		int altura = UtilidadesLP.leerEntero();
-		System.out.print("Anchura: ");
-		int anchura = UtilidadesLP.leerEntero();
-		System.out.println("Estado del coche: \n"+
-        		"----\n" +
-        "1) Optimo.\n" +
-        "2) Despiece.\n" +
-        "3) Chatarra.\n" +
-        "4) Venta.\n" );
-		System.out.println("Elige una opcion: ");
+		
 		int idestado = 0;
-		int opcion = UtilidadesLP.leerEntero();
+		int opcion = menualtacamion.getOpestado();
+		
 		switch (opcion) {
 		
 		case 1: idestado=1;
@@ -315,6 +347,28 @@ public class clsMenu {
 		break;
 		}
 		
+		String altura1 = menualtacamion.getAltura().getText();
+		int altura = Integer.parseInt(altura1);
+		
+		String anchura1 = menualtacamion.getAnchura().getText();
+		int anchura = Integer.parseInt(anchura1);
+		
+		int op = menualtacamion.getOptipocamion();
+		int idtipocamion = 0;
+		
+		switch (op) {
+		
+		case 1: idtipocamion=1;
+		break;
+		case 2: idtipocamion=2;
+		break;
+		case 3: idtipocamion=3;
+		break;
+		case 4: idtipocamion=4;
+		break;
+		}
+		
+	
 		try {
 			objGestor.CrearCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocamion, altura, anchura, idestado);
 		} catch (SQLException e) {

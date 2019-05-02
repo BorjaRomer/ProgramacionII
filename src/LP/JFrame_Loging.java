@@ -66,7 +66,6 @@ public class JFrame_Loging extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 			if(objGestor.comprobarOperario(Textoperario.getText(), Textcontraseña.getText())== true) {
-				JOptionPane.showInternalMessageDialog(null, "Usuario correcto");
 				ventanaprincipal.setVisible(true);
 				dispose();
 				

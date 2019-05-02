@@ -1,6 +1,6 @@
 package LP;
 
-import java.awt.BorderLayout;
+
 import java.awt.GridBagConstraints;
 import java.awt.GridBagLayout;
 import java.awt.Insets;
@@ -17,6 +17,7 @@ import javax.swing.JTextField;
 import javax.swing.border.EmptyBorder;
 
 public class Frame_Altamoto extends JFrame implements ActionListener {
+	private static final long serialVersionUID = 1L;
 
 	private JPanel contentPane;
 	private JTextField numbastidor;
@@ -29,9 +30,17 @@ public class Frame_Altamoto extends JFrame implements ActionListener {
 	private JTextField kilometros;
 	private JComboBox<String> comb_estado = new JComboBox<>();
 	private JComboBox<String>comb_tipomoto = new JComboBox<>();
+	private int optipomoto;
 	private int opestado;
 	private JTextField tamano;
 
+	public int getOptipomoto() {
+		return optipomoto;
+	}
+
+	public void setOptipomoto(int optipomoto) {
+		this.optipomoto = optipomoto;
+	}
 	
 	
 	public void setNumbastidor(JTextField numbastidor) {
@@ -127,6 +136,7 @@ public class Frame_Altamoto extends JFrame implements ActionListener {
 	 * Create the frame.
 	 */
 	public Frame_Altamoto() {
+	setTitle("Dar de alta moto");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 504, 450);
 		contentPane = new JPanel();
@@ -338,6 +348,7 @@ public class Frame_Altamoto extends JFrame implements ActionListener {
 			public void actionPerformed(ActionEvent arg0) {
 			}
 		});
+		
 		GridBagConstraints gbc_btnGuardar = new GridBagConstraints();
 		gbc_btnGuardar.insets = new Insets(0, 0, 0, 5);
 		gbc_btnGuardar.gridx = 1;
@@ -348,10 +359,7 @@ public class Frame_Altamoto extends JFrame implements ActionListener {
 		GridBagConstraints gbc_btnNewButton = new GridBagConstraints();
 		gbc_btnNewButton.gridx = 2;
 		gbc_btnNewButton.gridy = 14;
-		contentPane.add(btnNewButton, gbc_btnNewButton);
-		
-		
-		
+		contentPane.add(btnNewButton, gbc_btnNewButton);	
 	}
 	
 	
@@ -384,34 +392,31 @@ public class Frame_Altamoto extends JFrame implements ActionListener {
 			
 		}
 		if(e.getSource() == comb_tipomoto){
-			if(comb_estado.getSelectedItem().equals("Naked")){	
-			opestado = 1;	
+			if(comb_tipomoto.getSelectedItem().equals("Naked")){	
+			optipomoto = 1;	
 			}
 			
-			if(comb_estado.getSelectedItem().equals("Deportiva")){	
-			opestado = 2;	
+			if(comb_tipomoto.getSelectedItem().equals("Deportiva")){	
+			optipomoto = 2;	
 			}
 			
-			if(comb_estado.getSelectedItem().equals("Enduro")){	
-			opestado = 3;	
+			if(comb_tipomoto.getSelectedItem().equals("Enduro")){	
+			optipomoto = 3;	
 			}
 		
 			
-			if(comb_estado.getSelectedItem().equals("Trial")){	
-			opestado = 4;	
+			if(comb_tipomoto.getSelectedItem().equals("Trial")){	
+			optipomoto = 4;	
 			}
 			
-			if(comb_estado.getSelectedItem().equals("Custom")){	
-			opestado = 5;	
+			if(comb_tipomoto.getSelectedItem().equals("Custom")){	
+			optipomoto = 5;	
 			}
 				
-			if(comb_estado.getSelectedItem().equals("Supermotard")){	
-			opestado = 6;	
+			if(comb_tipomoto.getSelectedItem().equals("Supermotard")){	
+			optipomoto = 6;	
 			}
 				
 		}
 	}
 }
-	
-	
-	

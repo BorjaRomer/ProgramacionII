@@ -23,8 +23,8 @@ public class JFrame_VentanaPrincipal extends JFrame {
 		JButton ButtonCar = new JButton("");
 		ButtonCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				Frame_Altacoche altacoche = new Frame_Altacoche();
-				altacoche.setVisible(true);
+				Frame_Menucoche menucoche = new Frame_Menucoche();
+				menucoche.setVisible(true);
 				dispose();
 			}
 		});
