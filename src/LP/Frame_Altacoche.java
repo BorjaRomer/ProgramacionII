@@ -28,59 +28,13 @@ public class Frame_Altacoche extends JFrame implements ActionListener {
 	private JTextField color;
 	private JTextField kilometros;
 	private JComboBox<String> comb_combustible = new JComboBox<>();
-	private JComboBox<String>comb_estado = new JComboBox<>();
+	private JComboBox<String> comb_estado = new JComboBox<>();
 	private JComboBox<String> comb_tipocoche = new JComboBox<>();
-	private String opcombustible="";
+	private String opcombustible;
 	private int opestado;
 	private int tipocoche;
 	
 	
-	
-	public void setNumbastidor(JTextField numbastidor) {
-		this.numbastidor = numbastidor;
-	}
-
-	public void setMarca(JTextField marca) {
-		this.marca = marca;
-	}
-
-	public void setModelo(JTextField modelo) {
-		this.modelo = modelo;
-	}
-
-	public void setCv(JTextField cv) {
-		this.cv = cv;
-	}
-
-	public void setCilindrada(JTextField cilindrada) {
-		this.cilindrada = cilindrada;
-	}
-
-	public void setAniofabricacion(JTextField aniofabricacion) {
-		this.aniofabricacion = aniofabricacion;
-	}
-
-	public void setColor(JTextField color) {
-		this.color = color;
-	}
-
-	public void setKilometros(JTextField kilometros) {
-		this.kilometros = kilometros;
-	}
-
-
-
-	public void setOpcombustible(String opcombustible) {
-		this.opcombustible = opcombustible;
-	}
-
-	public void setOpestado(int opestado) {
-		this.opestado = opestado;
-	}
-
-	public void setTipocoche(int tipocoche) {
-		this.tipocoche = tipocoche;
-	}
 
 	public String getOpcombustible() {
 		return opcombustible;
@@ -276,11 +230,6 @@ public class Frame_Altacoche extends JFrame implements ActionListener {
 		contentPane.add(kilometros, gbc_textField_7);
 		kilometros.setColumns(10);
 		
-		
-		
-		
-		
-		
 		JLabel lblCombustible = new JLabel("Combustible");
 		GridBagConstraints gbc_lblCombustible = new GridBagConstraints();
 		gbc_lblCombustible.insets = new Insets(0, 0, 5, 5);
@@ -297,8 +246,6 @@ public class Frame_Altacoche extends JFrame implements ActionListener {
 		gbc_comboBox.gridy = 9;
 		contentPane.add(comb_combustible, gbc_comboBox);
 		comb_combustible.addActionListener(this);
-		
-	
 		
 		JLabel lblTipoDeCoche = new JLabel("Tipo de coche");
 		GridBagConstraints gbc_lblTipoDeCoche = new GridBagConstraints();
@@ -389,9 +336,6 @@ public class Frame_Altacoche extends JFrame implements ActionListener {
 			if(comb_estado.getSelectedItem().equals("Venta")){	
 			opestado = 4;	
 			}
-			
-			
-		
 			
 		}
 	}

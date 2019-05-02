@@ -47,10 +47,10 @@ public class clsMenu {
 		
 		/**Menu Coche**/ 
 		
-		 Frame_Menucoche menucoche = new Frame_Menucoche();
-		 menucoche.setVisible(true);
+		 //Frame_Menucoche menucoche = new Frame_Menucoche();
+		 //menucoche.setVisible(true);
 		 
-		 int opcion1 = menucoche.getOpcion(); 
+		 int opcion1 =5; //menucoche.getOpcion(); 
 		 
 		 switch (opcion1) {
 		 case 1: AltaCoche(objGestor);
@@ -62,10 +62,10 @@ public class clsMenu {
 	
 		/**Menu Moto*/
 		 
-		 Frame_Menumoto menumoto = new Frame_Menumoto();
-		 menumoto.setVisible(true);
+		 //Frame_Menumoto menumoto = new Frame_Menumoto();
+		 //menumoto.setVisible(true);
 		 
-		 int opcion2 = menumoto.getOpcion(); 
+		 int opcion2 = 5; //menumoto.getOpcion(); 
 		 
 		 switch (opcion2) {
 		 case 1: AltaMoto(objGestor);
@@ -78,10 +78,10 @@ public class clsMenu {
 	 
 		 /** Menu Camion*/
 		 
-		 Frame_Menucamion menucamion = new Frame_Menucamion();
-		 menucamion.setVisible(true);
+		 //Frame_Menucamion menucamion = new Frame_Menucamion();
+		 //menucamion.setVisible(true);
 		 
-		 int opcion3 = menucoche.getOpcion(); 
+		 int opcion3 = 5;//menucoche.getOpcion(); 
 		 
 		 switch (opcion3) {
 		 case 1: AltaCamion(objGestor);
@@ -389,9 +389,10 @@ public class clsMenu {
 		
 		
 		String numbastidor = menualtacoche.getNumbastidor().getText();
-		if(numbastidor.length()<4) {
+		
+		/**if(numbastidor.length()<4) {
 			throw new clsExcepcionNB();
-		}
+		}*/
 		
 		String marca = menualtacoche.getMarca().getText();
 		
