@@ -24,6 +24,7 @@ public class JFrame_VentanaPrincipal extends JFrame {
 		ButtonCar.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
 				Frame_Menucoche menucoche = new Frame_Menucoche();
+				menucoche.setLocationRelativeTo(null);
 				menucoche.setVisible(true);
 				dispose();
 			}

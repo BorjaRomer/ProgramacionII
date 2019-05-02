@@ -32,7 +32,7 @@ public class JFrame_Loging extends JFrame {
 		clsGestor objGestor = new clsGestor();
 		
 		setFont(new Font("Dialog", Font.BOLD, 14));
-		setTitle("Loging");
+		setTitle("DESGUACE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
 		setBounds(100, 100, 450, 300);
 		contentPane = new JPanel();
@@ -66,6 +66,7 @@ public class JFrame_Loging extends JFrame {
 			public void actionPerformed(ActionEvent arg0) {
 
 			if(objGestor.comprobarOperario(Textoperario.getText(), Textcontraseña.getText())== true) {
+				ventanaprincipal.setLocationRelativeTo(null);
 				ventanaprincipal.setVisible(true);
 				dispose();
 				
