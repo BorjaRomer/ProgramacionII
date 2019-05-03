@@ -6,6 +6,21 @@ import javax.swing.JButton;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
+import javax.swing.JDesktopPane;
+import java.awt.SystemColor;
+import java.awt.Color;
+import javax.swing.JMenuBar;
+import javax.swing.JMenu;
+import javax.swing.JCheckBoxMenuItem;
+import javax.swing.JPopupMenu;
+import java.awt.Component;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JTabbedPane;
+import javax.swing.JInternalFrame;
+import javax.swing.JLabel;
 
 
 public class JFrame_VentanaPrincipal extends JFrame {
@@ -17,52 +32,44 @@ public class JFrame_VentanaPrincipal extends JFrame {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
 		setTitle("DESGUACE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 596, 371);
+		setBounds(100, 100, 793, 546);
 		getContentPane().setLayout(null);
 		
-		JButton ButtonCar = new JButton("");
-		ButtonCar.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-				Frame_Menucoche menucoche = new Frame_Menucoche();
-				menucoche.setLocationRelativeTo(null);
-				menucoche.setVisible(true);
+		JMenuBar menuBar = new JMenuBar();
+		menuBar.setBounds(0, 0, 777, 23);
+		getContentPane().add(menuBar);
+		
+		JMenu MenuArchivo = new JMenu("Archivo");
+		menuBar.add(MenuArchivo);
+		
+		JMenuItem CambiarOperario = new JMenuItem("Cambiar operario");
+		MenuArchivo.add(CambiarOperario);
+		CambiarOperario.addActionListener(new ActionListener() {
+			public void actionPerformed(ActionEvent arg0) {
 				dispose();
+				JFrame_Loging login = new JFrame_Loging();
+				login.setLocationRelativeTo(null);
+				login.setVisible(true);
 			}
 		});
-		ButtonCar.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_camaro_64_67528.png"));
-		ButtonCar.setBounds(112, 22, 185, 110);
-		getContentPane().add(ButtonCar);
 		
-		JButton ButtonMotorcycle = new JButton("");
-		ButtonMotorcycle.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
-			}
-		});
-		ButtonMotorcycle.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_Honda_Motorcycle_with_Trailer_88276.png"));
-		ButtonMotorcycle.setBounds(307, 22, 185, 110);
-		getContentPane().add(ButtonMotorcycle);
+		JMenuItem EstadisticasDelDia = new JMenuItem("Estadisticas del dia");
+		MenuArchivo.add(EstadisticasDelDia);
 		
-		JButton ButtonTruck = new JButton("");
-		ButtonTruck.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_TractorUnitBlack_22998.png"));
-		ButtonTruck.setBounds(211, 143, 185, 110);
-		getContentPane().add(ButtonTruck);
-		
-		JButton Salir = new JButton("Salir");
+		JMenuItem Salir = new JMenuItem("Salir");
+		MenuArchivo.add(Salir);
 		Salir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent e) {
+			public void actionPerformed(ActionEvent arg0) {
 				System.exit(0);
 			}
 		});
-		Salir.setBounds(403, 287, 89, 23);
-		getContentPane().add(Salir);
 		
-		JButton CambiarOperario = new JButton("Cambiar operario");
-		CambiarOperario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-			}
-		});
-		CambiarOperario.setBounds(112, 287, 136, 23);
-		getContentPane().add(CambiarOperario);
+		JMenu MenuEditar = new JMenu("Editar");
+		menuBar.add(MenuEditar);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
+		lblNewLabel.setBounds(0, 21, 777, 88);
+		getContentPane().add(lblNewLabel);
 	}
-	
 }

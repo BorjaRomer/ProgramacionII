@@ -3,11 +3,15 @@ package LP;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
+
 import LN.clsGestor;
 import java.awt.Font;
+import java.awt.Image;
+
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
@@ -42,21 +46,21 @@ public class JFrame_Loging extends JFrame {
 		
 		JLabel Operario = new JLabel("Operario:");
 		Operario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		Operario.setBounds(99, 50, 62, 27);
+		Operario.setBounds(172, 100, 62, 27);
 		contentPane.add(Operario);
 	
 		Textoperario = new JTextField();
-		Textoperario.setBounds(206, 55, 86, 20);
+		Textoperario.setBounds(289, 105, 86, 20);
 		contentPane.add(Textoperario);
 		Textoperario.setColumns(10);
 		
 		JLabel Contrasea = new JLabel("Contrase\u00F1a:");
 		Contrasea.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		Contrasea.setBounds(99, 101, 86, 27);
+		Contrasea.setBounds(172, 149, 86, 27);
 		contentPane.add(Contrasea);
 		
 		Textcontraseña = new JPasswordField();
-		Textcontraseña.setBounds(206, 106, 86, 20);
+		Textcontraseña.setBounds(289, 154, 86, 20);
 		contentPane.add(Textcontraseña);
 		
 		
@@ -76,7 +80,7 @@ public class JFrame_Loging extends JFrame {
 			}
 		});
 		
-		Entrar.setBounds(96, 195, 89, 23);
+		Entrar.setBounds(96, 211, 89, 23);
 		contentPane.add(Entrar);
 		
 		JButton Salir = new JButton("Salir");
@@ -85,9 +89,18 @@ public class JFrame_Loging extends JFrame {
 				System.exit(0);
 			}
 		});
-		Salir.setBounds(256, 195, 89, 23);
+		Salir.setBounds(259, 211, 89, 23);
 		contentPane.add(Salir);
 		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
+		lblNewLabel.setBounds(0, 0, 434, 60);
+		contentPane.add(lblNewLabel);
+		
+		JLabel lblNewLabel_1 = new JLabel("");
+		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_preferences-system-login_24276 (1).png"));
+		lblNewLabel_1.setBounds(53, 91, 73, 96);
+		contentPane.add(lblNewLabel_1);
+		
 	}
-
 }
