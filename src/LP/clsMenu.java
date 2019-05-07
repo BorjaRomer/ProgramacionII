@@ -151,9 +151,9 @@ public class clsMenu {
 	}
 	
 	/**Funcion para leer el ArrayList instanciado en clsGestor y que se encuentra en el objGestor que hemos creado en el Menu Principal.
-  	Por eso pasamos por paramtero el objGestor.*/
+  	Por eso pasamos por paramtero objGestor.*/
 	 
-	private static void MostrarCoches(clsGestor objGestor) {
+	public static void MostrarCoches(clsGestor objGestor) {
 		
 		int orden = 0;
 		System.out.println("\nOrdenar por:\n"+
@@ -219,7 +219,7 @@ public class clsMenu {
 	}
 		}while(opcion!=5);
 	}
-
+	
 	/**
 	 * Meter datos en las variables de objGestor en la funcion CrearMotos.
 	 */

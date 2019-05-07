@@ -3,11 +3,8 @@ package LP;
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
-
 import LN.clsGestor;
 import java.awt.Font;
-import java.awt.Image;
-
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
 import javax.swing.JTextField;
@@ -63,7 +60,6 @@ public class JFrame_Loging extends JFrame {
 		Textcontraseña.setBounds(289, 154, 86, 20);
 		contentPane.add(Textcontraseña);
 		
-		
 		JButton Entrar = new JButton("Entrar");
 		Entrar.addActionListener(new ActionListener() {
 			@SuppressWarnings("deprecation")
@@ -101,6 +97,9 @@ public class JFrame_Loging extends JFrame {
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_preferences-system-login_24276 (1).png"));
 		lblNewLabel_1.setBounds(53, 91, 73, 96);
 		contentPane.add(lblNewLabel_1);
-		
 	}
+
+	public String getTextoperario() {
+		return Textoperario.getText();
+	}	
 }
