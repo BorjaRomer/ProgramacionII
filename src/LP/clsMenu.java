@@ -41,9 +41,7 @@ public class clsMenu {
 		}	
 		
 		/**Ventana inicial donde el operario se logea*/
-		JFrame_Loging login = new JFrame_Loging();
-		login.setLocationRelativeTo(null);
-		login.setVisible(true);
+		JFrame_Loging.CargarLogin();
 		
 		
 		/**Menu Coche**/ 

@@ -1,6 +1,8 @@
 package LP;
 
 import javax.swing.JFrame;
+
+import java.awt.EventQueue;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -14,6 +16,21 @@ import javax.swing.JLabel;
 public class JFrame_VentanaPrincipal extends JFrame {
 
 	private static final long serialVersionUID = 1L;
+	
+	public static void CargarVP() {
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JFrame_VentanaPrincipal ventanaprincipal = new JFrame_VentanaPrincipal();
+					ventanaprincipal.setLocationRelativeTo(null);
+					ventanaprincipal.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
 	
 	public JFrame_VentanaPrincipal() {
 		

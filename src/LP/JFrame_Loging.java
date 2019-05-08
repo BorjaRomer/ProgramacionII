@@ -4,6 +4,8 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import LN.clsGestor;
+
+import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -15,22 +17,38 @@ import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Toolkit;
 
-public class JFrame_Loging extends JFrame {
+public class JFrame_Loging extends JFrame implements ActionListener {
 
 	
 	private static final long serialVersionUID = 1L;
+
+	private final String BOTON_SALIR = "boton_salir";
+
+	private final String BOTON_ENTRAR = "boton_entrar";
 	
 	private JPanel contentPane;
 	private JTextField Textoperario;
 	private JPasswordField Textcontraseña;
 	
+	public static void CargarLogin() {
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					JFrame_Loging Loging = new JFrame_Loging();
+					Loging.setLocationRelativeTo(null);
+					Loging.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	
 	public JFrame_Loging() {
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
-		
-		JFrame_VentanaPrincipal ventanaprincipal = new JFrame_VentanaPrincipal();
-		
-		clsGestor objGestor = new clsGestor();
 		
 		setFont(new Font("Dialog", Font.BOLD, 14));
 		setTitle("DESGUACE");
@@ -61,30 +79,14 @@ public class JFrame_Loging extends JFrame {
 		contentPane.add(Textcontraseña);
 		
 		JButton Entrar = new JButton("Entrar");
-		Entrar.addActionListener(new ActionListener() {
-			@SuppressWarnings("deprecation")
-			public void actionPerformed(ActionEvent arg0) {
-
-			if(objGestor.comprobarOperario(Textoperario.getText(), Textcontraseña.getText())== true) {
-				ventanaprincipal.setLocationRelativeTo(null);
-				ventanaprincipal.setVisible(true);
-				dispose();
-				
-			}else{
-				JOptionPane.showInternalMessageDialog(null, "Usuario o contraseña incorrecto");
-			}
-			}
-		});
-		
+		Entrar.setActionCommand(BOTON_ENTRAR);
+		Entrar.addActionListener(this);
 		Entrar.setBounds(96, 211, 89, 23);
 		contentPane.add(Entrar);
 		
 		JButton Salir = new JButton("Salir");
-		Salir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
+		Salir.setActionCommand(BOTON_SALIR);
+		Salir.addActionListener(this);
 		Salir.setBounds(259, 211, 89, 23);
 		contentPane.add(Salir);
 		
@@ -98,8 +100,31 @@ public class JFrame_Loging extends JFrame {
 		lblNewLabel_1.setBounds(53, 91, 73, 96);
 		contentPane.add(lblNewLabel_1);
 	}
+	
+	
+	@SuppressWarnings("deprecation")
+	public void actionPerformed(ActionEvent a) {
+		
+		clsGestor objGestor = new clsGestor();
+		
+		switch(a.getActionCommand()) {
+		
+		case BOTON_ENTRAR:
+			
+				if(objGestor.comprobarOperario(Textoperario.getText(), Textcontraseña.getText())== true) {
+					JFrame_VentanaPrincipal.CargarVP();
+					
+				}else{
+					JOptionPane.showInternalMessageDialog(null, "Usuario o contraseña incorrecto");
+				}
+				
+		case BOTON_SALIR:
+			
+			dispose();
 
-	public String getTextoperario() {
-		return Textoperario.getText();
-	}	
-}
+			}
+		}
+		
+	}
+	
+
