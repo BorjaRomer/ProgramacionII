@@ -1,7 +1,6 @@
 package LP;
 
 import javax.swing.JFrame;
-
 import java.awt.EventQueue;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
@@ -13,9 +12,10 @@ import javax.swing.JMenuItem;
 import javax.swing.JLabel;
 
 
-public class JFrame_VentanaPrincipal extends JFrame {
+public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
+	private final String VISUALIZAR_COCHE = "visualizar_coche";
 	
 	public static void CargarVP() {
 		
@@ -49,15 +49,6 @@ public class JFrame_VentanaPrincipal extends JFrame {
 		
 		JMenuItem CambiarOperario = new JMenuItem("Cambiar operario");
 		MenuArchivo.add(CambiarOperario);
-		CambiarOperario.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				dispose();
-				JFrame_Loging login = new JFrame_Loging();
-				login.setLocationRelativeTo(null);
-				login.setVisible(true);
-			
-			}
-		});
 		
 		JMenuItem EstadisticasDelDia = new JMenuItem("Estadisticas del dia");
 		MenuArchivo.add(EstadisticasDelDia);
@@ -81,29 +72,29 @@ public class JFrame_VentanaPrincipal extends JFrame {
 		menuBar.add(Visualizar);
 		
 		JMenuItem VisualizarCoche = new JMenuItem("Visualizar coches");
+		VisualizarCoche.setActionCommand(VISUALIZAR_COCHE);
+		VisualizarCoche.addActionListener(this);
 		Visualizar.add(VisualizarCoche);
-		VisualizarCoche.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				TablaMostrarCoches tabla = new TablaMostrarCoches();
-				tabla.setLocationRelativeTo(null);
-				tabla.setVisible(true);
-			}
-		});
 		
 		JMenuItem VisualizarMotos = new JMenuItem("Visualizar motos");
 		Visualizar.add(VisualizarMotos);
 		
 		JMenuItem VisualizarCamiones = new JMenuItem("Visualizar camiones");
 		Visualizar.add(VisualizarCamiones);
-		Salir.addActionListener(new ActionListener() {
-			public void actionPerformed(ActionEvent arg0) {
-				System.exit(0);
-			}
-		});
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
 		lblNewLabel.setBounds(0, 21, 777, 88);
 		getContentPane().add(lblNewLabel);
+	}
+	
+	public void actionPerformed(ActionEvent a) {
+		
+		switch(a.getActionCommand()) {
+		
+		case VISUALIZAR_COCHE:
+			TablaMostrarCoches.CargarMC();
+		
+		}
 	}
 }

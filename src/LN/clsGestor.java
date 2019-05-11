@@ -11,13 +11,15 @@ import java.sql.SQLException;
 
 public class clsGestor {
 
-	/**Creamos objeto de la clase Datos para utilizar sus funciones*/
+	/** Creamos objeto de la clase Datos para utilizar sus funciones */
 	clsDatos objDatos = new clsDatos();
 
-	/**ArrayList donde van a contener los estados de los vehiculos*/
+	/** ArrayList donde van a contener los estados de los vehiculos */
 	private ArrayList<clsEstado> estados = new ArrayList<>();
-	
-	/**Funcion ArrayList donde se devuelven los estados a la logica de presentaicion*/
+
+	/**
+	 * Funcion ArrayList donde se devuelven los estados a la logica de presentaicion
+	 */
 	public ArrayList<itfProperty> DameEstados() {
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
 		for (clsEstado a : estados) {
@@ -25,12 +27,15 @@ public class clsGestor {
 		}
 		return retorno;
 	}
-	
-	/**ArrayList donde se va a contener a los usuarios*/
+
+	/** ArrayList donde se va a contener a los usuarios */
 	private ArrayList<clsOperario> operarios = new ArrayList<>();
-	
-	/**Funcion ArrayList donde se devuelven los usuarios a la logica de presentaicion*/
-	public ArrayList<itfProperty> DameOperarios(){
+
+	/**
+	 * Funcion ArrayList donde se devuelven los usuarios a la logica de
+	 * presentaicion
+	 */
+	public ArrayList<itfProperty> DameOperarios() {
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
 		for (clsOperario a : operarios) {
 			retorno.add(a);
@@ -38,168 +43,171 @@ public class clsGestor {
 		return retorno;
 	}
 
-	/**ArrayList donde van a contener los tipo de coches*/
+	/** ArrayList donde van a contener los tipo de coches */
 	private ArrayList<clsTipoCoche> tipocoche = new ArrayList<>();
 
-	/**ArrayList donde van a contener los tipos de motos*/
+	/** ArrayList donde van a contener los tipos de motos */
 	private ArrayList<clsTipoMoto> tipomoto = new ArrayList<>();
 
-	/**ArrayList donde van a contener los tipos de camiones*/
+	/** ArrayList donde van a contener los tipos de camiones */
 	private ArrayList<clsTipoCamion> tipocamion = new ArrayList<>();
 
-	/** Creamos ArrayList de vehiculos*/
+	/** Creamos ArrayList de vehiculos */
 	private ArrayList<clsVehiculo> vehiculos = new ArrayList<>();
 
-	/**Funcion ArrayList donde se guardan los vehiculos*/
+	/** Funcion ArrayList donde se guardan los vehiculos */
 	public ArrayList<itfProperty> DameCoches(int orden) throws RuntimeException {
-	
-		if(orden==1) {
-			/**Se instancia la clase Comparator con el metodo CompareTo*/
+
+		if (orden == 1) {
+			/** Se instancia la clase Comparator con el metodo CompareTo */
 			clsComparatorMarca comparadormarca = new clsComparatorMarca();
-			
-			/**Con el metodo sort ordenamos los vehiculos mediante la clase Comparator creada*/
+
+			/** Con el metodo sort ordenamos los vehiculos mediante la clase Comparator creada */
 			Collections.sort(vehiculos, comparadormarca);
 		}
-		
-		if(orden==2) {
-			/**Interfaz Comparable implementada en vehiculos que ordena por potencia en caballos	*/
-		Collections.sort(vehiculos);
+
+		if (orden == 2) {
+			/** Interfaz Comparable implementada en vehiculos que ordena por potencia en caballos */
+			Collections.sort(vehiculos);
 		}
-		
+
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
-		
+
 		for (clsVehiculo a : vehiculos) {
-			if(a instanceof clsCoche) {
-			retorno.add(a);
-			}else {
+			if (a instanceof clsCoche) {
+				retorno.add(a);
+			} else {
 				throw new RuntimeException("No hay coches en la BD");
 			}
 		}
-		return retorno;	
+		return retorno;
 	}
-	
+
 	public boolean comprobarOperario(String operario, String contraseña) {
+
+		boolean retorno = true;
 		
-		String operario1 = "Borja";
-		String contraseña1 =  "1234";
-		
-		if(operario1.equals(operario) && contraseña1.equals(contraseña)) {
-			return true;
-		}else {
-			return false;
+		for (clsOperario o : operarios) {
+			if (o.getIdoperario().equals(operario) && o.getContraseña().equals(contraseña)) {
+				retorno = true;
+				break;
+			}
 		}
-		
+
+		return retorno;
 	}
 
 	public void RecogeroperariosBD() throws SQLException {
-		/** Se crea conexion con BD*/
+		/** Se crea conexion con BD */
 		objDatos.conectarBD();
 		ResultSet rs;
 
-		/** Se llama a la funcion recoger tipos de coche de la clase Datos*/
+		/** Se llama a la funcion recoger tipos de coche de la clase Datos */
 		rs = objDatos.recogeroperariosBD();
 
-		/** Recorre el ResultSet añadiendo los objetos en el ArrayList*/
+		/** Recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
 			clsOperario objOperario = new clsOperario(rs.getString("idoperario"), rs.getString("contraseña"));
 			operarios.add(objOperario);
 		}
 
-		/** Se desconecta la BD*/
+		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 
 	}
 
 	public void RecogertipococheBD() throws SQLException {
-		/** Se crea conexion con BD*/
+		/** Se crea conexion con BD */
 		objDatos.conectarBD();
 		ResultSet rs;
 
-		/** Se llama a la funcion recoger tipos de coche de la clase Datos*/
+		/** Se llama a la funcion recoger tipos de coche de la clase Datos */
 		rs = objDatos.recogertipococheBD();
 
-		/** Recorre el ResultSet añadiendo los objetos en el ArrayList*/
+		/** Recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
 			clsTipoCoche objTipoCoche = new clsTipoCoche(rs.getInt("idtipocoche"), rs.getString("descripcion"));
 			tipocoche.add(objTipoCoche);
 		}
 
-		/** Se desconecta la BD*/
+		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 
 	}
 
 	public void RecogertipomotoBD() throws SQLException {
 
-		/** Se crea conexion con BD*/
+		/** Se crea conexion con BD */
 		objDatos.conectarBD();
 		ResultSet rs;
 
-		/** Se llama a la funcion recoger tipos de moto de la clase Datos*/
+		/** Se llama a la funcion recoger tipos de moto de la clase Datos */
 		rs = objDatos.recogertipomotoBD();
 
-		/** Recorre el ResultSet añadiendo los objetos en el ArrayList*/
+		/** Recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
 			clsTipoMoto objTipoMoto = new clsTipoMoto(rs.getInt("idtipomoto"), rs.getString("descripcion"));
 			tipomoto.add(objTipoMoto);
 		}
 
-		/** Se desconecta la BD*/
+		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 
 	}
 
 	public void RecogertipocamionBD() throws SQLException {
 
-		/**Se crea conexion con BD*/
+		/** Se crea conexion con BD */
 		objDatos.conectarBD();
 		ResultSet rs;
 
-		/** Se llama a la funcion recoger tipos de coche de la clase Datos*/
+		/** Se llama a la funcion recoger tipos de coche de la clase Datos */
 		rs = objDatos.recogertipocamionBD();
 
-		/** Recorre el ResultSet añadiendo los objetos en el ArrayList*/
+		/** Recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
 			clsTipoCamion objTipoCamion = new clsTipoCamion(rs.getInt("idtipocamion"), rs.getString("descripcion"));
 			tipocamion.add(objTipoCamion);
 		}
 
-		/**Se desconecta la BD*/
+		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 
 	}
 
 	public void RecogerestadosBD() throws SQLException {
 
-		/** Se crea conexion con BD*/
+		/** Se crea conexion con BD */
 		objDatos.conectarBD();
 		ResultSet rs;
 
-		/**Se llama a la funcion recoger estados de la clase Datos*/
+		/** Se llama a la funcion recoger estados de la clase Datos */
 		rs = objDatos.recogerestadoBD();
 
-		/**Recorre el ResultSet añadiendo los objetos en el ArrayList*/
+		/** Recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
 			clsEstado objEstado = new clsEstado(rs.getInt("idestado"), rs.getString("descripcion"));
 			estados.add(objEstado);
 		}
 
-		/** Se desconecta la BD*/
+		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 	}
 
-	/**Funcion recoger de base de datos desde clsGestor en el que utilizamos el
-	objeto Datos para llamar a la funcion consultar datos*/
+	/**
+	 * Funcion recoger de base de datos desde clsGestor en el que utilizamos el
+	 * objeto Datos para llamar a la funcion consultar datos
+	 */
 	public void RecogercocheBD() throws SQLException {
 
-		/** Se crea conexion con BD*/
+		/** Se crea conexion con BD */
 		objDatos.conectarBD();
 		ResultSet rs;
 
-		/**Funcion recoger coches de la BD*/
+		/** Funcion recoger coches de la BD */
 		rs = objDatos.recogercocheBD();
 
-		/**Se recorre el ResultSet añadiendo los objetos en el ArrayList*/
+		/** Se recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
 			clsCoche objCoche = new clsCoche(rs.getString("numbastidor"), rs.getString("marca"), rs.getString("modelo"),
 					rs.getInt("cv"), rs.getInt("aniofabricacion"), rs.getDate("fecha"), rs.getString("color"),
@@ -209,129 +217,139 @@ public class clsGestor {
 			vehiculos.add(objCoche);
 		}
 
-		/**Se desconecta la BD*/
+		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 	}
-	
-	/**Funcion recoger de base de datos desde clsGestor en el que utilizamos el
-	objeto Datos para llamar a la funcion consultar datos*/
+
+	/**
+	 * Funcion recoger de base de datos desde clsGestor en el que utilizamos el
+	 * objeto Datos para llamar a la funcion consultar datos
+	 */
 	public void RecogermotoBD() throws SQLException {
 
-		/** Se crea conexion con BD*/
+		/** Se crea conexion con BD */
 		objDatos.conectarBD();
 		ResultSet rs;
 
-		/**Funcion recoger coches de la BD*/
+		/** Funcion recoger coches de la BD */
 		rs = objDatos.recogermotoBD();
 
-		/**Se recorre el ResultSet añadiendo los objetos en el ArrayList*/
+		/** Se recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
 			clsMoto objMoto = new clsMoto(rs.getString("numbastidor"), rs.getString("marca"), rs.getString("modelo"),
 					rs.getInt("cv"), rs.getInt("aniofabricacion"), rs.getDate("fecha"), rs.getString("color"),
-					rs.getInt("kilometros"), rs.getInt("idtipomoto"), rs.getInt("cilindrada"),
-					rs.getInt("tamaño"), rs.getInt("idestado"));
+					rs.getInt("kilometros"), rs.getInt("idtipomoto"), rs.getInt("cilindrada"), rs.getInt("tamaño"),
+					rs.getInt("idestado"));
 
 			vehiculos.add(objMoto);
 		}
 
-		/**Se desconecta la BD*/
+		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 	}
-	
-	/**Funcion recoger de base de datos desde clsGestor en el que utilizamos el
-	objeto Datos para llamar a la funcion consultar datos*/
+
+	/**
+	 * Funcion recoger de base de datos desde clsGestor en el que utilizamos el
+	 * objeto Datos para llamar a la funcion consultar datos
+	 */
 	public void RecogercamionBD() throws SQLException {
 
-		/** Se crea conexion con BD*/
+		/** Se crea conexion con BD */
 		objDatos.conectarBD();
 		ResultSet rs;
 
-		/**Funcion recoger coches de la BD*/
+		/** Funcion recoger coches de la BD */
 		rs = objDatos.recogercamionBD();
 
-		/**Se recorre el ResultSet añadiendo los objetos en el ArrayList*/
+		/** Se recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
-			clsCamion objCamion = new clsCamion(rs.getString("numbastidor"), rs.getString("marca"), rs.getString("modelo"),
-					rs.getInt("cv"), rs.getInt("aniofabricacion"), rs.getDate("fecha"), rs.getString("color"),
-					rs.getInt("kilometros"), rs.getInt("idtipocamion"), rs.getInt("altura"),
+			clsCamion objCamion = new clsCamion(rs.getString("numbastidor"), rs.getString("marca"),
+					rs.getString("modelo"), rs.getInt("cv"), rs.getInt("aniofabricacion"), rs.getDate("fecha"),
+					rs.getString("color"), rs.getInt("kilometros"), rs.getInt("idtipocamion"), rs.getInt("altura"),
 					rs.getInt("anchura"), rs.getInt("idestado"));
 
 			vehiculos.add(objCamion);
 		}
 
-		/**Se desconecta la BD*/
+		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 	}
 
-	/**Funcion eliminar de base de datos desde clsGestor en el que utilizamos el
-	objeto Datos para llamar a la funcion eliminar datos*/
+	/**
+	 * Funcion eliminar de base de datos desde clsGestor en el que utilizamos el
+	 * objeto Datos para llamar a la funcion eliminar datos
+	 */
 	public void EliminarcocheBD(String numerobastidor) throws SQLException {
 
-		/**Establecer conexion con BD*/
+		/** Establecer conexion con BD */
 		objDatos.conectarBD();
 
 		for (clsVehiculo e : vehiculos) {
-			if(e instanceof clsCoche) {
-			if (e.numbastidor.equals(numerobastidor)) {
+			if (e instanceof clsCoche) {
+				if (e.numbastidor.equals(numerobastidor)) {
 
-				vehiculos.remove(e);
-				System.out.println("Se ha eliminado del ArrayList");
-				
-				/**Funcion de clsDatos para eliminar el objeto de la BBDD*/
-				objDatos.eliminarcocheBD(numerobastidor);
+					vehiculos.remove(e);
+					System.out.println("Se ha eliminado del ArrayList");
 
+					/** Funcion de clsDatos para eliminar el objeto de la BBDD */
+					objDatos.eliminarcocheBD(numerobastidor);
+
+				}
 			}
 		}
-	}
-		/**Desconectar la BD*/
+		/** Desconectar la BD */
 		objDatos.desconectarBD();
 	}
-	
-	/**Funcion eliminar de base de datos desde clsGestor en el que utilizamos el
-	objeto Datos para llamar a la funcion eliminar datos*/
+
+	/**
+	 * Funcion eliminar de base de datos desde clsGestor en el que utilizamos el
+	 * objeto Datos para llamar a la funcion eliminar datos
+	 */
 	public void EliminarmotoBD(String numerobastidor) throws SQLException {
 
-		/**Establecer conexion con BD*/
+		/** Establecer conexion con BD */
 		objDatos.conectarBD();
 
 		for (clsVehiculo e : vehiculos) {
-			if(e instanceof clsMoto) {
-			if (e.numbastidor.equals(numerobastidor)) {
+			if (e instanceof clsMoto) {
+				if (e.numbastidor.equals(numerobastidor)) {
 
-				vehiculos.remove(e);
-				System.out.println("Se ha eliminado del ArrayList");
-				
-				/**Funcion de clsDatos para eliminar el objeto de la BBDD*/
-				objDatos.eliminarmotoBD(numerobastidor);
+					vehiculos.remove(e);
+					System.out.println("Se ha eliminado del ArrayList");
 
+					/** Funcion de clsDatos para eliminar el objeto de la BBDD */
+					objDatos.eliminarmotoBD(numerobastidor);
+
+				}
 			}
 		}
-	}
-		/**Desconectar la BD*/
+		/** Desconectar la BD */
 		objDatos.desconectarBD();
 	}
-	
-	/**Funcion eliminar de base de datos desde clsGestor en el que utilizamos el
-	objeto Datos para llamar a la funcion eliminar datos*/
+
+	/**
+	 * Funcion eliminar de base de datos desde clsGestor en el que utilizamos el
+	 * objeto Datos para llamar a la funcion eliminar datos
+	 */
 	public void EliminarcamionBD(String numerobastidor) throws SQLException {
 
-		/**Establecer conexion con BD*/
+		/** Establecer conexion con BD */
 		objDatos.conectarBD();
 
 		for (clsVehiculo e : vehiculos) {
-			if(e instanceof clsCamion) {
-			if (e.numbastidor.equals(numerobastidor)) {
+			if (e instanceof clsCamion) {
+				if (e.numbastidor.equals(numerobastidor)) {
 
-				vehiculos.remove(e);
-				System.out.println("Se ha eliminado del ArrayList");
-				
-				/**Funcion de clsDatos para eliminar el objeto de la BBDD*/
-				objDatos.eliminarcamionBD(numerobastidor);
+					vehiculos.remove(e);
+					System.out.println("Se ha eliminado del ArrayList");
 
+					/** Funcion de clsDatos para eliminar el objeto de la BBDD */
+					objDatos.eliminarcamionBD(numerobastidor);
+
+				}
 			}
 		}
-	}
-		/**Desconectar la BD*/
+		/** Desconectar la BD */
 		objDatos.desconectarBD();
 	}
 
@@ -347,17 +365,17 @@ public class clsGestor {
 		clsCoche objCoche = new clsCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
 				idtipocoche, combustible, cilindrada, idestado);
 
-		/**Se conecta la BD*/
+		/** Se conecta la BD */
 		objDatos.conectarBD();
 
-		/**Se pasa por parámetro los atributos para introducirlos en la BD*/
+		/** Se pasa por parámetro los atributos para introducirlos en la BD */
 		objDatos.insertarcocheBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche,
 				combustible, cilindrada, idestado);
 
-		/**Se desconecta la BD*/
+		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 
-		/**Añadimos al AarrayList el objeto creado*/
+		/** Añadimos al AarrayList el objeto creado */
 		vehiculos.add(objCoche);
 	}
 
@@ -371,18 +389,18 @@ public class clsGestor {
 
 		clsCamion objCamion = new clsCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
 				idtipocamion, altura, anchura, idestado);
-		
-		/**Se conecta la BD*/
+
+		/** Se conecta la BD */
 		objDatos.conectarBD();
 
-		/**Se pasa por parámetro los atributos para introducirlos en la BD*/
+		/** Se pasa por parámetro los atributos para introducirlos en la BD */
 		objDatos.insertarcamionBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
 				idtipocamion, altura, anchura, idestado);
 
-		/**Se desconecta la BD*/
+		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 
-		/**Añadimos al ArrayList el objeto creado*/
+		/** Añadimos al ArrayList el objeto creado */
 		vehiculos.add(objCamion);
 	}
 
@@ -392,22 +410,23 @@ public class clsGestor {
 	 * Menu Principal la Clase Gestor.
 	 */
 	public void CrearMoto(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipomoto, int cilindrada, int tamaño, int idestado) throws SQLException {
+			String color, int kilometros, int idtipomoto, int cilindrada, int tamaño, int idestado)
+			throws SQLException {
 
 		clsMoto objMoto = new clsMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
 				idtipomoto, cilindrada, tamaño, idestado);
-		
-		/**Se conecta la BD*/
+
+		/** Se conecta la BD */
 		objDatos.conectarBD();
 
-		/**Se pasa por parámetro los atributos para introducirlos en la BD*/
-		objDatos.insertarmotoBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
-				idtipomoto, cilindrada, tamaño, idestado);
+		/** Se pasa por parámetro los atributos para introducirlos en la BD */
+		objDatos.insertarmotoBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipomoto,
+				cilindrada, tamaño, idestado);
 
-		/**Se desconecta la BD*/
+		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 
-		/**Añadimos al ArrayList el objeto creado*/
+		/** Añadimos al ArrayList el objeto creado */
 		vehiculos.add(objMoto);
 	}
 

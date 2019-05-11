@@ -1,6 +1,6 @@
 package Comun;
 
-public class clsExcepcionNB extends RuntimeException {
+public class clsExcepcionNB extends Exception {
 
 
 	private static final long serialVersionUID = 1L;

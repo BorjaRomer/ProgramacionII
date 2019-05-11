@@ -102,7 +102,6 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 	}
 	
 	
-	@SuppressWarnings("deprecation")
 	public void actionPerformed(ActionEvent a) {
 		
 		clsGestor objGestor = new clsGestor();
@@ -113,15 +112,14 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 			
 				if(objGestor.comprobarOperario(Textoperario.getText(), Textcontraseña.getText())== true) {
 					JFrame_VentanaPrincipal.CargarVP();
-					
 				}else{
 					JOptionPane.showInternalMessageDialog(null, "Usuario o contraseña incorrecto");
 				}
+			break;
 				
 		case BOTON_SALIR:
-			
-			dispose();
-
+			System.exit(0);
+			break;
 			}
 		}
 		

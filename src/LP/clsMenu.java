@@ -40,8 +40,11 @@ public class clsMenu {
 			e.printStackTrace();
 		}	
 		
+		
+		jFrame_AltaCoche.CargarAC();
 		/**Ventana inicial donde el operario se logea*/
-		JFrame_Loging.CargarLogin();
+		//JFrame_Loging.CargarLogin();
+		
 		
 		
 		/**Menu Coche**/ 
@@ -52,7 +55,12 @@ public class clsMenu {
 		 int opcion1 =5; //menucoche.getOpcion(); 
 		 
 		 switch (opcion1) {
-		 case 1: AltaCoche(objGestor);
+		 case 1: try {
+				AltaCoche(objGestor);
+			} catch (clsExcepcionNB e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		 case 2: BajaCoche(objGestor);
 			break;
@@ -67,7 +75,12 @@ public class clsMenu {
 		 int opcion2 = 5; //menumoto.getOpcion(); 
 		 
 		 switch (opcion2) {
-		 case 1: AltaMoto(objGestor);
+		 case 1: try {
+				AltaMoto(objGestor);
+			} catch (clsExcepcionNB e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		 case 2: BajaMoto(objGestor);
 			break;
@@ -83,7 +96,12 @@ public class clsMenu {
 		 int opcion3 = 5;//menucoche.getOpcion(); 
 		 
 		 switch (opcion3) {
-		 case 1: AltaCamion(objGestor);
+		 case 1: try {
+				AltaCamion(objGestor);
+			} catch (clsExcepcionNB e) {
+				// TODO Auto-generated catch block
+				e.printStackTrace();
+			}
 			break;
 		 case 2: BajaCamion(objGestor);
 			break;
@@ -389,9 +407,9 @@ public class clsMenu {
 		
 		String numbastidor = menualtacoche.getNumbastidor().getText();
 		
-		/**if(numbastidor.length()<4) {
+		if(numbastidor.length()<4) {
 			throw new clsExcepcionNB();
-		}*/
+		}
 		
 		String marca = menualtacoche.getMarca().getText();
 		

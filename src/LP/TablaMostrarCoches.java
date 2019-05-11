@@ -7,6 +7,9 @@ import javax.swing.JTable;
 import javax.swing.JLabel;
 
 import java.awt.BorderLayout;
+import java.awt.EventQueue;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JScrollPane;
@@ -14,9 +17,10 @@ import javax.swing.JScrollPane;
 import Comun.clsConstantes;
 import Comun.itfProperty;
 import LN.clsGestor;
+import java.awt.Toolkit;
 
 
-public class TablaMostrarCoches extends JFrame {
+public class TablaMostrarCoches extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	
@@ -33,7 +37,23 @@ public class TablaMostrarCoches extends JFrame {
 	
 	private int orden;
 	
+	public static void CargarMC() {
+		
+		EventQueue.invokeLater(new Runnable() {
+			public void run() {
+				try {
+					TablaMostrarCoches MostrarCoches = new TablaMostrarCoches();
+					MostrarCoches.setLocationRelativeTo(null);
+					MostrarCoches.setVisible(true);
+				} catch (Exception e) {
+					e.printStackTrace();
+				}
+			}
+		});
+	}
+	
 	public TablaMostrarCoches() {
+		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
 		
 		clsGestor objGestor = new clsGestor();
 		vehiculos = objGestor.DameCoches(orden);
@@ -72,5 +92,11 @@ public class TablaMostrarCoches extends JFrame {
 		scrollPane = new JScrollPane(table);
 		scrollPane.setBounds(44, 75, 685, 243);
 		contentPane.add(scrollPane);
+	}
+
+	
+	public void actionPerformed(ActionEvent arg0) {
+		
+		
 	}
 }
