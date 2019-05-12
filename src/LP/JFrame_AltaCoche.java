@@ -28,7 +28,7 @@ import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 
-public class jFrame_AltaCoche extends JFrame implements ActionListener {
+public class JFrame_AltaCoche extends JFrame implements ActionListener {
 
 	public final String BOTON_GUARDAR = "BOTON_GUARDAR";
 	public final String BOTOT_SALIR = "BOTON_SALIR";
@@ -58,7 +58,7 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 		EventQueue.invokeLater(new Runnable() {
 			public void run() {
 				try {
-					jFrame_AltaCoche frame = new jFrame_AltaCoche();
+					JFrame_AltaCoche frame = new JFrame_AltaCoche();
 					frame.setVisible(true);
 					frame.setLocationRelativeTo(null);
 				} catch (Exception e) {
@@ -68,7 +68,7 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 		});
 	}
 
-	public jFrame_AltaCoche() {
+	public JFrame_AltaCoche() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
 		setTitle("DESGUACE - Registro de coche");

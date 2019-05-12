@@ -10,6 +10,7 @@ import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import javax.swing.JLabel;
+import java.awt.Color;
 
 
 public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
@@ -17,6 +18,7 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private final String VISUALIZAR_COCHE = "visualizar_coche";
 	private final String REGISTRAR_COCHE = "registrar_coche";
+	private final String CAMBIAR_OPERARIO = "cambiar_operario";
 	
 	public static void CargarVP() {
 		
@@ -49,6 +51,8 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 		menuBar.add(MenuArchivo);
 		
 		JMenuItem CambiarOperario = new JMenuItem("Cambiar operario");
+		CambiarOperario.setActionCommand(CAMBIAR_OPERARIO);
+		CambiarOperario.addActionListener(this);
 		MenuArchivo.add(CambiarOperario);
 		
 		JMenuItem EstadisticasDelDia = new JMenuItem("Estadisticas del dia");
@@ -95,12 +99,18 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 		
 		switch(a.getActionCommand()) {
 		
+		case CAMBIAR_OPERARIO:
+			dispose();
+			JFrame_Loging.CargarLogin();
+			break;
+		
 		case VISUALIZAR_COCHE:
-			TablaMostrarCoches.CargarMC();
+			JFrame_MostrarCoches.CargarMC();
 			break;
 			
 		case REGISTRAR_COCHE:
-			jFrame_AltaCoche.CargarAC();
+			JFrame_AltaCoche.CargarAC();
+			break;
 			
 		}
 	}

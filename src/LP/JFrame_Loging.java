@@ -16,6 +16,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Toolkit;
+import java.awt.Color;
+
 
 public class JFrame_Loging extends JFrame implements ActionListener {
 
@@ -58,6 +60,7 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
+		
 		
 		JLabel Operario = new JLabel("Operario:");
 		Operario.setFont(new Font("Tahoma", Font.PLAIN, 14));
