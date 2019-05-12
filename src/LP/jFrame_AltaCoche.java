@@ -12,6 +12,7 @@ import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.border.EtchedBorder;
 import javax.swing.border.TitledBorder;
@@ -25,11 +26,13 @@ import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
+import javax.swing.JScrollPane;
 
 public class jFrame_AltaCoche extends JFrame implements ActionListener {
 
 	public final String BOTON_GUARDAR = "BOTON_GUARDAR";
 	public final String BOTOT_SALIR = "BOTON_SALIR";
+	public final String BOTON_ATRAS = "BOTON_ATRAS";
 
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
@@ -47,6 +50,8 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 	JRadioButton gasolina;
 	JRadioButton diesel;
 	ButtonGroup combustible;
+	JList<String> list;
+	DefaultListModel<String> listModelo;
 	clsGestor objGestor = new clsGestor();
 
 	public static void CargarAC() {
@@ -66,9 +71,9 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 	public jFrame_AltaCoche() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
-		setTitle("DESGUACE");
-		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 663, 402);
+		setTitle("DESGUACE - Registro de coche");
+		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setBounds(100, 100, 663, 463);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -76,13 +81,13 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 
 		JPanel panel = new JPanel();
-        TitledBorder borderpanel = new TitledBorder(new EtchedBorder(), "Características");
-        panel.setBorder(borderpanel); 
+		TitledBorder borderpanel = new TitledBorder(new EtchedBorder(), "Características");
+		panel.setBorder(borderpanel);
 		panel.setBackground(SystemColor.textHighlightText);
-		panel.setBounds(10, 44, 627, 159);
+		panel.setBounds(10, 102, 627, 159);
 		contentPane.add(panel);
 		panel.setLayout(null);
-		
+
 		JLabel lblNBasridor = new JLabel("N\u00BA Bastidor:");
 		lblNBasridor.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		lblNBasridor.setBounds(37, 32, 66, 14);
@@ -173,7 +178,6 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 		combustible = new ButtonGroup();
 		combustible.add(diesel);
 		combustible.add(gasolina);
-		
 
 		JLabel lblAoFabricacin = new JLabel("A\u00F1o Fabricaci\u00F3n:");
 		lblAoFabricacin.setFont(new Font("Tahoma", Font.PLAIN, 11));
@@ -187,8 +191,8 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 
 		JPanel panel_1 = new JPanel();
 		TitledBorder borderpanel1 = new TitledBorder(new EtchedBorder(), "Tasación");
-        panel_1.setBorder(borderpanel1);
-		panel_1.setBounds(10, 214, 307, 141);
+		panel_1.setBorder(borderpanel1);
+		panel_1.setBounds(10, 272, 307, 141);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -234,10 +238,12 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 		toolBar.setBounds(0, 0, 647, 40);
 		contentPane.add(toolBar);
 
-		JButton btnNewButton_1 = new JButton("");
-		btnNewButton_1.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\next.png"));
-		toolBar.add(btnNewButton_1);
+		JButton BotonAtras = new JButton("");
+		BotonAtras.setActionCommand(BOTON_ATRAS);
+		BotonAtras.addActionListener(this);
+		BotonAtras.setIcon(new ImageIcon(
+				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_back_38976.png"));
+		toolBar.add(BotonAtras);
 
 		JButton BotonGuardar = new JButton("");
 		BotonGuardar.setActionCommand(BOTON_GUARDAR);
@@ -246,17 +252,29 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\guardar.png"));
 		toolBar.add(BotonGuardar);
 
-		JButton Cancelar = new JButton("");
-		Cancelar.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\cancelar.png"));
-		toolBar.add(Cancelar);
-
-		@SuppressWarnings("rawtypes")
-		JList list = new JList();
-		TitledBorder borderpanel2 = new TitledBorder(new EtchedBorder(), "Registros");
-        list.setBorder(borderpanel2);;
-		list.setBounds(338, 214, 299, 141);
+		list = new JList<String>();
+		list.setBounds(19, 32, 299, 141);
 		contentPane.add(list);
+		list.setVisibleRowCount(4);
+
+		listModelo = new DefaultListModel<String>();
+
+		JScrollPane scrollPane_1 = new JScrollPane();
+		scrollPane_1.setBounds(0, 0, 2, 2);
+		contentPane.add(scrollPane_1);
+		list.setModel(listModelo);
+
+		JScrollPane scrollPane = new JScrollPane(list);
+		TitledBorder borderpanel3 = new TitledBorder(new EtchedBorder(), "Registros");
+		scrollPane.setBorder(borderpanel3);
+		scrollPane.setBounds(327, 272, 310, 141);
+		contentPane.add(scrollPane);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
+		lblNewLabel.setBounds(0, 40, 647, 56);
+		contentPane.add(lblNewLabel);
+
 	}
 
 	public void actionPerformed(ActionEvent e) {
@@ -266,9 +284,10 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 		case BOTON_GUARDAR:
 
 			try {
+				
 				String combustible1 = null;
-				int estado1;
-				int tipo1;
+				int idestado1;
+				int idtipo1;
 				String numbastidor1 = numbastidor.getText();
 				String marca1 = marca.getText();
 				String modelo1 = modelo.getText();
@@ -284,6 +303,7 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 				}else if(diesel.isSelected()){
 					combustible1 = "diesel";
 				}
+				
 				//combustible1 = combustible.getSelection().getActionCommand();
 
 				//estado1 = (String) comboEstado.getSelectedItem();
@@ -291,14 +311,16 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 				//tipo1 = (String) comboTipo.getSelectedItem();
 				
 				int estadoIndex = comboEstado.getSelectedIndex();
-				estado1 = estadoIndex + 1;
-				
+				idestado1 = estadoIndex + 1;
+		
 				int tipoIndex = comboTipo.getSelectedIndex();
-				tipo1 = tipoIndex + 1;
+				idtipo1 = tipoIndex + 1;
+				
+				listModelo.addElement("Nº Bastidor: " + numbastidor1 + ",  Marca: " + marca1 + ",  Modelo: " + modelo1);
 
 				try {
 					objGestor.CrearCoche(numbastidor1, marca1, modelo1, cv1, aniofabricacion1, fecha1, color1, kilometros1,
-							tipo1, combustible1, cilindrada1, estado1);
+							idtipo1, combustible1, cilindrada1, idestado1);
 				} catch (SQLException a) {
 					System.out.println("Error al registrar un coche");
 					a.printStackTrace();
@@ -306,11 +328,25 @@ public class jFrame_AltaCoche extends JFrame implements ActionListener {
 
 			} catch (Exception w) {
 				JOptionPane.showInternalMessageDialog(null, "Rellene todos los campos correctamente");
-				w.printStackTrace();
 			}
 			
+			numbastidor.setText(null);
+			marca.setText(null);
+			modelo.setText(null);
+			cv.setText(null);
+			aniofabricacion.setText(null);
+			color.setText(null);
+			kilometros.setText(null);
+			cilindrada.setText(null);
+			combustible.clearSelection();
+			valor.setText(null);
 			
-
+			break;
+			
+		case BOTON_ATRAS:
+			
+			dispose();
+			
 		}
 	}
 }

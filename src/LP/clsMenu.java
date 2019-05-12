@@ -41,9 +41,9 @@ public class clsMenu {
 		}	
 		
 		
-		jFrame_AltaCoche.CargarAC();
+		//jFrame_AltaCoche.CargarAC();
 		/**Ventana inicial donde el operario se logea*/
-		//JFrame_Loging.CargarLogin();
+		JFrame_Loging.CargarLogin();
 		
 		
 		

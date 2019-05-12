@@ -16,6 +16,7 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
 	private final String VISUALIZAR_COCHE = "visualizar_coche";
+	private final String REGISTRAR_COCHE = "registrar_coche";
 	
 	public static void CargarVP() {
 		
@@ -60,6 +61,8 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 		menuBar.add(Registros);
 		
 		JMenuItem RegistrarCoche = new JMenuItem("Registrar coche");
+		RegistrarCoche.setActionCommand(REGISTRAR_COCHE);
+		RegistrarCoche.addActionListener(this);
 		Registros.add(RegistrarCoche);
 		
 		JMenuItem RegistrarMoto = new JMenuItem("Registrar moto");
@@ -94,7 +97,11 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 		
 		case VISUALIZAR_COCHE:
 			TablaMostrarCoches.CargarMC();
-		
+			break;
+			
+		case REGISTRAR_COCHE:
+			jFrame_AltaCoche.CargarAC();
+			
 		}
 	}
 }
