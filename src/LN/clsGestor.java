@@ -83,13 +83,13 @@ public class clsGestor {
 		return retorno;
 	}
 
-	public boolean comprobarOperario(String operario, String contraseña) {
+	public int comprobarOperario(String operario, String contraseña) {
 		
-		boolean retorno = true;
+		int retorno = 0;
 		
 		for (clsOperario o : operarios) {
 			if (o.getIdoperario().equals(operario) && o.getContrasea().equals(contraseña)) {
-				retorno = true;
+				retorno = 1;
 				break;
 			}
 		}

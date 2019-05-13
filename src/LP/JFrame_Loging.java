@@ -113,7 +113,7 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 		
 		case BOTON_ENTRAR:
 			
-				if(objGestor.comprobarOperario(Textoperario.getText(), Textcontraseña.getText())== true) {
+				if(objGestor.comprobarOperario(Textoperario.getText(), Textcontraseña.getText())== 1) {
 					JFrame_VentanaPrincipal.CargarVP();
 					dispose();
 				}else{
