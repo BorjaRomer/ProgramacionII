@@ -1,7 +1,6 @@
 package LP;
 
 import javax.swing.JFrame;
-import java.awt.EventQueue;
 import java.awt.Toolkit;
 import javax.swing.ImageIcon;
 import java.awt.event.ActionListener;
@@ -9,6 +8,7 @@ import java.awt.event.ActionEvent;
 import javax.swing.JMenuBar;
 import javax.swing.JMenu;
 import javax.swing.JMenuItem;
+import LN.clsGestor;
 import javax.swing.JLabel;
 
 
@@ -19,23 +19,11 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 	private final String VISUALIZAR_COCHE = "visualizar_coche";
 	private final String REGISTRAR_COCHE = "registrar_coche";
 	private final String CAMBIAR_OPERARIO = "cambiar_operario";
+	private clsGestor objGestor;
 	
-	public static void CargarVP() {
+	public JFrame_VentanaPrincipal(clsGestor _objGestor) {
 		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFrame_VentanaPrincipal ventanaprincipal = new JFrame_VentanaPrincipal();
-					ventanaprincipal.setLocationRelativeTo(null);
-					ventanaprincipal.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	public JFrame_VentanaPrincipal() {
+		objGestor = _objGestor;
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
 		setTitle("DESGUACE");
@@ -101,17 +89,22 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 		
 		case CAMBIAR_OPERARIO:
 			dispose();
-			JFrame_Loging.CargarLogin();
+			JFrame_Loging frame = new JFrame_Loging(objGestor);
+			frame.setLocationRelativeTo(null);
+			frame.setVisible(true);
 			break;
 		
 		case VISUALIZAR_COCHE:
-			JFrame_MostrarCoches.CargarMC();
+			JFrame_MostrarCoches frame2 = new JFrame_MostrarCoches(objGestor);
+			frame2.setLocationRelativeTo(null);
+			frame2.setVisible(true);
 			break;
 			
 		case REGISTRAR_COCHE:
-			JFrame_AltaCoche.CargarAC();
+			JFrame_AltaCoche frame1 = new JFrame_AltaCoche(objGestor);
+			frame1.setLocationRelativeTo(null);
+			frame1.setVisible(true);
 			break;
-			
 		}
 	}
 }

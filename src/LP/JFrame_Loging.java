@@ -4,8 +4,6 @@ import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import LN.clsGestor;
-
-import java.awt.EventQueue;
 import java.awt.Font;
 import javax.swing.JLabel;
 import javax.swing.JOptionPane;
@@ -16,7 +14,6 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Toolkit;
-import java.awt.Color;
 
 
 public class JFrame_Loging extends JFrame implements ActionListener {
@@ -31,24 +28,11 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private JTextField Textoperario;
 	private JPasswordField Textcontraseña;
+	private clsGestor objGestor;
 	
-	public static void CargarLogin() {
+	public JFrame_Loging(clsGestor _objGestor){
 		
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFrame_Loging Loging = new JFrame_Loging();
-					Loging.setLocationRelativeTo(null);
-					Loging.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-	
-	
-	public JFrame_Loging() {
+		objGestor = _objGestor;
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
 		
@@ -107,15 +91,17 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 	
 	public void actionPerformed(ActionEvent a) {
 		
-		clsGestor objGestor = new clsGestor();
-		
 		switch(a.getActionCommand()) {
 		
 		case BOTON_ENTRAR:
 			
-				if(objGestor.comprobarOperario(Textoperario.getText(), Textcontraseña.getText())== 1) {
-					JFrame_VentanaPrincipal.CargarVP();
+				if(objGestor.comprobarOperario(Textoperario.getText(), Textcontraseña.getText()) == true) {
+	
 					dispose();
+					JFrame_VentanaPrincipal frame = new JFrame_VentanaPrincipal(objGestor);
+					frame.setLocationRelativeTo(null);
+					frame.setVisible(true);
+					
 				}else{
 					JOptionPane.showInternalMessageDialog(null, "Usuario o contraseña incorrecto");
 				}

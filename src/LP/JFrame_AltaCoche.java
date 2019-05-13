@@ -1,7 +1,5 @@
 package LP;
 
-import java.awt.EventQueue;
-
 import javax.swing.JFrame;
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
@@ -52,23 +50,12 @@ public class JFrame_AltaCoche extends JFrame implements ActionListener {
 	ButtonGroup combustible;
 	JList<String> list;
 	DefaultListModel<String> listModelo;
-	clsGestor objGestor = new clsGestor();
+	clsGestor objGestor;
 
-	public static void CargarAC() {
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFrame_AltaCoche frame = new JFrame_AltaCoche();
-					frame.setVisible(true);
-					frame.setLocationRelativeTo(null);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	public JFrame_AltaCoche() {
+	public JFrame_AltaCoche(clsGestor _objGestor) {
+		
+		objGestor = _objGestor;
+		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
 		setTitle("DESGUACE - Registro de coche");
@@ -303,12 +290,6 @@ public class JFrame_AltaCoche extends JFrame implements ActionListener {
 				}else if(diesel.isSelected()){
 					combustible1 = "diesel";
 				}
-				
-				//combustible1 = combustible.getSelection().getActionCommand();
-
-				//estado1 = (String) comboEstado.getSelectedItem();
-
-				//tipo1 = (String) comboTipo.getSelectedItem();
 				
 				int estadoIndex = comboEstado.getSelectedIndex();
 				idestado1 = estadoIndex + 1;

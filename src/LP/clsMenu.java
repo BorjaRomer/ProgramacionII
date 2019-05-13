@@ -1,11 +1,10 @@
 package LP;
 import java.sql.SQLException;
 import java.util.ArrayList;
-import java.util.Date;
 import Comun.itfProperty;
 import LN.clsGestor;
 import Comun.clsConstantes;
-import Comun.clsExcepcionNB;
+
 
 
 public class clsMenu {
@@ -40,8 +39,11 @@ public class clsMenu {
 			e.printStackTrace();
 		}	
 		
-		JFrame_MostrarCoches.CargarDatos(objGestor);
-		JFrame_Loging.CargarLogin();
+		/*Se pasa el objGestor a la ventana Loging para poder acceder a los datos de la clase gestor en la que se han recogido los registros*/
+		JFrame_Loging objFrame = new JFrame_Loging(objGestor);
+		objFrame.setLocationRelativeTo(null);
+		objFrame.setVisible(true);
+		
 		
 	 } 
 	 
@@ -164,87 +166,8 @@ public class clsMenu {
 		}while(opcion!=5);
 	}
 	
-	/**
-	 * Meter datos en las variables de objGestor en la funcion CrearMotos.
-	 */
 	
-
 	
-	/**
-	 * Meter datos en las variables de objGestor en la funcion CrearCamion.
-	 */
-
-	private static void AltaCamion(clsGestor objGestor) throws clsExcepcionNB {
-		
-		Frame_Altacamion menualtacamion = new Frame_Altacamion();
-		menualtacamion.setVisible(true);
-		
-		String numbastidor = menualtacamion.getNumbastidor().getText();
-		if(numbastidor.length()<4) {
-			throw new clsExcepcionNB();
-		}
-		
-		String marca = menualtacamion.getMarca().getText();
-		
-		String modelo = menualtacamion.getModelo().getText();
-		
-		String cv1 = menualtacamion.getCv().getText();
-		int cv = Integer.parseInt(cv1);
-				
-		String aniofabricacion1 = menualtacamion.getAniofabricacion().getText();
-		int aniofabricacion = Integer.parseInt(aniofabricacion1);
-		
-		String color = menualtacamion.getColor().getText();
-		
-		String kilometros1 = menualtacamion.getKilometros().getText();
-		int kilometros = Integer.parseInt(kilometros1);
-		
-		Date fecha = new Date();
-		
-		int idestado = 0;
-		int opcion = menualtacamion.getOpestado();
-		
-		switch (opcion) {
-		
-		case 1: idestado=1;
-		break;
-		case 2: idestado=2;
-		break;
-		case 3: idestado=3;
-		break;
-		case 4: idestado=4;
-		break;
-		}
-		
-		String altura1 = menualtacamion.getAltura().getText();
-		int altura = Integer.parseInt(altura1);
-		
-		String anchura1 = menualtacamion.getAnchura().getText();
-		int anchura = Integer.parseInt(anchura1);
-		
-		int op = menualtacamion.getOptipocamion();
-		int idtipocamion = 0;
-		
-		switch (op) {
-		
-		case 1: idtipocamion=1;
-		break;
-		case 2: idtipocamion=2;
-		break;
-		case 3: idtipocamion=3;
-		break;
-		case 4: idtipocamion=4;
-		break;
-		}
-		
-	
-		try {
-			objGestor.CrearCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocamion, altura, anchura, idestado);
-		} catch (SQLException e) {
-			System.out.println("Error al registrar un camion");
-		}
-		
-	}
 	
 
 }

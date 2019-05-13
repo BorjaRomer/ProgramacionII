@@ -27,25 +27,12 @@ public class JFrame_MostrarCoches extends JFrame implements ActionListener {
 	private static ArrayList<itfProperty> vehiculos;
 	JTable table;
 	JScrollPane scroll;
-
 	private static int orden = 1;
+	private clsGestor objGestor;
 
-	public static void CargarMC() {
-
-		EventQueue.invokeLater(new Runnable() {
-			public void run() {
-				try {
-					JFrame_MostrarCoches MostrarCoches = new JFrame_MostrarCoches();
-					MostrarCoches.setLocationRelativeTo(null);
-					MostrarCoches.setVisible(true);
-				} catch (Exception e) {
-					e.printStackTrace();
-				}
-			}
-		});
-	}
-
-	public JFrame_MostrarCoches() {
+	public JFrame_MostrarCoches(clsGestor _objGestor) {
+		
+		objGestor = _objGestor;
 
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
@@ -83,13 +70,9 @@ public class JFrame_MostrarCoches extends JFrame implements ActionListener {
 
 	}
 
-	public static void CargarDatos(clsGestor objGestor) {
-
-	vehiculos = objGestor.DameCoches(orden);
-
-	}
-
 	public void CrearTabla() {
+		
+		vehiculos = objGestor.DameCoches(orden);
 
 		table = null;
 
