@@ -115,6 +115,7 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 			
 				if(objGestor.comprobarOperario(Textoperario.getText(), Textcontraseña.getText())== true) {
 					JFrame_VentanaPrincipal.CargarVP();
+					dispose();
 				}else{
 					JOptionPane.showInternalMessageDialog(null, "Usuario o contraseña incorrecto");
 				}
