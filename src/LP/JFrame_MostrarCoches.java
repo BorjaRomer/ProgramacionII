@@ -24,11 +24,11 @@ public class JFrame_MostrarCoches extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private final String CARGAR_TABLA = "carga_tabla";
 
-	private ArrayList<itfProperty> vehiculos;
+	private static ArrayList<itfProperty> vehiculos;
 	JTable table;
 	JScrollPane scroll;
 
-	private int orden = 1;
+	private static int orden = 1;
 
 	public static void CargarMC() {
 
@@ -47,8 +47,6 @@ public class JFrame_MostrarCoches extends JFrame implements ActionListener {
 
 	public JFrame_MostrarCoches() {
 
-		CargarDatos();
-
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
 
@@ -66,10 +64,10 @@ public class JFrame_MostrarCoches extends JFrame implements ActionListener {
 		lblNewLabel.setBounds(0, 0, 777, 50);
 		contentPane.add(lblNewLabel);
 
-		JButton boton = new JButton("New button");
+		JButton boton = new JButton("Cargar Tabla");
 		boton.setActionCommand(CARGAR_TABLA);
 		boton.addActionListener(this);
-		boton.setBounds(49, 66, 89, 23);
+		boton.setBounds(49, 66, 107, 23);
 		contentPane.add(boton);
 
 	}
@@ -85,18 +83,15 @@ public class JFrame_MostrarCoches extends JFrame implements ActionListener {
 
 	}
 
-	public void CargarDatos() {
+	public static void CargarDatos(clsGestor objGestor) {
 
-		clsGestor objGestor = new clsGestor();
-		vehiculos = objGestor.DameCoches(orden);
+	vehiculos = objGestor.DameCoches(orden);
 
 	}
 
 	public void CrearTabla() {
 
 		table = null;
-
-		CargarDatos();
 
 		ModeloTabla tcm = new ModeloTabla(vehiculos);
 

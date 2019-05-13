@@ -21,7 +21,7 @@ class ModeloTabla extends AbstractTableModel {
 		
 		for (itfProperty v : vehiculos) {
 			Object[] a = { v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR),
-					v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO) };
+					v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO) ,};
 			data[cont] = a;
 			cont++;
 		}
@@ -38,7 +38,7 @@ class ModeloTabla extends AbstractTableModel {
 		
 		for (itfProperty v : vehiculos) {
 			Object[] a = { v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR),
-					v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO) };
+					v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO) ,};
 			data[cont] = a;
 			cont++;
 		}

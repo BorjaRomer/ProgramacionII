@@ -7,12 +7,12 @@ import static Comun.clsConstantes.*;
 public class clsOperario implements itfProperty{
 	
 	private String idoperario;
-	private String contraseña;
+	private String contrasea;
 	
 	
-	public clsOperario(String idoperario, String contraseña) {
+	public clsOperario(String idoperario, String contrasea) {
 		this.idoperario = idoperario;
-		this.contraseña = contraseña;
+		this.contrasea = contrasea;
 	}
 
 
@@ -26,13 +26,13 @@ public class clsOperario implements itfProperty{
 	}
 
 
-	public String getContraseña() {
-		return contraseña;
+	public String getContrasea() {
+		return contrasea;
 	}
 
 
-	public void setContraseña(String contraseña) {
-		this.contraseña = contraseña;
+	public void setContrasea(String contrasea) {
+		this.contrasea = contrasea;
 	}
 
 
@@ -42,7 +42,7 @@ public class clsOperario implements itfProperty{
 		switch (propiedad) {
 		
 		case PROPIEDAD_USUARIO_IDOPERARIO: return this.getIdoperario();
-		case PROPIEDAD_USUARIO_CONTRASEÑA: return this.getContraseña();
+		case PROPIEDAD_USUARIO_CONTRASEÑA: return this.getContrasea();
 		default: throw new RuntimeException();
 		}
 
@@ -51,7 +51,7 @@ public class clsOperario implements itfProperty{
 
 	@Override
 	public String toString() {
-		return "clsOperario [idoperario=" + idoperario + ", contraseña=" + contraseña + "]";
+		return "clsOperario [idoperario=" + idoperario + ", contraseña=" + contrasea + "]";
 	}
 	
 	

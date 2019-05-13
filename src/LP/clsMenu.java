@@ -40,76 +40,11 @@ public class clsMenu {
 			e.printStackTrace();
 		}	
 		
-		
-		//jFrame_AltaCoche.CargarAC();
-		/**Ventana inicial donde el operario se logea*/
+		JFrame_MostrarCoches.CargarDatos(objGestor);
 		JFrame_Loging.CargarLogin();
 		
-		
-		
-		/**Menu Coche**/ 
-		
-		 //Frame_Menucoche menucoche = new Frame_Menucoche();
-		 //menucoche.setVisible(true);
-		 
-		 int opcion1 =5; //menucoche.getOpcion(); 
-		 
-		 switch (opcion1) {
-		 case 1: try {
-				AltaCoche(objGestor);
-			} catch (clsExcepcionNB e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-		 case 2: BajaCoche(objGestor);
-			break;
-		 case 3: MostrarCoches(objGestor);
-		 }
-	
-		/**Menu Moto*/
-		 
-		 //Frame_Menumoto menumoto = new Frame_Menumoto();
-		 //menumoto.setVisible(true);
-		 
-		 int opcion2 = 5; //menumoto.getOpcion(); 
-		 
-		 switch (opcion2) {
-		 case 1: try {
-				AltaMoto(objGestor);
-			} catch (clsExcepcionNB e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-		 case 2: BajaMoto(objGestor);
-			break;
-		 case 3: MostrarMotos(objGestor);
-		 }
+	 } 
 	 
-	 
-		 /** Menu Camion*/
-		 
-		 //Frame_Menucamion menucamion = new Frame_Menucamion();
-		 //menucamion.setVisible(true);
-		 
-		 int opcion3 = 5;//menucoche.getOpcion(); 
-		 
-		 switch (opcion3) {
-		 case 1: try {
-				AltaCamion(objGestor);
-			} catch (clsExcepcionNB e) {
-				// TODO Auto-generated catch block
-				e.printStackTrace();
-			}
-			break;
-		 case 2: BajaCamion(objGestor);
-			break;
-		 case 3: MostrarCamiones(objGestor);
-		 }
-		
-	 }
-	
 	 /**Funcion para buscar un registro de datos guardados y eliminarlo del ArrayList y de la BBDD*/
 	private static void BajaCoche(clsGestor objGestor) {
 		
@@ -158,13 +93,6 @@ public class clsMenu {
 		
 	}
 	
-	private static void MostrarCamiones(clsGestor objGestor) {
-		
-	}
-	
-	private static void MostrarMotos(clsGestor objGestor) {
-		
-	}
 	
 	/**Funcion para leer el ArrayList instanciado en clsGestor y que se encuentra en el objGestor que hemos creado en el Menu Principal.
   	Por eso pasamos por paramtero objGestor.*/

@@ -84,11 +84,11 @@ public class clsGestor {
 	}
 
 	public boolean comprobarOperario(String operario, String contraseña) {
-
+		
 		boolean retorno = true;
 		
 		for (clsOperario o : operarios) {
-			if (o.getIdoperario().equals(operario) && o.getContraseña().equals(contraseña)) {
+			if (o.getIdoperario().equals(operario) && o.getContrasea().equals(contraseña)) {
 				retorno = true;
 				break;
 			}
@@ -107,7 +107,7 @@ public class clsGestor {
 
 		/** Recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
-			clsOperario objOperario = new clsOperario(rs.getString("idoperario"), rs.getString("contraseña"));
+			clsOperario objOperario = new clsOperario(rs.getString("idoperario"), rs.getString("contrasea"));
 			operarios.add(objOperario);
 		}
 
