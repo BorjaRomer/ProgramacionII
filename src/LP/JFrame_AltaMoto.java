@@ -69,9 +69,6 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 	}
 
 
-	/**
-	 * Create the frame.
-	 */
 	public JFrame_AltaMoto() {
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
@@ -94,8 +91,6 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
 		lblNewLabel.setBounds(0, 40, 647, 56);
 		contentPane.add(lblNewLabel);
-
-
 		
 		JPanel panel = new JPanel();
 		TitledBorder borderpanel = new TitledBorder(new EtchedBorder(), "Características");
@@ -265,15 +260,11 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\guardar.png"));
 		toolBar.add(BotonGuardar);
 
-
-
 	}
 	
 
 	public void actionPerformed(ActionEvent e) {
 		
-		
-				
 		switch (e.getActionCommand()) {
 
 		case BOTON_GUARDAR:

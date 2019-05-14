@@ -54,8 +54,10 @@ public class JFrame_MostrarCoches extends JFrame implements ActionListener {
 		JButton boton = new JButton("Cargar Tabla");
 		boton.setActionCommand(CARGAR_TABLA);
 		boton.addActionListener(this);
-		boton.setBounds(49, 66, 107, 23);
+		boton.setBounds(356, 147, 107, 23);
 		contentPane.add(boton);
+		
+		CrearTabla();
 
 	}
 
@@ -86,7 +88,7 @@ public class JFrame_MostrarCoches extends JFrame implements ActionListener {
 		tcm.fireTableDataChanged();
 
 		scroll = new JScrollPane(table);
-		scroll.setBounds(10, 236, 457, 164);
+		scroll.setBounds(87, 240, 603, 164);
 		getContentPane().add(scroll);
 		tcm.setData(vehiculos);
 	}

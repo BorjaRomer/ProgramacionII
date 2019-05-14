@@ -14,6 +14,8 @@ import java.awt.event.ActionListener;
 import java.awt.event.ActionEvent;
 import javax.swing.JPasswordField;
 import java.awt.Toolkit;
+import java.awt.event.KeyEvent;
+import java.awt.Color;
 
 
 public class JFrame_Loging extends JFrame implements ActionListener {
@@ -24,6 +26,7 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 	private final String BOTON_SALIR = "boton_salir";
 
 	private final String BOTON_ENTRAR = "boton_entrar";
+
 	
 	private JPanel contentPane;
 	private JTextField Textoperario;
@@ -45,24 +48,24 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 		setContentPane(contentPane);
 		contentPane.setLayout(null);
 		
-		
 		JLabel Operario = new JLabel("Operario:");
-		Operario.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		Operario.setBounds(172, 100, 62, 27);
+		Operario.setForeground(Color.BLACK);
+		Operario.setFont(new Font("Tahoma", Font.BOLD, 16));
+		Operario.setBounds(44, 62, 86, 27);
 		contentPane.add(Operario);
-	
 		Textoperario = new JTextField();
-		Textoperario.setBounds(289, 105, 86, 20);
+		Textoperario.setBounds(171, 67, 86, 20);
 		contentPane.add(Textoperario);
 		Textoperario.setColumns(10);
 		
 		JLabel Contrasea = new JLabel("Contrase\u00F1a:");
-		Contrasea.setFont(new Font("Tahoma", Font.PLAIN, 14));
-		Contrasea.setBounds(172, 149, 86, 27);
+		Contrasea.setForeground(Color.BLACK);
+		Contrasea.setFont(new Font("Tahoma", Font.BOLD, 16));
+		Contrasea.setBounds(44, 117, 102, 27);
 		contentPane.add(Contrasea);
 		
 		Textcontraseña = new JPasswordField();
-		Textcontraseña.setBounds(289, 154, 86, 20);
+		Textcontraseña.setBounds(171, 122, 86, 20);
 		contentPane.add(Textcontraseña);
 		
 		JButton Entrar = new JButton("Entrar");
@@ -77,15 +80,15 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 		Salir.setBounds(259, 211, 89, 23);
 		contentPane.add(Salir);
 		
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
-		lblNewLabel.setBounds(0, 0, 434, 60);
-		contentPane.add(lblNewLabel);
-		
 		JLabel lblNewLabel_1 = new JLabel("");
 		lblNewLabel_1.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_preferences-system-login_24276 (1).png"));
-		lblNewLabel_1.setBounds(53, 91, 73, 96);
+		lblNewLabel_1.setBounds(319, 58, 73, 96);
 		contentPane.add(lblNewLabel_1);
+		
+		JLabel lblNewLabel = new JLabel("");
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\image.jpg"));
+		lblNewLabel.setBounds(0, 0, 434, 261);
+		contentPane.add(lblNewLabel);
 	}
 	
 	
@@ -112,7 +115,19 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 			break;
 			}
 		}
+	
+	public void keyPressed(KeyEvent e) {
 		
+		if(e.getKeyCode()==KeyEvent.VK_ENTER) {
+			
+			dispose();
+		}
 	}
+}
+	
+
+
+	
+	
 	
 

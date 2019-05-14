@@ -25,6 +25,7 @@ import javax.swing.JComboBox;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
+import java.awt.Color;
 
 public class JFrame_AltaCoche extends JFrame implements ActionListener {
 
@@ -60,7 +61,7 @@ public class JFrame_AltaCoche extends JFrame implements ActionListener {
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
 		setTitle("DESGUACE - Registro de coche");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
-		setBounds(100, 100, 663, 463);
+		setBounds(100, 100, 736, 463);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
 		contentPane.setBorder(new EmptyBorder(5, 5, 5, 5));
@@ -70,8 +71,8 @@ public class JFrame_AltaCoche extends JFrame implements ActionListener {
 		JPanel panel = new JPanel();
 		TitledBorder borderpanel = new TitledBorder(new EtchedBorder(), "Características");
 		panel.setBorder(borderpanel);
-		panel.setBackground(SystemColor.textHighlightText);
-		panel.setBounds(10, 102, 627, 159);
+		panel.setBackground(Color.WHITE);
+		panel.setBounds(45, 65, 627, 159);
 		contentPane.add(panel);
 		panel.setLayout(null);
 
@@ -151,12 +152,18 @@ public class JFrame_AltaCoche extends JFrame implements ActionListener {
 		panel.add(lblCombustible);
 
 		gasolina = new JRadioButton("Gasolina");
+		gasolina.setOpaque(false);
+		gasolina.setContentAreaFilled(false);
+		gasolina.setBorderPainted(false);
 		gasolina.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		gasolina.setActionCommand("gasolina");
 		gasolina.setBounds(448, 70, 71, 23);
 		panel.add(gasolina);
 
 		diesel = new JRadioButton("Diesel");
+		diesel.setOpaque(false);
+		diesel.setContentAreaFilled(false);
+		diesel.setBorderPainted(false);
 		diesel.setFont(new Font("Tahoma", Font.PLAIN, 11));
 		gasolina.setActionCommand("diesel");
 		diesel.setBounds(521, 70, 61, 23);
@@ -177,9 +184,10 @@ public class JFrame_AltaCoche extends JFrame implements ActionListener {
 		aniofabricacion.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
+		panel_1.setBackground(Color.WHITE);
 		TitledBorder borderpanel1 = new TitledBorder(new EtchedBorder(), "Tasación");
 		panel_1.setBorder(borderpanel1);
-		panel_1.setBounds(10, 272, 307, 141);
+		panel_1.setBounds(45, 250, 307, 141);
 		contentPane.add(panel_1);
 		panel_1.setLayout(null);
 
@@ -222,10 +230,15 @@ public class JFrame_AltaCoche extends JFrame implements ActionListener {
 		panel_1.add(comboTipo);
 
 		JToolBar toolBar = new JToolBar();
-		toolBar.setBounds(0, 0, 647, 40);
+		toolBar.setBackground(Color.WHITE);
+		toolBar.setBounds(0, 0, 720, 40);
 		contentPane.add(toolBar);
 
 		JButton BotonAtras = new JButton("");
+		BotonAtras.setToolTipText("Atras");
+		BotonAtras.setOpaque(false);
+		BotonAtras.setContentAreaFilled(false);
+		BotonAtras.setBorderPainted(false);
 		BotonAtras.setActionCommand(BOTON_ATRAS);
 		BotonAtras.addActionListener(this);
 		BotonAtras.setIcon(new ImageIcon(
@@ -233,6 +246,10 @@ public class JFrame_AltaCoche extends JFrame implements ActionListener {
 		toolBar.add(BotonAtras);
 
 		JButton BotonGuardar = new JButton("");
+		BotonGuardar.setToolTipText("Insertar");
+		BotonGuardar.setOpaque(false);
+		BotonGuardar.setContentAreaFilled(false);
+		BotonGuardar.setBorderPainted(false);
 		BotonGuardar.setActionCommand(BOTON_GUARDAR);
 		BotonGuardar.addActionListener(this);
 		BotonGuardar.setIcon(new ImageIcon(
@@ -240,6 +257,7 @@ public class JFrame_AltaCoche extends JFrame implements ActionListener {
 		toolBar.add(BotonGuardar);
 
 		list = new JList<String>();
+		list.setBackground(Color.WHITE);
 		list.setBounds(19, 32, 299, 141);
 		contentPane.add(list);
 		list.setVisibleRowCount(4);
@@ -252,14 +270,14 @@ public class JFrame_AltaCoche extends JFrame implements ActionListener {
 		list.setModel(listModelo);
 
 		JScrollPane scrollPane = new JScrollPane(list);
-		TitledBorder borderpanel3 = new TitledBorder(new EtchedBorder(), "Registros");
+		TitledBorder borderpanel3 = new TitledBorder(new EtchedBorder(), "Lista de Registros");
 		scrollPane.setBorder(borderpanel3);
-		scrollPane.setBounds(327, 272, 310, 141);
+		scrollPane.setBounds(362, 250, 310, 141);
 		contentPane.add(scrollPane);
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
-		lblNewLabel.setBounds(0, 40, 647, 56);
+		lblNewLabel.setBounds(0, 40, 720, 384);
 		contentPane.add(lblNewLabel);
 
 	}

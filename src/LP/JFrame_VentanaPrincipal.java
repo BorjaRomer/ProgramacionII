@@ -10,6 +10,7 @@ import javax.swing.JMenu;
 import javax.swing.JMenuItem;
 import LN.clsGestor;
 import javax.swing.JLabel;
+import java.awt.Color;
 
 
 
@@ -28,11 +29,11 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 		setIconImage(Toolkit.getDefaultToolkit().getImage("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
 		setTitle("DESGUACE");
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		setBounds(100, 100, 793, 546);
+		setBounds(100, 100, 793, 488);
 		getContentPane().setLayout(null);
 		
 		JMenuBar menuBar = new JMenuBar();
-		menuBar.setBounds(0, 0, 777, 23);
+		menuBar.setBounds(0, 0, 777, 29);
 		getContentPane().add(menuBar);
 		
 		JMenu MenuArchivo = new JMenu("Archivo");
@@ -79,7 +80,7 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
-		lblNewLabel.setBounds(0, 21, 777, 88);
+		lblNewLabel.setBounds(-10, -28, 787, 524);
 		getContentPane().add(lblNewLabel);
 	}
 	
