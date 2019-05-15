@@ -84,6 +84,10 @@ public class JFrame_AltaCoche extends JFrame implements ActionListener {
 		panel.add(lblNBasridor);
 
 		numbastidor = new JTextField();
+		TextPrompt pepe = new TextPrompt("Ej: VKL234355VB", numbastidor);
+		pepe.changeAlpha(0.75f);
+		pepe.changeStyle(Font.ITALIC);
+		pepe.setForeground(Color.LIGHT_GRAY);
 		numbastidor.setBounds(108, 29, 124, 20);
 		panel.add(numbastidor);
 		numbastidor.setColumns(10);

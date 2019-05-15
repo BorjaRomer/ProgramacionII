@@ -62,7 +62,7 @@ public class JFrame_AltaCamion extends JFrame implements ActionListener {
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
-		setTitle("DESGUACE - Registro de coche");
+		setTitle("DESGUACE - Registro de camion");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 664, 411);
 		contentPane = new JPanel();
@@ -148,13 +148,14 @@ public class JFrame_AltaCamion extends JFrame implements ActionListener {
 		aniofabricacion.setColumns(10);
 		
 		slider = new JSlider();
+		slider.setValue(3000);
 		slider.setSnapToTicks(true);
 		slider.setPaintTicks(true);
 		slider.setPaintLabels(true);
 		slider.setMinimum(3000);
 		slider.setMaximum(50000);
 		slider.setBackground(Color.WHITE);
-		slider.setBounds(402, 65, 200, 26);
+		slider.setBounds(402, 74, 200, 26);
 		panel.add(slider);
 		
 		JLabel lblCarga = new JLabel("Carga:");
