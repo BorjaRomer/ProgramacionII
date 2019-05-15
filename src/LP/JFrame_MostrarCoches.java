@@ -24,10 +24,10 @@ public class JFrame_MostrarCoches extends JFrame implements ActionListener {
 	private JPanel contentPane;
 	private final String CARGAR_TABLA = "carga_tabla";
 
-	private static ArrayList<itfProperty> vehiculos;
+	private ArrayList<itfProperty> vehiculos;
 	JTable table;
 	JScrollPane scroll;
-	private static int orden = 1;
+	private int orden = 1;
 	private clsGestor objGestor;
 
 	public JFrame_MostrarCoches(clsGestor _objGestor) {
@@ -54,7 +54,7 @@ public class JFrame_MostrarCoches extends JFrame implements ActionListener {
 		JButton boton = new JButton("Cargar Tabla");
 		boton.setActionCommand(CARGAR_TABLA);
 		boton.addActionListener(this);
-		boton.setBounds(356, 147, 107, 23);
+		boton.setBounds(335, 195, 107, 23);
 		contentPane.add(boton);
 		
 		CrearTabla();

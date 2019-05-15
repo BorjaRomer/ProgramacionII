@@ -18,7 +18,8 @@ public class clsGestor {
 	private ArrayList<clsEstado> estados = new ArrayList<>();
 
 	/**
-	 * Funcion ArrayList donde se devuelven los estados a la logica de presentaicion
+	 * Funcion ArrayList itfProperty donde se devuelven los estados a la logica de
+	 * presentacion
 	 */
 	public ArrayList<itfProperty> DameEstados() {
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
@@ -28,11 +29,11 @@ public class clsGestor {
 		return retorno;
 	}
 
-	/** ArrayList donde se va a contener a los usuarios */
+	/** ArrayList donde se va a contener a los operarios */
 	private ArrayList<clsOperario> operarios = new ArrayList<>();
 
 	/**
-	 * Funcion ArrayList donde se devuelven los usuarios a la logica de
+	 * Funcion ArrayList itfProperty donde se devuelven los usuarios a la logica de
 	 * presentaicion
 	 */
 	public ArrayList<itfProperty> DameOperarios() {
@@ -62,17 +63,27 @@ public class clsGestor {
 			/** Se instancia la clase Comparator con el metodo CompareTo */
 			clsComparatorMarca comparadormarca = new clsComparatorMarca();
 
-			/** Con el metodo sort ordenamos los vehiculos mediante la clase Comparator creada */
+			/**
+			 * Con el metodo sort ordenamos los vehiculos mediante la clase Comparator
+			 * creada
+			 */
 			Collections.sort(vehiculos, comparadormarca);
 		}
 
 		if (orden == 2) {
-			/** Interfaz Comparable implementada en vehiculos que ordena por potencia en caballos */
+			/**
+			 * Interfaz Comparable implementada en vehiculos que ordena por potencia en
+			 * caballos
+			 */
 			Collections.sort(vehiculos);
 		}
 
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
 
+		/**
+		 * Se recorre el Array de vehiculos para devolver solo los que sean objetos de
+		 * la clase Coche
+		 */
 		for (clsVehiculo a : vehiculos) {
 			if (a instanceof clsCoche) {
 				retorno.add(a);
@@ -83,10 +94,17 @@ public class clsGestor {
 		return retorno;
 	}
 
+	/**
+	 * Funcion para comprobar operarios al introducirse en la venta JFrame_Loging
+	 */
 	public boolean comprobarOperario(String operario, String contraseña) {
-		
-		boolean retorno = true;
-		
+
+		boolean retorno = false;
+
+		/**
+		 * Se recorren todos los operarios para comprobar que coinciden con los datos
+		 * introducidos desde la ventana JFrame_Loging
+		 */
 		for (clsOperario o : operarios) {
 			if (o.getIdoperario().equals(operario) && o.getContrasea().equals(contraseña)) {
 				retorno = true;
