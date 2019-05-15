@@ -8,7 +8,7 @@ import Comun.itfProperty;
 class ModeloTabla extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
-	private String[] nombreColumnas = { "Nº Bastidor", "Marca", "Modelo" };
+	private String[] nombreColumnas = { "Nº Bastidor", "Marca", "Modelo", "Potencia (cv)" };
 	Object[][] data;
 
 	public ModeloTabla(ArrayList<itfProperty> vehiculos) {
@@ -21,7 +21,8 @@ class ModeloTabla extends AbstractTableModel {
 		
 		for (itfProperty v : vehiculos) {
 			Object[] a = { v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR),
-					v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO) ,};
+					v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO),
+					v.getProperty(clsConstantes.PROPIEDAD_CV),};
 			data[cont] = a;
 			cont++;
 		}
@@ -38,7 +39,8 @@ class ModeloTabla extends AbstractTableModel {
 		
 		for (itfProperty v : vehiculos) {
 			Object[] a = { v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR),
-					v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO) ,};
+					v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO),
+					v.getProperty(clsConstantes.PROPIEDAD_CV),};
 			data[cont] = a;
 			cont++;
 		}

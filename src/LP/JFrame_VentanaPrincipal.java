@@ -15,6 +15,8 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private final String VISUALIZAR_COCHE = "visualizar_coche";
 	private final String REGISTRAR_COCHE = "registrar_coche";
+	private final String REGISTRAR_MOTO = "registrar_moto";
+	private final String REGISTRAR_CAMION = "registrar_camion";
 	private final String CAMBIAR_OPERARIO = "cambiar_operario";
 	private clsGestor objGestor;
 	
@@ -61,9 +63,13 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 		Registros.add(RegistrarCoche);
 		
 		JMenuItem RegistrarMoto = new JMenuItem("Registrar moto");
+		RegistrarMoto.setActionCommand(REGISTRAR_MOTO);
+		RegistrarMoto.addActionListener(this);
 		Registros.add(RegistrarMoto);
 		
 		JMenuItem RegistrarCamion = new JMenuItem("Registrar camion");
+		RegistrarCamion.setActionCommand(REGISTRAR_CAMION);
+		RegistrarCamion.addActionListener(this);
 		Registros.add(RegistrarCamion);
 		
 		JMenu Visualizar = new JMenu("Visualizar");
@@ -107,6 +113,16 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 			frame1.setLocationRelativeTo(null);
 			frame1.setVisible(true);
 			break;
+			
+		case REGISTRAR_MOTO:
+			JFrame_AltaMoto frame3 = new JFrame_AltaMoto(objGestor);
+			frame3.setLocationRelativeTo(null);
+			frame3.setVisible(true);
+			
+		case REGISTRAR_CAMION:
+			JFrame_AltaCamion frame4 = new JFrame_AltaCamion(objGestor);
+			frame4.setLocationRelativeTo(null);
+			frame4.setVisible(true);
 		}
 	}
 }

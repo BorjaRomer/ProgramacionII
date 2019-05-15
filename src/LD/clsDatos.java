@@ -114,11 +114,11 @@ public class clsDatos {
 
 	/**Insertar camion en BD*/
 	public void insertarcamionBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipocamion, int altura, int anchura, int idestado) throws SQLException {
+			String color, int kilometros, int idtipocamion, int altura, int carga, int idestado) throws SQLException {
 
 		// Funcion insertar en la clase CamionBD para hacer una Insert en MySQL*/
 		clsCamionBD.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
-				idtipocamion, altura, anchura, idestado, objConexion);
+				idtipocamion, altura, carga, idestado, objConexion);
 	}
 
 	/**Eliminar una camion en BD*/
@@ -141,7 +141,7 @@ public class clsDatos {
 
 	/**Insertar moto en BD*/
 	public void insertarmotoBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipomoto, int cilindrada, int tamaño, int idestado) throws SQLException {
+			String color, int kilometros, int idtipomoto, int cilindrada, String tamaño, int idestado) throws SQLException {
 
 		// Funcion insertar en la clase MotoBD para hacer una Insert en MySQL*/
 		clsMotoBD.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,

@@ -264,10 +264,6 @@ public class JFrame_AltaCoche extends JFrame implements ActionListener {
 		list.setVisibleRowCount(4);
 
 		listModelo = new DefaultListModel<String>();
-
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(0, 0, 2, 2);
-		contentPane.add(scrollPane_1);
 		list.setModel(listModelo);
 
 		JScrollPane scrollPane = new JScrollPane(list);

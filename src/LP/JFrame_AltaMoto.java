@@ -9,7 +9,6 @@ import java.awt.event.ActionListener;
 import java.sql.SQLException;
 import java.util.Date;
 import javax.swing.JLabel;
-import javax.swing.ButtonGroup;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.border.EtchedBorder;
@@ -17,7 +16,6 @@ import javax.swing.border.TitledBorder;
 import LN.clsGestor;
 import java.awt.Font;
 import javax.swing.JTextField;
-import javax.swing.JRadioButton;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
@@ -45,9 +43,7 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 	private JTextField valor;
 	JComboBox<String> comboEstado;
 	JComboBox<String> comboTipo;
-	JRadioButton gasolina;
-	JRadioButton diesel;
-	ButtonGroup combustible;
+	JComboBox<String> comboTamaño;
 	JList<String> list;
 	DefaultListModel<String> listModelo;
 	clsGestor objGestor;
@@ -62,7 +58,7 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
-		setTitle("DESGUACE - Registro de coche");
+		setTitle("DESGUACE - Registro de moto");
 		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 664, 411);
 		contentPane = new JPanel();
@@ -110,21 +106,21 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 
 		JLabel lblCv = new JLabel("Cv:");
 		lblCv.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblCv.setBounds(241, 74, 31, 14);
+		lblCv.setBounds(289, 74, 31, 14);
 		panel.add(lblCv);
 
 		cv = new JTextField();
-		cv.setBounds(268, 71, 46, 20);
+		cv.setBounds(315, 71, 46, 20);
 		panel.add(cv);
 		cv.setColumns(10);
 
 		JLabel lblCilindrada = new JLabel("Cilindrada:");
 		lblCilindrada.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblCilindrada.setBounds(37, 74, 61, 14);
+		lblCilindrada.setBounds(54, 74, 61, 14);
 		panel.add(lblCilindrada);
 
 		cilindrada = new JTextField();
-		cilindrada.setBounds(101, 71, 86, 20);
+		cilindrada.setBounds(120, 71, 86, 20);
 		panel.add(cilindrada);
 		cilindrada.setColumns(10);
 
@@ -148,33 +144,6 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 		panel.add(color);
 		color.setColumns(10);
 
-		JLabel lblCombustible = new JLabel("Combustible:");
-		lblCombustible.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblCombustible.setBounds(369, 74, 86, 14);
-		panel.add(lblCombustible);
-
-		gasolina = new JRadioButton("Gasolina");
-		gasolina.setOpaque(false);
-		gasolina.setContentAreaFilled(false);
-		gasolina.setBorderPainted(false);
-		gasolina.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		gasolina.setActionCommand("gasolina");
-		gasolina.setBounds(458, 70, 71, 23);
-		panel.add(gasolina);
-
-		diesel = new JRadioButton("Diesel");
-		diesel.setOpaque(false);
-		diesel.setContentAreaFilled(false);
-		diesel.setBorderPainted(false);
-		diesel.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		gasolina.setActionCommand("diesel");
-		diesel.setBounds(531, 70, 61, 23);
-		panel.add(diesel);
-
-		combustible = new ButtonGroup();
-		combustible.add(diesel);
-		combustible.add(gasolina);
-
 		JLabel lblAoFabricacin = new JLabel("A\u00F1o Fabricaci\u00F3n:");
 		lblAoFabricacin.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblAoFabricacin.setBounds(44, 115, 92, 14);
@@ -184,6 +153,19 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 		aniofabricacion.setBounds(146, 112, 86, 20);
 		panel.add(aniofabricacion);
 		aniofabricacion.setColumns(10);
+		
+		JLabel lblTamao = new JLabel("Tama\u00F1o:");
+		lblTamao.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblTamao.setBounds(443, 74, 54, 14);
+		panel.add(lblTamao);
+		
+		comboTamaño = new JComboBox<String>();
+		comboTamaño.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		comboTamaño.addItem("S");
+		comboTamaño.addItem("M");
+		comboTamaño.addItem("L");
+		comboTamaño.setBounds(501, 70, 46, 22);
+		panel.add(comboTamaño);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
@@ -264,10 +246,6 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 		list.setVisibleRowCount(4);
 
 		listModelo = new DefaultListModel<String>();
-
-		JScrollPane scrollPane_1 = new JScrollPane();
-		scrollPane_1.setBounds(0, 0, 2, 2);
-		contentPane.add(scrollPane_1);
 		list.setModel(listModelo);
 
 		JScrollPane scrollPane = new JScrollPane(list);
@@ -291,25 +269,20 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 			try {
 				
 				/** Se recogen todos los datos de la venta introducidos por le usuario */
-				String combustible1 = null;
 				int idestado1;
 				int idtipo1;
 				String numbastidor1 = numbastidor.getText();
 				String marca1 = marca.getText();
 				String modelo1 = modelo.getText();
 				int cv1 = Integer.parseInt(cv.getText());
-				String cilindrada1 = cilindrada.getText();
+				int cilindrada1 = Integer.parseInt(cilindrada.getText());
 				int kilometros1 = Integer.parseInt(kilometros.getText());
 				String color1 = color.getText();
 				int aniofabricacion1 = Integer.parseInt(aniofabricacion.getText());
 				int valor1 = Integer.parseInt(valor.getText());
 				Date fecha1 = new Date();
-
-				if(gasolina.isSelected()) {
-					combustible1 = "gasolina";
-				}else if(diesel.isSelected()){
-					combustible1 = "diesel";
-				}
+				
+				String tamaño1 = comboTamaño.getActionCommand();
 				
 				int estadoIndex = comboEstado.getSelectedIndex();
 				idestado1 = estadoIndex + 1;
@@ -317,13 +290,15 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 				int tipoIndex = comboTipo.getSelectedIndex();
 				idtipo1 = tipoIndex + 1;
 				
+				
+				
 				/** Se muestra la moto registrada en ese momento */
 				listModelo.addElement("Nº Bastidor: " + numbastidor1 + ",   Marca: " + marca1 + ",   Modelo: " + modelo1 + ",   Valor: " + valor1);
 
 				/** Funcion de la clase Gestor para introducir una moto en la bbdd y en el ArrayList */
 				try {
 					objGestor.CrearMoto(numbastidor1, marca1, modelo1, cv1, aniofabricacion1, fecha1, color1, kilometros1,
-							idtipo1, combustible1, cilindrada1, idestado1);
+							idtipo1, cilindrada1, tamaño1, idestado1);
 				} catch (SQLException a) {
 					JOptionPane.showInternalMessageDialog(null, "Ha habido un problema al registrar una moto");
 					a.printStackTrace();
@@ -341,8 +316,8 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 			color.setText(null);
 			kilometros.setText(null);
 			cilindrada.setText(null);
-			combustible.clearSelection();
 			valor.setText(null);
+			
 			
 			break;
 			

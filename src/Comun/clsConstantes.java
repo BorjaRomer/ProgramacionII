@@ -22,7 +22,7 @@ public class clsConstantes {
 	
 	public static final String PROPIEDAD_CAMION_IDTIPOCAMION = "idtipocamion";
 	public static final String PROPIEDAD_CAMION_ALTURA = "altura";
-	public static final String PROPIEDAD_CAMION_ANCHURA = "anchura";
+	public static final String PROPIEDAD_CAMION_CARGA = "carga";
 	
 	public static final String PROPIEDAD_ESTADO_ID = "idestado";
 	public static final String PROPIEDAD_ESTADO_DESCRIPCION = "descripcion";

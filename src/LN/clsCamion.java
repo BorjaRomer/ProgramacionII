@@ -12,14 +12,14 @@ public class clsCamion extends clsVehiculo {
 
 	int idtipocamion;
 	int altura;
-	int anchura;
+	int carga;
 	
 	public clsCamion(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-			int idtipocamion, int altura, int anchura, int idestado) {
+			int idtipocamion, int altura, int carga, int idestado) {
 		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado);
 		this.idtipocamion = idtipocamion;
 		this.altura = altura;
-		this.anchura = anchura;
+		this.carga = carga;
 	}
 
 	public int getIdtipocamion() {
@@ -39,12 +39,12 @@ public class clsCamion extends clsVehiculo {
 		this.altura = altura;
 	}
 
-	public int getAnchura() {
-		return anchura;
+	public int getCarga() {
+		return carga;
 	}
 
-	public void setAnchura(int anchura) {
-		this.anchura = anchura;
+	public void setCarga(int carga) {
+		this.carga = carga;
 	}
 	
 	public Object getProperty (String propiedad) {
@@ -62,7 +62,7 @@ public class clsCamion extends clsVehiculo {
 		case PROPIEDAD_IDESTADO: return this.getIdestado();
 		case PROPIEDAD_TIPOCAMION_ID: return this.getIdtipocamion();
 		case PROPIEDAD_CAMION_ALTURA: return this.getAltura();
-		case PROPIEDAD_CAMION_ANCHURA: return this.getAnchura();
+		case PROPIEDAD_CAMION_CARGA: return this.getCarga();
 		default: throw new RuntimeException("Propiedad no existente");
 		}
 

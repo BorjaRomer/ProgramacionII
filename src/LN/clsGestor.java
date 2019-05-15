@@ -256,9 +256,10 @@ public class clsGestor {
 		while (rs.next()) {
 			clsMoto objMoto = new clsMoto(rs.getString("numbastidor"), rs.getString("marca"), rs.getString("modelo"),
 					rs.getInt("cv"), rs.getInt("aniofabricacion"), rs.getDate("fecha"), rs.getString("color"),
-					rs.getInt("kilometros"), rs.getInt("idtipomoto"), rs.getInt("cilindrada"), rs.getInt("tamaño"),
+					rs.getInt("kilometros"), rs.getInt("idtipomoto"), rs.getInt("cilindrada"), rs.getString("tamaño"),
 					rs.getInt("idestado"));
-
+			
+			/** Se añade el objeto reocgido de bbdd al Array */
 			vehiculos.add(objMoto);
 		}
 
@@ -284,7 +285,7 @@ public class clsGestor {
 			clsCamion objCamion = new clsCamion(rs.getString("numbastidor"), rs.getString("marca"),
 					rs.getString("modelo"), rs.getInt("cv"), rs.getInt("aniofabricacion"), rs.getDate("fecha"),
 					rs.getString("color"), rs.getInt("kilometros"), rs.getInt("idtipocamion"), rs.getInt("altura"),
-					rs.getInt("anchura"), rs.getInt("idestado"));
+					rs.getInt("carga"), rs.getInt("idestado"));
 
 			vehiculos.add(objCamion);
 		}
@@ -403,17 +404,17 @@ public class clsGestor {
 	 * con el Menu Principal la Clase Gestor.
 	 */
 	public void CrearCamion(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipocamion, int altura, int anchura, int idestado) throws SQLException {
+			String color, int kilometros, int idtipocamion, int altura, int carga, int idestado) throws SQLException {
 
 		clsCamion objCamion = new clsCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
-				idtipocamion, altura, anchura, idestado);
+				idtipocamion, altura, carga, idestado);
 
 		/** Se conecta la BD */
 		objDatos.conectarBD();
 
 		/** Se pasa por parámetro los atributos para introducirlos en la BD */
 		objDatos.insertarcamionBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
-				idtipocamion, altura, anchura, idestado);
+				idtipocamion, altura, carga, idestado);
 
 		/** Se desconecta la BD */
 		objDatos.desconectarBD();
@@ -428,7 +429,7 @@ public class clsGestor {
 	 * Menu Principal la Clase Gestor.
 	 */
 	public void CrearMoto(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipomoto, int cilindrada, int tamaño, int idestado)
+			String color, int kilometros, int idtipomoto, int cilindrada, String tamaño, int idestado)
 			throws SQLException {
 
 		clsMoto objMoto = new clsMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,

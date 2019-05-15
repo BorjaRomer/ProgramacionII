@@ -22,7 +22,7 @@ public class clsMotoBD {
 	}
 
 	public static void insertarBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-			int idtipomoto, int cilindrada, int tamaño, int idestado, Connection objConexion) throws SQLException {
+			int idtipomoto, int cilindrada, String tamaño, int idestado, Connection objConexion) throws SQLException {
 
 		/** Convertimos el tipo util.Date a sql.Date que entiende el MySQL*/
 		java.sql.Date fechasql = new java.sql.Date(fecha.getTime());
@@ -42,7 +42,7 @@ public class clsMotoBD {
 		objSt.setInt(8, kilometros);
 		objSt.setInt(9, idtipomoto);
 		objSt.setInt(10, cilindrada);
-		objSt.setInt(11, tamaño);
+		objSt.setString(11, tamaño);
 		objSt.setInt(12, idestado);
 
 		/** Ejecutamos la query que hemos preparado*/
