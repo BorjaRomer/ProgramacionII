@@ -21,15 +21,17 @@ public class clsCocheBD {
 		return rs;
 	}
 
-	public static void insertarBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipocoche, String combustible, String cilindrada, int idestado,
+	public static void insertarBD(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha,
+			String color, int kilometros, int idtipocoche, String combustible, int cilindrada, int idestado, int valor,
 			Connection objConexion) throws SQLException {
 
 		/** Convertimos el tipo util.Date a sql.Date que entiende el MySQL*/
 		java.sql.Date fechasql = new java.sql.Date(fecha.getTime());
+		java.sql.Date aniofabricacion1 = new java.sql.Date(aniofabricacion.getTime());
+
 
 		/**Preparamos la insert*/
-		String query = "insert into coche (numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche, combustible, cilindrada, idestado) values (?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "insert into coche (numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche, combustible, cilindrada, idestado, valor) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		/**Creamos las preparedstaments*/
 		PreparedStatement objSt = objConexion.prepareStatement(query);
@@ -37,14 +39,15 @@ public class clsCocheBD {
 		objSt.setString(2, marca);
 		objSt.setString(3, modelo);
 		objSt.setInt(4, cv);
-		objSt.setInt(5, aniofabricacion);
+		objSt.setDate(5, aniofabricacion1);
 		objSt.setDate(6, fechasql);
 		objSt.setString(7, color);
 		objSt.setInt(8, kilometros);
 		objSt.setInt(9, idtipocoche);
 		objSt.setString(10, combustible);
-		objSt.setString(11, cilindrada);
+		objSt.setInt(11, cilindrada);
 		objSt.setInt(12, idestado);
+		objSt.setInt(13, valor);
 
 		/** Ejecutamos la query que hemos preparado*/
 		objSt.execute();

@@ -108,8 +108,10 @@ public class clsMenu {
 		System.out.print("Elige la opcion: ");
 		orden = UtilidadesLP.leerEntero();
 		
+		String marca = null;
+		
 		ArrayList<itfProperty> vehiculos;
-		vehiculos = objGestor.DameCoches(orden);
+		vehiculos = objGestor.DameCoches(orden, marca);
 		int i = 0;
 		int opcion;
 		

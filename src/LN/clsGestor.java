@@ -1,7 +1,7 @@
 package LN;
 
 import java.util.Date;
-import Comun.clsComparatorMarca;
+import Comun.clsComparatorValor;
 import Comun.itfProperty;
 import java.util.ArrayList;
 import java.util.Collections;
@@ -56,13 +56,14 @@ public class clsGestor {
 	/** Creamos ArrayList de vehiculos */
 	private ArrayList<clsVehiculo> vehiculos = new ArrayList<>();
 
-	/** Funcion ArrayList donde se guardan los vehiculos */
-	public ArrayList<itfProperty> DameCoches(int orden) throws RuntimeException {
+	/**
+	 * Funcion ArrayList donde se guardan los vehiculos
+	 */
+	public ArrayList<itfProperty> DameCoches(int orden, String marca1) throws RuntimeException {
 
 		if (orden == 1) {
 			/** Se instancia la clase Comparator con el metodo CompareTo */
-			clsComparatorMarca comparadormarca = new clsComparatorMarca();
-
+			clsComparatorValor comparadormarca = new clsComparatorValor();
 			/**
 			 * Con el metodo sort ordenamos los vehiculos mediante la clase Comparator
 			 * creada
@@ -84,13 +85,24 @@ public class clsGestor {
 		 * Se recorre el Array de vehiculos para devolver solo los que sean objetos de
 		 * la clase Coche
 		 */
+
 		for (clsVehiculo a : vehiculos) {
-			if (a instanceof clsCoche) {
-				retorno.add(a);
-			} else {
-				throw new RuntimeException("No hay coches en la BD");
+			
+			if (marca1 == null || marca1.equals("todos")) {
+				if (a instanceof clsCoche) {
+					retorno.add(a);
+				} else {
+					throw new RuntimeException("No hay coches en la BD");
+				}
+			}else if (marca1 != null) {
+				if(a instanceof clsCoche) {
+					if(a.marca.equals(marca1)) {
+						retorno.add(a);
+					}
+				}
 			}
 		}
+
 		return retorno;
 	}
 
@@ -99,7 +111,7 @@ public class clsGestor {
 	 */
 	public boolean comprobarOperario(String operario, String contraseña) {
 
-		boolean retorno = false;
+		boolean retorno = true;
 
 		/**
 		 * Se recorren todos los operarios para comprobar que coinciden con los datos
@@ -228,9 +240,9 @@ public class clsGestor {
 		/** Se recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
 			clsCoche objCoche = new clsCoche(rs.getString("numbastidor"), rs.getString("marca"), rs.getString("modelo"),
-					rs.getInt("cv"), rs.getInt("aniofabricacion"), rs.getDate("fecha"), rs.getString("color"),
+					rs.getInt("cv"), rs.getDate("aniofabricacion"), rs.getDate("fecha"), rs.getString("color"),
 					rs.getInt("kilometros"), rs.getInt("idtipocoche"), rs.getString("combustible"),
-					rs.getString("cilindrada"), rs.getInt("idestado"));
+					rs.getInt("cilindrada"), rs.getInt("idestado"), rs.getInt("valor"));
 
 			vehiculos.add(objCoche);
 		}
@@ -255,10 +267,10 @@ public class clsGestor {
 		/** Se recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
 			clsMoto objMoto = new clsMoto(rs.getString("numbastidor"), rs.getString("marca"), rs.getString("modelo"),
-					rs.getInt("cv"), rs.getInt("aniofabricacion"), rs.getDate("fecha"), rs.getString("color"),
+					rs.getInt("cv"), rs.getDate("aniofabricacion"), rs.getDate("fecha"), rs.getString("color"),
 					rs.getInt("kilometros"), rs.getInt("idtipomoto"), rs.getInt("cilindrada"), rs.getString("tamaño"),
-					rs.getInt("idestado"));
-			
+					rs.getInt("idestado"), rs.getInt("valor"));
+
 			/** Se añade el objeto reocgido de bbdd al Array */
 			vehiculos.add(objMoto);
 		}
@@ -283,9 +295,9 @@ public class clsGestor {
 		/** Se recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
 			clsCamion objCamion = new clsCamion(rs.getString("numbastidor"), rs.getString("marca"),
-					rs.getString("modelo"), rs.getInt("cv"), rs.getInt("aniofabricacion"), rs.getDate("fecha"),
+					rs.getString("modelo"), rs.getInt("cv"), rs.getDate("aniofabricacion"), rs.getDate("fecha"),
 					rs.getString("color"), rs.getInt("kilometros"), rs.getInt("idtipocamion"), rs.getInt("altura"),
-					rs.getInt("carga"), rs.getInt("idestado"));
+					rs.getInt("carga"), rs.getInt("idestado"), rs.getInt("valor"));
 
 			vehiculos.add(objCamion);
 		}
@@ -312,7 +324,8 @@ public class clsGestor {
 
 					/** Funcion de clsDatos para eliminar el objeto de la BBDD */
 					objDatos.eliminarcocheBD(numerobastidor);
-
+					
+					break;
 				}
 			}
 		}
@@ -377,19 +390,19 @@ public class clsGestor {
 	 * los atributos en la instancia objeto coche. De esta manera solo se comunica
 	 * con el Menu Principal la Clase Gestor.
 	 */
-	public void CrearCoche(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipocoche, String combustible, String cilindrada, int idestado)
+	public void CrearCoche(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha,
+			String color, int kilometros, int idtipocoche, String combustible, int cilindrada, int idestado, int valor)
 			throws SQLException {
 
 		clsCoche objCoche = new clsCoche(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
-				idtipocoche, combustible, cilindrada, idestado);
+				idtipocoche, combustible, cilindrada, idestado, valor);
 
 		/** Se conecta la BD */
 		objDatos.conectarBD();
 
 		/** Se pasa por parámetro los atributos para introducirlos en la BD */
 		objDatos.insertarcocheBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche,
-				combustible, cilindrada, idestado);
+				combustible, cilindrada, idestado, valor);
 
 		/** Se desconecta la BD */
 		objDatos.desconectarBD();
@@ -403,18 +416,18 @@ public class clsGestor {
 	 * los atributos en la instancia objeto camion. De esta manera solo se comunica
 	 * con el Menu Principal la Clase Gestor.
 	 */
-	public void CrearCamion(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipocamion, int altura, int carga, int idestado) throws SQLException {
+	public void CrearCamion(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha,
+			String color, int kilometros, int idtipocamion, int altura, int carga, int idestado, int valor) throws SQLException {
 
 		clsCamion objCamion = new clsCamion(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
-				idtipocamion, altura, carga, idestado);
+				idtipocamion, altura, carga, idestado, valor);
 
 		/** Se conecta la BD */
 		objDatos.conectarBD();
 
 		/** Se pasa por parámetro los atributos para introducirlos en la BD */
 		objDatos.insertarcamionBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
-				idtipocamion, altura, carga, idestado);
+				idtipocamion, altura, carga, idestado, valor);
 
 		/** Se desconecta la BD */
 		objDatos.desconectarBD();
@@ -428,19 +441,19 @@ public class clsGestor {
 	 * atributos en la instancia objeto moto. De esta manera solo se comunica con el
 	 * Menu Principal la Clase Gestor.
 	 */
-	public void CrearMoto(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipomoto, int cilindrada, String tamaño, int idestado)
+	public void CrearMoto(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha,
+			String color, int kilometros, int idtipomoto, int cilindrada, String tamaño, int idestado, int valor)
 			throws SQLException {
 
 		clsMoto objMoto = new clsMoto(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
-				idtipomoto, cilindrada, tamaño, idestado);
+				idtipomoto, cilindrada, tamaño, idestado, valor);
 
 		/** Se conecta la BD */
 		objDatos.conectarBD();
 
 		/** Se pasa por parámetro los atributos para introducirlos en la BD */
 		objDatos.insertarmotoBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipomoto,
-				cilindrada, tamaño, idestado);
+				cilindrada, tamaño, idestado, valor);
 
 		/** Se desconecta la BD */
 		objDatos.desconectarBD();

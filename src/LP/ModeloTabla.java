@@ -8,7 +8,7 @@ import Comun.itfProperty;
 class ModeloTabla extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
-	private String[] nombreColumnas = { "Nº Bastidor", "Marca", "Modelo", "Potencia (cv)" };
+	private String[] nombreColumnas = {"Nº Bastidor", "Marca", "Modelo", "Potencia (cv)", "Año Fabricacion", "Estado", "Valor(€)"};
 	Object[][] data;
 
 	public ModeloTabla(ArrayList<itfProperty> vehiculos) {
@@ -20,9 +20,10 @@ class ModeloTabla extends AbstractTableModel {
 
 		
 		for (itfProperty v : vehiculos) {
-			Object[] a = { v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR),
-					v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO),
-					v.getProperty(clsConstantes.PROPIEDAD_CV),};
+			Object[] a = {
+					v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR), v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO),
+					v.getProperty(clsConstantes.PROPIEDAD_CV), v.getProperty(clsConstantes.PROPIEDAD_ANIOFABRICACION),
+					v.getProperty(clsConstantes.PROPIEDAD_COCHE_IDTIPOCOCHE), v.getProperty(clsConstantes.PROPIEDAD_VALOR)};
 			data[cont] = a;
 			cont++;
 		}
@@ -38,9 +39,10 @@ class ModeloTabla extends AbstractTableModel {
 
 		
 		for (itfProperty v : vehiculos) {
-			Object[] a = { v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR),
-					v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO),
-					v.getProperty(clsConstantes.PROPIEDAD_CV),};
+			Object[] a = {
+					v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR), v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO),
+					v.getProperty(clsConstantes.PROPIEDAD_CV), v.getProperty(clsConstantes.PROPIEDAD_ANIOFABRICACION),
+					v.getProperty(clsConstantes.PROPIEDAD_COCHE_IDTIPOCOCHE), v.getProperty(clsConstantes.PROPIEDAD_VALOR)};
 			data[cont] = a;
 			cont++;
 		}

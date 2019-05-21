@@ -28,6 +28,8 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 	private JTextField Textoperario;
 	private JPasswordField Textcontraseña;
 	private clsGestor objGestor;
+	
+	JFrame_VentanaPrincipal ventanaPrincipal;
 
 	public JFrame_Loging(clsGestor _objGestor) {
 
@@ -109,9 +111,9 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 				dispose();
 
 				/** Si el usuario se logea correctamente se abre la ventana principal */
-				JFrame_VentanaPrincipal frame = new JFrame_VentanaPrincipal(objGestor);
-				frame.setLocationRelativeTo(null);
-				frame.setVisible(true);
+				ventanaPrincipal = new JFrame_VentanaPrincipal(objGestor);
+				ventanaPrincipal.setLocationRelativeTo(null);
+				ventanaPrincipal.setVisible(true);
 
 			} else {
 

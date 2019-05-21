@@ -1,6 +1,6 @@
 package LP;
 
-import javax.swing.JFrame;
+
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
@@ -19,12 +19,15 @@ import javax.swing.JTextField;
 import javax.swing.JToolBar;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
+import javax.swing.JDialog;
 import javax.swing.JList;
 import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import java.awt.Color;
+import javax.swing.JSlider;
+import com.toedter.calendar.JDateChooser;
 
-public class JFrame_AltaMoto extends JFrame implements ActionListener {
+public class JDialog_AltaCamion extends JDialog implements ActionListener {
 
 	public final String BOTON_GUARDAR = "BOTON_GUARDAR";
 	public final String BOTOT_SALIR = "BOTON_SALIR";
@@ -36,19 +39,20 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 	private JTextField marca;
 	private JTextField modelo;
 	private JTextField cv;
-	private JTextField cilindrada;
 	private JTextField kilometros;
 	private JTextField color;
-	private JTextField aniofabricacion;
 	private JTextField valor;
+	private JTextField altura;
 	JComboBox<String> comboEstado;
 	JComboBox<String> comboTipo;
-	JComboBox<String> comboTamaño;
 	JList<String> list;
 	DefaultListModel<String> listModelo;
+	JSlider slider;
+	JDateChooser aniofabricacion;
 	clsGestor objGestor;
+	
 
-	public JFrame_AltaMoto(clsGestor _objGestor) {
+	public JDialog_AltaCamion(clsGestor _objGestor) {
 		
 		/**
 		 * Se recibe el objGestor creado al inicio de la aplicacion porque es el objeto
@@ -58,8 +62,8 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
-		setTitle("DESGUACE - Registro de moto");
-		setDefaultCloseOperation(JFrame.DISPOSE_ON_CLOSE);
+		setTitle("DESGUACE - Registro de camion");
+		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 664, 411);
 		contentPane = new JPanel();
 		contentPane.setToolTipText("");
@@ -68,7 +72,6 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 		contentPane.setLayout(null);
 
 		JPanel panel = new JPanel();
-		panel.setBorder(new TitledBorder(new EtchedBorder(EtchedBorder.LOWERED, null, null), "Caracter\u00EDsticas", TitledBorder.LEADING, TitledBorder.TOP, null, new Color(0, 0, 128)));
 		panel.setBackground(Color.WHITE);
 		panel.setBounds(10, 51, 627, 159);
 		contentPane.add(panel);
@@ -106,41 +109,31 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 
 		JLabel lblCv = new JLabel("Cv:");
 		lblCv.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblCv.setBounds(289, 74, 31, 14);
+		lblCv.setBounds(227, 74, 31, 14);
 		panel.add(lblCv);
 
 		cv = new JTextField();
-		cv.setBounds(315, 71, 46, 20);
+		cv.setBounds(257, 71, 46, 20);
 		panel.add(cv);
 		cv.setColumns(10);
 
-		JLabel lblCilindrada = new JLabel("Cilindrada:");
-		lblCilindrada.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblCilindrada.setBounds(54, 74, 61, 14);
-		panel.add(lblCilindrada);
-
-		cilindrada = new JTextField();
-		cilindrada.setBounds(120, 71, 86, 20);
-		panel.add(cilindrada);
-		cilindrada.setColumns(10);
-
 		JLabel lblKilmetros = new JLabel("Kil\u00F3metros:");
 		lblKilmetros.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblKilmetros.setBounds(402, 115, 66, 14);
+		lblKilmetros.setBounds(412, 115, 66, 14);
 		panel.add(lblKilmetros);
 
 		kilometros = new JTextField();
-		kilometros.setBounds(474, 112, 86, 20);
+		kilometros.setBounds(482, 112, 86, 20);
 		panel.add(kilometros);
 		kilometros.setColumns(10);
 
 		JLabel lblColor = new JLabel("Color:");
 		lblColor.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblColor.setBounds(268, 115, 37, 14);
+		lblColor.setBounds(280, 115, 37, 14);
 		panel.add(lblColor);
 
 		color = new JTextField();
-		color.setBounds(307, 112, 61, 20);
+		color.setBounds(317, 112, 61, 20);
 		panel.add(color);
 		color.setColumns(10);
 
@@ -148,24 +141,36 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 		lblAoFabricacin.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblAoFabricacin.setBounds(44, 115, 92, 14);
 		panel.add(lblAoFabricacin);
-
-		aniofabricacion = new JTextField();
-		aniofabricacion.setBounds(146, 112, 86, 20);
+		
+		aniofabricacion = new JDateChooser();
+		aniofabricacion.setBounds(146, 112, 98, 20);
 		panel.add(aniofabricacion);
-		aniofabricacion.setColumns(10);
 		
-		JLabel lblTamao = new JLabel("Tama\u00F1o:");
-		lblTamao.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblTamao.setBounds(443, 74, 54, 14);
-		panel.add(lblTamao);
+		slider = new JSlider();
+		slider.setValue(3000);
+		slider.setSnapToTicks(true);
+		slider.setPaintTicks(true);
+		slider.setPaintLabels(true);
+		slider.setMinimum(3000);
+		slider.setMaximum(50000);
+		slider.setBackground(Color.WHITE);
+		slider.setBounds(402, 74, 200, 26);
+		panel.add(slider);
 		
-		comboTamaño = new JComboBox<String>();
-		comboTamaño.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboTamaño.addItem("S");
-		comboTamaño.addItem("M");
-		comboTamaño.addItem("L");
-		comboTamaño.setBounds(501, 70, 46, 22);
-		panel.add(comboTamaño);
+		JLabel lblCarga = new JLabel("Carga:");
+		lblCarga.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblCarga.setBounds(350, 74, 46, 14);
+		panel.add(lblCarga);
+		
+		JLabel lblAltura = new JLabel("Altura:");
+		lblAltura.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblAltura.setBounds(37, 74, 46, 14);
+		panel.add(lblAltura);
+		
+		altura = new JTextField();
+		altura.setBounds(80, 71, 80, 20);
+		panel.add(altura);
+		altura.setColumns(10);
 
 		JPanel panel_1 = new JPanel();
 		panel_1.setBackground(Color.WHITE);
@@ -194,7 +199,6 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 		comboEstado.addItem("Optimo");
 		comboEstado.addItem("Despiece");
 		comboEstado.addItem("Chatarra");
-		comboEstado.addItem("Venta");
 		comboEstado.setBounds(139, 91, 72, 22);
 		panel_1.add(comboEstado);
 
@@ -205,10 +209,10 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 
 		comboTipo = new JComboBox<String>();
 		comboTipo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboTipo.addItem("Enduro");
-		comboTipo.addItem("Carretera");
-		comboTipo.addItem("Scooter");
-		comboTipo.addItem("Ciclomotor");
+		comboTipo.addItem("Rigido");
+		comboTipo.addItem("Articulao");
+		comboTipo.addItem("Cisterna");
+		comboTipo.addItem("Abierto");
 		comboTipo.setBounds(204, 35, 77, 22);
 		panel_1.add(comboTipo);
 
@@ -275,14 +279,14 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 				String marca1 = marca.getText();
 				String modelo1 = modelo.getText();
 				int cv1 = Integer.parseInt(cv.getText());
-				int cilindrada1 = Integer.parseInt(cilindrada.getText());
 				int kilometros1 = Integer.parseInt(kilometros.getText());
 				String color1 = color.getText();
-				int aniofabricacion1 = Integer.parseInt(aniofabricacion.getText());
+				Date aniofabricacion1 = aniofabricacion.getDate();
 				int valor1 = Integer.parseInt(valor.getText());
+				int altura1 = Integer.parseInt(altura.getText());
 				Date fecha1 = new Date();
 				
-				String tamaño1 = comboTamaño.getActionCommand();
+				int carga1 = 1000;
 				
 				int estadoIndex = comboEstado.getSelectedIndex();
 				idestado1 = estadoIndex + 1;
@@ -290,17 +294,15 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 				int tipoIndex = comboTipo.getSelectedIndex();
 				idtipo1 = tipoIndex + 1;
 				
-				
-				
-				/** Se muestra la moto registrada en ese momento */
-				listModelo.addElement("Nº Bastidor: " + numbastidor1 + ",   Marca: " + marca1 + ",   Modelo: " + modelo1 + ",   Valor: " + valor1);
+				/** Se muestra el coche registrado en ese momento */
+				listModelo.addElement("NÂº Bastidor: " + numbastidor1 + ",   Marca: " + marca1 + ",   Modelo: " + modelo1 + ",   Valor: " + valor1);
 
-				/** Funcion de la clase Gestor para introducir una moto en la bbdd y en el ArrayList */
+				/** Funcion de la clase Gestor para introducir un coche en la bbdd y en el ArrayList */
 				try {
-					objGestor.CrearMoto(numbastidor1, marca1, modelo1, cv1, aniofabricacion1, fecha1, color1, kilometros1,
-							idtipo1, cilindrada1, tamaño1, idestado1);
+					objGestor.CrearCamion(numbastidor1, marca1, modelo1, cv1, aniofabricacion1, fecha1, color1, kilometros1,
+							idtipo1, altura1, carga1, idestado1, valor1);
 				} catch (SQLException a) {
-					JOptionPane.showInternalMessageDialog(null, "Ha habido un problema al registrar una moto");
+					JOptionPane.showInternalMessageDialog(null, "Ha habido un problema al registrar un camion");
 					a.printStackTrace();
 				}
 
@@ -312,12 +314,11 @@ public class JFrame_AltaMoto extends JFrame implements ActionListener {
 			marca.setText(null);
 			modelo.setText(null);
 			cv.setText(null);
-			aniofabricacion.setText(null);
+			aniofabricacion.setDate(null);
 			color.setText(null);
 			kilometros.setText(null);
-			cilindrada.setText(null);
+			altura.setText(null);
 			valor.setText(null);
-			
 			
 			break;
 			

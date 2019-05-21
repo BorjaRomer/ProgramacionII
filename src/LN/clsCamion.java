@@ -14,9 +14,9 @@ public class clsCamion extends clsVehiculo {
 	int altura;
 	int carga;
 	
-	public clsCamion(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-			int idtipocamion, int altura, int carga, int idestado) {
-		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado);
+	public clsCamion(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha, String color, int kilometros,
+			int idtipocamion, int altura, int carga, int idestado, int valor) {
+		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado, valor);
 		this.idtipocamion = idtipocamion;
 		this.altura = altura;
 		this.carga = carga;
@@ -60,6 +60,7 @@ public class clsCamion extends clsVehiculo {
 		case PROPIEDAD_COLOR: return this.getColor();
 		case PROPIEDAD_KILOMETROS: return this.getKilometros();
 		case PROPIEDAD_IDESTADO: return this.getIdestado();
+		case PROPIEDAD_VALOR: return this.getValor();
 		case PROPIEDAD_TIPOCAMION_ID: return this.getIdtipocamion();
 		case PROPIEDAD_CAMION_ALTURA: return this.getAltura();
 		case PROPIEDAD_CAMION_CARGA: return this.getCarga();

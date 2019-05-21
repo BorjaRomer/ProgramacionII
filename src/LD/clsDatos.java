@@ -113,12 +113,12 @@ public class clsDatos {
 	}
 
 	/**Insertar camion en BD*/
-	public void insertarcamionBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipocamion, int altura, int carga, int idestado) throws SQLException {
+	public void insertarcamionBD(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha,
+			String color, int kilometros, int idtipocamion, int altura, int carga, int idestado, int valor) throws SQLException {
 
 		// Funcion insertar en la clase CamionBD para hacer una Insert en MySQL*/
 		clsCamionBD.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
-				idtipocamion, altura, carga, idestado, objConexion);
+				idtipocamion, altura, carga, idestado, valor, objConexion);
 	}
 
 	/**Eliminar una camion en BD*/
@@ -140,12 +140,12 @@ public class clsDatos {
 	}
 
 	/**Insertar moto en BD*/
-	public void insertarmotoBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipomoto, int cilindrada, String tamaño, int idestado) throws SQLException {
+	public void insertarmotoBD(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha,
+			String color, int kilometros, int idtipomoto, int cilindrada, String tamaño, int idestado, int valor) throws SQLException {
 
 		// Funcion insertar en la clase MotoBD para hacer una Insert en MySQL*/
 		clsMotoBD.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros,
-				idtipomoto, cilindrada, tamaño, idestado, objConexion);
+				idtipomoto, cilindrada, tamaño, idestado, valor, objConexion);
 	}
 
 	/**Eliminar una moto en BD*/
@@ -168,13 +168,13 @@ public class clsDatos {
 	}
 
 	/**Insertar coche en BD*/
-	public void insertarcocheBD(String numbastidor, String marca, String modelo, int cv, int aniofabricacion,
-			Date fecha, String color, int kilometros, int idtipocoche, String combustible, String cilindrada,
-			int idestado) throws SQLException {
+	public void insertarcocheBD(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion,
+			Date fecha, String color, int kilometros, int idtipocoche, String combustible, int cilindrada,
+			int idestado, int valor) throws SQLException {
 
 		// Funcion insertar en la clase CocheBD para hacer una Insert en MySQL*/
 		clsCocheBD.insertarBD(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche,
-				combustible, cilindrada, idestado, objConexion);
+				combustible, cilindrada, idestado, valor, objConexion);
 	}
 
 	/**Eliminar un coche en BD*/

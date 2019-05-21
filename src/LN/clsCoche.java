@@ -7,19 +7,19 @@ import static Comun.clsConstantes.*;
 	public class clsCoche extends clsVehiculo {
 
 	int idtipocoche;
+	int cilindrada;
 	String combustible;
-	String cilindrada;
 	
 	/**Constructor de clsCoche*/
-	public clsCoche(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-			int idtipocoche, String combustible, String cilindrada, int idestado) {
-		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado);
+	public clsCoche(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha, String color, int kilometros,
+			int idtipocoche, String combustible, int cilindrada, int idestado, int valor) {
+		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado, valor);
 		this.idtipocoche = idtipocoche;
 		this.combustible = combustible;
 		this.cilindrada = cilindrada;
 	}
 	
-	public	int getIdtipocoche() {
+	public int getIdtipocoche() {
 		return idtipocoche;
 	}
 	public void setTipocoche(int idtipocoche) {
@@ -33,11 +33,11 @@ import static Comun.clsConstantes.*;
 		this.combustible = combustible;
 	}
 
-	public String getCilindrada() {
+	public int getCilindrada() {
 		return cilindrada;
 	}
 
-	public void setCilindrada(String cilindrada) {
+	public void setCilindrada(int cilindrada) {
 		this.cilindrada = cilindrada;
 	}
 	
@@ -54,6 +54,7 @@ import static Comun.clsConstantes.*;
 		case PROPIEDAD_COLOR: return this.getColor();
 		case PROPIEDAD_KILOMETROS: return this.getKilometros();
 		case PROPIEDAD_IDESTADO: return this.getIdestado();
+		case PROPIEDAD_VALOR: return this.getValor();
 		case PROPIEDAD_TIPOCOCHE_ID: return this.getIdtipocoche();
 		case PROPIEDAD_COCHE_COMBUSTIBLE: return this.getCombustible();
 		case PROPIEDAD_COCHE_CILINDRADA: return this.getCilindrada();

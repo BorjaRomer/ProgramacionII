@@ -19,6 +19,7 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 	private final String REGISTRAR_CAMION = "registrar_camion";
 	private final String CAMBIAR_OPERARIO = "cambiar_operario";
 	private clsGestor objGestor;
+	private JDialog_AltaCoche registrarCoche;
 	
 	public JFrame_VentanaPrincipal(clsGestor _objGestor) {
 		
@@ -88,6 +89,7 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 		Visualizar.add(VisualizarCamiones);
 	}
 	
+	
 	public void actionPerformed(ActionEvent a) {
 		
 		switch(a.getActionCommand()) {
@@ -102,27 +104,32 @@ public class JFrame_VentanaPrincipal extends JFrame implements ActionListener {
 		
 			/** Se abre la ventana para mostrar los coches */
 		case VISUALIZAR_COCHE:
-			JFrame_MostrarCoches frame2 = new JFrame_MostrarCoches(objGestor);
+			JDialog_MostrarCoches frame2 = new JDialog_MostrarCoches(objGestor);
 			frame2.setLocationRelativeTo(null);
 			frame2.setVisible(true);
 			break;
 			
 			/** Se abre la ventana para registrar un coche */
 		case REGISTRAR_COCHE:
-			JFrame_AltaCoche frame1 = new JFrame_AltaCoche(objGestor);
-			frame1.setLocationRelativeTo(null);
-			frame1.setVisible(true);
+			registrarCoche = new JDialog_AltaCoche(objGestor);
+			registrarCoche.setModal(true);
+			registrarCoche.setLocationRelativeTo(null);
+			registrarCoche.setVisible(true);
 			break;
 			
 		case REGISTRAR_MOTO:
-			JFrame_AltaMoto frame3 = new JFrame_AltaMoto(objGestor);
-			frame3.setLocationRelativeTo(null);
-			frame3.setVisible(true);
+			JDialog_AltaMoto registrarMoto = new JDialog_AltaMoto(objGestor);
+			registrarMoto.setModal(true);
+			registrarMoto.setLocationRelativeTo(null);
+			registrarMoto.setVisible(true);
+			break;
 			
 		case REGISTRAR_CAMION:
-			JFrame_AltaCamion frame4 = new JFrame_AltaCamion(objGestor);
-			frame4.setLocationRelativeTo(null);
-			frame4.setVisible(true);
+			JDialog_AltaCamion registrarCamion = new JDialog_AltaCamion(objGestor);
+			registrarCamion.setModal(true);
+			registrarCamion.setLocationRelativeTo(null);
+			registrarCamion.setVisible(true);
+			break;
 		}
 	}
 }

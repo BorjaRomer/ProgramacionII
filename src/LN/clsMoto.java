@@ -12,9 +12,9 @@ public class clsMoto extends clsVehiculo {
 	int cilindrada;
 	String tamaño;
 
-	public clsMoto(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipomoto, int cilindrada, String tamaño, int idestado) {
-		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado);
+	public clsMoto(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha,
+			String color, int kilometros, int idtipomoto, int cilindrada, String tamaño, int idestado, int valor) {
+		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado, valor);
 		this.idtipomoto = idtipomoto;
 		this.cilindrada = cilindrada;
 		this.tamaño = tamaño;
@@ -66,6 +66,8 @@ public class clsMoto extends clsVehiculo {
 			return this.getKilometros();
 		case PROPIEDAD_IDESTADO:
 			return this.getIdestado();
+		case PROPIEDAD_VALOR:
+			return this.getValor();
 		case PROPIEDAD_TIPOMOTO_ID:
 			return this.getIdtipomoto();
 		case PROPIEDAD_MOTO_CILINDRADA:

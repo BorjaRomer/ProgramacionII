@@ -12,14 +12,15 @@ public abstract class clsVehiculo implements itfProperty, Comparable <clsVehicul
 	String marca;
 	String modelo;
 	Integer cv;
-	int aniofabricacion;
+	Date aniofabricacion;
 	Date fecha;
 	String color;
 	int kilometros;
 	int idestado;
+	int valor;
 	
-	public clsVehiculo(String numbastidor, String marca, String modelo, int cv, int aniofabricacion, Date fecha, String color, int kilometros,
-			int idestado) {
+	public clsVehiculo(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha, String color, int kilometros,
+			int idestado, int valor) {
 		this.numbastidor = numbastidor;
 		this.marca = marca;
 		this.modelo = modelo;
@@ -29,6 +30,7 @@ public abstract class clsVehiculo implements itfProperty, Comparable <clsVehicul
 		this.color = color;
 		this.kilometros = kilometros;
 		this.idestado = idestado;
+		this.valor = valor;
 	}
 
 	public String getMarca() {
@@ -80,11 +82,11 @@ public abstract class clsVehiculo implements itfProperty, Comparable <clsVehicul
 		this.cv = cv;
 	}
 
-	public int getAniofabricacion() {
+	public Date getAniofabricacion() {
 		return aniofabricacion;
 	}
 
-	public void setAniofabricacion(int aniofabricacion) {
+	public void setAniofabricacion(Date aniofabricacion) {
 		this.aniofabricacion = aniofabricacion;
 	}
 
@@ -102,6 +104,14 @@ public abstract class clsVehiculo implements itfProperty, Comparable <clsVehicul
 
 	public void setIdestado(int idestado) {
 		this.idestado = idestado;
+	}
+
+	public Integer getValor() {
+		return valor;
+	}
+
+	public void setValor(int valor) {
+		this.valor = valor;
 	}
 
 	/**

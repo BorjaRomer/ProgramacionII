@@ -11,6 +11,7 @@ public class clsConstantes {
 	public static final String PROPIEDAD_COLOR = "color";
 	public static final String PROPIEDAD_KILOMETROS = "kilometros";
 	public static final String PROPIEDAD_IDESTADO = "idestado";
+	public static final String PROPIEDAD_VALOR = "valor";
 	
 	public static final String PROPIEDAD_COCHE_IDTIPOCOCHE = "idtipocoche";
 	public static final String PROPIEDAD_COCHE_COMBUSTIBLE = "combustible";
