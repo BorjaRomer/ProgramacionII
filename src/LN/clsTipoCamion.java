@@ -1,6 +1,8 @@
 package LN;
 
 import static Comun.clsConstantes.*;
+
+import Comun.clsRuntimeExceptionPropia;
 import Comun.itfProperty;
 
 
@@ -32,12 +34,12 @@ public class clsTipoCamion implements itfProperty{
 	}
 
 
-	public Object getProperty(String propiedad) {
+	public Object getProperty(String propiedad) throws clsRuntimeExceptionPropia {
 		
 		switch(propiedad) {
 		case PROPIEDAD_TIPOCAMION_ID: return this.getIdtipocamion();
 		case PROPIEDAD_TIPOCAMION_DESCRIPCION: return this.getDescripcion();
-		default: throw new RuntimeException("Propiedad no existente");
+		default: throw new clsRuntimeExceptionPropia();
 		}
 		
 	}

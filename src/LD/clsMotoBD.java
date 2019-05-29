@@ -22,7 +22,7 @@ public class clsMotoBD {
 	}
 
 	public static void insertarBD(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha, String color, int kilometros,
-			int idtipomoto, int cilindrada, String tamaño, int idestado, int valor, Connection objConexion) throws SQLException {
+			int idtipomoto, int cilindrada, String tamaño, int idestado, int valor, String idoperario, Connection objConexion) throws SQLException {
 
 		/** Convertimos el tipo util.Date a sql.Date que entiende el MySQL*/
 		java.sql.Date fechasql = new java.sql.Date(fecha.getTime());
@@ -30,7 +30,7 @@ public class clsMotoBD {
 
 
 		/** Preparamos la insert*/
-		String query = "insert into moto (numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipomoto, cilindrada, tamaño, idestado, valor) values (?,?,?,?,?,?,?,?,?,?,?,?,?)";
+		String query = "insert into moto (numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipomoto, cilindrada, tamaño, idestado, valor, idoperario) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
 		/**Creamos las preparedstaments*/
 		PreparedStatement objSt = objConexion.prepareStatement(query);
@@ -47,12 +47,11 @@ public class clsMotoBD {
 		objSt.setString(11, tamaño);
 		objSt.setInt(12, idestado);
 		objSt.setInt(13, valor);
+		objSt.setString(14, idoperario);
 
 
 		/** Ejecutamos la query que hemos preparado*/
 		objSt.execute();
-
-		System.out.println("Se ha insertado el registro correctamente en la BD");
 
 		/** Cerramos el preparedStatement*/
 		objSt.close();
@@ -71,9 +70,7 @@ public class clsMotoBD {
 
 		/** Ejecutamos la query que hemos preparado*/
 		objSt.execute();
-		
-		System.out.println("Se ha eliminado de la BD");
-		
+				
 		/**Cerramos el preparedStatement*/
 		objSt.close();
 

@@ -18,9 +18,10 @@ public abstract class clsVehiculo implements itfProperty, Comparable <clsVehicul
 	int kilometros;
 	int idestado;
 	int valor;
+	String idoperario;
 	
 	public clsVehiculo(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha, String color, int kilometros,
-			int idestado, int valor) {
+			int idestado, int valor, String idoperario) {
 		this.numbastidor = numbastidor;
 		this.marca = marca;
 		this.modelo = modelo;
@@ -31,6 +32,7 @@ public abstract class clsVehiculo implements itfProperty, Comparable <clsVehicul
 		this.kilometros = kilometros;
 		this.idestado = idestado;
 		this.valor = valor;
+		this.idoperario = idoperario;
 	}
 
 	public String getMarca() {
@@ -48,7 +50,6 @@ public abstract class clsVehiculo implements itfProperty, Comparable <clsVehicul
 	public void setNumbastidor(String numbastidor) {
 		this.numbastidor = numbastidor;
 	}
-
 
 	public Date getFecha() {
 		return fecha;
@@ -112,6 +113,14 @@ public abstract class clsVehiculo implements itfProperty, Comparable <clsVehicul
 
 	public void setValor(int valor) {
 		this.valor = valor;
+	}
+
+	public String getIdoperario() {
+		return idoperario;
+	}
+
+	public void setIdoperario(String idoperario) {
+		this.idoperario = idoperario;
 	}
 
 	/**

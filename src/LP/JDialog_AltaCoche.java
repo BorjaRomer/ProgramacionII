@@ -6,9 +6,11 @@ import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.ButtonGroup;
+import javax.swing.DefaultComboBoxModel;
 import javax.swing.DefaultListModel;
 import javax.swing.ImageIcon;
 import javax.swing.border.EtchedBorder;
@@ -26,9 +28,11 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
+import static Comun.clsConstantes.*;
+import Comun.itfProperty;
 
 public class JDialog_AltaCoche extends JDialog implements ActionListener {
-	
+
 	public final String BOTON_GUARDAR = "BOTON_GUARDAR";
 	public final String BOTOT_SALIR = "BOTON_SALIR";
 	public final String BOTON_ATRAS = "BOTON_ATRAS";
@@ -36,32 +40,34 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField numbastidor;
-	private JTextField marca;
 	private JTextField modelo;
 	private JTextField cv;
 	private JTextField cilindrada;
 	private JTextField kilometros;
 	private JTextField color;
 	private JTextField valor;
-	JComboBox<String> comboEstado;
-	JComboBox<String> comboTipo;
-	JRadioButton gasolina;
-	JRadioButton diesel;
-	ButtonGroup combustible;
-	JList<String> list;
-	DefaultListModel<String> listModelo;
-	JDateChooser aniofabricacion;
-	clsGestor objGestor;
+	private ArrayList<itfProperty> tipocoche;
+	private ArrayList<itfProperty> estados;
+	private JComboBox<String> comboEstado;
+	private JComboBox<String> comboTipo;
+	private JComboBox<String> comboMarc;
+	private JRadioButton gasolina;
+	private JRadioButton diesel;
+	private ButtonGroup combustible;
+	private JList<String> list;
+	private DefaultListModel<String> listModelo;
+	private JDateChooser aniofabricacion;
+	private clsGestor objGestor;
+	private String operario;
+	
 
-	public JDialog_AltaCoche(clsGestor _objGestor) {
+	public JDialog_AltaCoche(clsGestor _objGestor, String _operario) {
+
 		setResizable(false);
 
-		/**
-		 * Se recibe el objGestor creado al inicio de la aplicacion porque es el objeto
-		 * que recoge todos los datos de la bbdd y los guarda en los ArrayList
-		 */
+		operario = _operario;
 		objGestor = _objGestor;
-		
+
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
 		setTitle("DESGUACE - Registro de coche");
@@ -100,10 +106,12 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 		lblNewLabel_1.setBounds(286, 32, 46, 14);
 		panel_caracteristicas.add(lblNewLabel_1);
 
-		marca = new JTextField();
-		marca.setBounds(330, 29, 71, 20);
-		panel_caracteristicas.add(marca);
-		marca.setColumns(10);
+		comboMarc = new JComboBox<String>();
+		comboMarc.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		comboMarc.setBounds(332, 28, 84, 22);
+		panel_caracteristicas.add(comboMarc);
+		comboMarc.setModel(new DefaultComboBoxModel<String>(new String[] { "Todos", "Audi", "Bmw", "Citroen", "Ferrari",
+				"Ford", "Honda", "Kia", "Lexus", "Mercedes", "Mini", "Opel", "Volkswagen" }));
 
 		JLabel lblModelo = new JLabel("Modelo:");
 		lblModelo.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -186,9 +194,9 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 		lblAoFabricacin.setFont(new Font("Tahoma", Font.BOLD, 11));
 		lblAoFabricacin.setBounds(44, 115, 92, 14);
 		panel_caracteristicas.add(lblAoFabricacin);
-		
+
 		aniofabricacion = new JDateChooser();
-		aniofabricacion.setBounds(146, 112, 99, 20);
+		aniofabricacion.setBounds(146, 112, 106, 20);
 		panel_caracteristicas.add(aniofabricacion);
 
 		JPanel panel_tasacion = new JPanel();
@@ -214,11 +222,12 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 		lblEstado.setBounds(92, 95, 46, 14);
 		panel_tasacion.add(lblEstado);
 
+		estados = objGestor.DameEstados();
 		comboEstado = new JComboBox<String>();
 		comboEstado.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboEstado.addItem("Optimo");
-		comboEstado.addItem("Despiece");
-		comboEstado.addItem("Chatarra");
+		for (itfProperty e : estados) {
+			comboEstado.addItem((String) e.getProperty(PROPIEDAD_TIPOCOCHE_DESCRIPCION));
+		}
 		comboEstado.setBounds(139, 91, 72, 22);
 		panel_tasacion.add(comboEstado);
 
@@ -227,12 +236,12 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 		lblTipo.setBounds(173, 39, 38, 14);
 		panel_tasacion.add(lblTipo);
 
+		tipocoche = objGestor.DameTipoCoche();
 		comboTipo = new JComboBox<String>();
 		comboTipo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboTipo.addItem("Deportivo");
-		comboTipo.addItem("Todoterreno");
-		comboTipo.addItem("Monovolumen");
-		comboTipo.addItem("Electrico");
+		for (itfProperty t : tipocoche) {
+			comboTipo.addItem((String) t.getProperty(PROPIEDAD_TIPOCOCHE_DESCRIPCION));
+		}
 		comboTipo.setBounds(204, 35, 77, 22);
 		panel_tasacion.add(comboTipo);
 
@@ -268,7 +277,6 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 		list.setBounds(19, 32, 299, 141);
 		contentPane.add(list);
 		list.setVisibleRowCount(4);
-
 		listModelo = new DefaultListModel<String>();
 		list.setModel(listModelo);
 
@@ -279,8 +287,7 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 		contentPane.add(scrollPane);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
+		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
 		lblNewLabel.setBounds(0, 0, 648, 372);
 		contentPane.add(lblNewLabel);
 
@@ -299,7 +306,7 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 				int idestado1;
 				int idtipo1;
 				String numbastidor1 = numbastidor.getText();
-				String marca1 = marca.getText();
+				String marca1 = (String) comboMarc.getSelectedItem();
 				String modelo1 = modelo.getText();
 				int cv1 = Integer.parseInt(cv.getText());
 				int cilindrada1 = Integer.parseInt(cilindrada.getText());
@@ -331,10 +338,9 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 				 */
 				try {
 					objGestor.CrearCoche(numbastidor1, marca1, modelo1, cv1, aniofabricacion1, fecha1, color1,
-							kilometros1, idtipo1, combustible1, cilindrada1, idestado1, valor1);
+							kilometros1, idtipo1, combustible1, cilindrada1, idestado1, valor1, operario);
 				} catch (SQLException a) {
 					JOptionPane.showInternalMessageDialog(null, "Ha habido un problema al registrar un coche");
-					a.printStackTrace();
 				}
 
 			} catch (Exception w) {
@@ -342,7 +348,6 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 			}
 
 			numbastidor.setText(null);
-			marca.setText(null);
 			modelo.setText(null);
 			cv.setText(null);
 			aniofabricacion.setDate(null);

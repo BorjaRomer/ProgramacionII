@@ -3,16 +3,24 @@ package LN;
 import Comun.itfProperty;
 import static Comun.clsConstantes.*;
 
+import Comun.clsRuntimeExceptionPropia;
+
 
 public class clsOperario implements itfProperty{
 	
 	private String idoperario;
 	private String contrasea;
+	private String nombre;
+	private String apellido;
+	private String dni;
 	
 	
-	public clsOperario(String idoperario, String contrasea) {
+	public clsOperario(String idoperario, String contrasea, String nombre, String apellido, String dni) {
 		this.idoperario = idoperario;
 		this.contrasea = contrasea;
+		this.nombre = nombre;
+		this.apellido = apellido;
+		this.dni = dni;
 	}
 
 
@@ -34,16 +42,49 @@ public class clsOperario implements itfProperty{
 	public void setContrasea(String contrasea) {
 		this.contrasea = contrasea;
 	}
+	
+	
+	public String getNombre() {
+		return nombre;
+	}
+
+
+	public void setNombre(String nombre) {
+		this.nombre = nombre;
+	}
+
+
+	public String getApellido() {
+		return apellido;
+	}
+
+
+	public void setApellido(String apellido) {
+		this.apellido = apellido;
+	}
+
+
+	public String getDni() {
+		return dni;
+	}
+
+
+	public void setDni(String dni) {
+		this.dni = dni;
+	}
 
 
 	@Override
-	public Object getProperty(String propiedad) throws RuntimeException{
+	public Object getProperty(String propiedad) throws clsRuntimeExceptionPropia {
 	
 		switch (propiedad) {
 		
 		case PROPIEDAD_USUARIO_IDOPERARIO: return this.getIdoperario();
 		case PROPIEDAD_USUARIO_CONTRASEÑA: return this.getContrasea();
-		default: throw new RuntimeException();
+		case PROPIEDAD_USUARIO_NOMBRE: return this.getNombre();
+		case PROPIEDAD_USUARIO_APELLIDO: return this.getApellido();
+		case PROPIEDAD_USUARIO_DNI: return this.getDni();
+		default: throw new clsRuntimeExceptionPropia();
 		}
 
 	}

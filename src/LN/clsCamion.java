@@ -1,6 +1,9 @@
 package LN;
 
 import java.util.Date;
+
+import Comun.clsRuntimeExceptionPropia;
+
 import static Comun.clsConstantes.*;
 
 
@@ -15,8 +18,8 @@ public class clsCamion extends clsVehiculo {
 	int carga;
 	
 	public clsCamion(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha, String color, int kilometros,
-			int idtipocamion, int altura, int carga, int idestado, int valor) {
-		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado, valor);
+			int idtipocamion, int altura, int carga, int idestado, int valor, String idoperario) {
+		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado, valor, idoperario);
 		this.idtipocamion = idtipocamion;
 		this.altura = altura;
 		this.carga = carga;
@@ -47,7 +50,7 @@ public class clsCamion extends clsVehiculo {
 		this.carga = carga;
 	}
 	
-	public Object getProperty (String propiedad) {
+	public Object getProperty (String propiedad) throws clsRuntimeExceptionPropia {
 		
 		switch(propiedad) {
 		
@@ -61,10 +64,11 @@ public class clsCamion extends clsVehiculo {
 		case PROPIEDAD_KILOMETROS: return this.getKilometros();
 		case PROPIEDAD_IDESTADO: return this.getIdestado();
 		case PROPIEDAD_VALOR: return this.getValor();
+		case PROPIEDAD_IDOPERARIO: return this.getIdoperario();
 		case PROPIEDAD_TIPOCAMION_ID: return this.getIdtipocamion();
 		case PROPIEDAD_CAMION_ALTURA: return this.getAltura();
 		case PROPIEDAD_CAMION_CARGA: return this.getCarga();
-		default: throw new RuntimeException("Propiedad no existente");
+		default: throw new clsRuntimeExceptionPropia();
 		}
 
 		

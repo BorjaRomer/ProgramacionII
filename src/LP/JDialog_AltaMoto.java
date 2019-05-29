@@ -1,12 +1,12 @@
 package LP;
 
-
 import javax.swing.JPanel;
 import javax.swing.border.EmptyBorder;
 import java.awt.Toolkit;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.sql.SQLException;
+import java.util.ArrayList;
 import java.util.Date;
 import javax.swing.JLabel;
 import javax.swing.DefaultListModel;
@@ -25,6 +25,9 @@ import javax.swing.JOptionPane;
 import javax.swing.JScrollPane;
 import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
+import static Comun.clsConstantes.*;
+import Comun.itfProperty;
+import javax.swing.DefaultComboBoxModel;
 
 public class JDialog_AltaMoto extends JDialog implements ActionListener {
 
@@ -35,28 +38,33 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 	private static final long serialVersionUID = 1L;
 	private JPanel contentPane;
 	private JTextField numbastidor;
-	private JTextField marca;
 	private JTextField modelo;
 	private JTextField cv;
 	private JTextField cilindrada;
 	private JTextField kilometros;
 	private JTextField color;
 	private JTextField valor;
-	JComboBox<String> comboEstado;
-	JComboBox<String> comboTipo;
-	JComboBox<String> comboTamaño;
-	JList<String> list;
-	DefaultListModel<String> listModelo;
-	JDateChooser aniofabricacion;
-	clsGestor objGestor;
+	private JComboBox<String> comboEstado;
+	private JComboBox<String> comboTipo;
+	private JComboBox<String> comboTamaño;
+	private JComboBox<String> comboMarca;
+	private JList<String> list;
+	private DefaultListModel<String> listModelo;
+	private JDateChooser aniofabricacion;
+	private ArrayList<itfProperty> estados;
+	private ArrayList<itfProperty> tipomoto;
+	private clsGestor objGestor;
+	private String operario;
 
-	public JDialog_AltaMoto(clsGestor _objGestor) {
+	public JDialog_AltaMoto(clsGestor _objGestor, String _operario) {
+		setResizable(false);
 		
 		/**
 		 * Se recibe el objGestor creado al inicio de la aplicacion porque es el objeto
 		 * que recoge todos los datos de la bbdd y los guarda en los ArrayList
 		 */
 		objGestor = _objGestor;
+		operario = _operario;
 		
 		setIconImage(Toolkit.getDefaultToolkit().getImage(
 				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
@@ -82,19 +90,24 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 		panel.add(lblNBasridor);
 
 		numbastidor = new JTextField();
+		TextPrompt Ejnum = new TextPrompt("Ej: VKL234355VB", numbastidor);
+		Ejnum.changeAlpha(0.75f);
+		Ejnum.changeStyle(Font.ITALIC);
+		Ejnum.setForeground(Color.LIGHT_GRAY);
 		numbastidor.setBounds(108, 29, 124, 20);
 		panel.add(numbastidor);
 		numbastidor.setColumns(10);
 
-		JLabel lblNewLabel_1 = new JLabel("Marca:");
-		lblNewLabel_1.setFont(new Font("Tahoma", Font.BOLD, 11));
-		lblNewLabel_1.setBounds(286, 32, 46, 14);
-		panel.add(lblNewLabel_1);
-
-		marca = new JTextField();
-		marca.setBounds(330, 29, 71, 20);
-		panel.add(marca);
-		marca.setColumns(10);
+		JLabel lblmarca = new JLabel("Marca:");
+		lblmarca.setFont(new Font("Tahoma", Font.BOLD, 11));
+		lblmarca.setBounds(286, 32, 46, 14);
+		panel.add(lblmarca);
+		
+		comboMarca = new JComboBox<String>();
+		comboMarca.setFont(new Font("Tahoma", Font.PLAIN, 11));
+		comboMarca.setModel(new DefaultComboBoxModel<String>(new String[] {"Beta", "Bmw", "Derbi", "Ducati", "GasGas", "Honda", "Huqsvarna", "Kawasaki", "Ktm", "Rieju", "Vespino"}));
+		comboMarca.setBounds(329, 28, 71, 22);
+		panel.add(comboMarca);
 
 		JLabel lblModelo = new JLabel("Modelo:");
 		lblModelo.setFont(new Font("Tahoma", Font.BOLD, 11));
@@ -152,7 +165,7 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 		panel.add(lblAoFabricacin);
 		
 		aniofabricacion = new JDateChooser();
-		aniofabricacion.setBounds(146, 112, 97, 20);
+		aniofabricacion.setBounds(146, 112, 104, 20);
 		panel.add(aniofabricacion);
 		
 		JLabel lblTamao = new JLabel("Tama\u00F1o:");
@@ -190,11 +203,12 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 		lblEstado.setBounds(92, 95, 46, 14);
 		panel_1.add(lblEstado);
 
+		estados = objGestor.DameEstados();
 		comboEstado = new JComboBox<String>();
 		comboEstado.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboEstado.addItem("Optimo");
-		comboEstado.addItem("Despiece");
-		comboEstado.addItem("Chatarra");
+		for(itfProperty e : estados) {
+		comboEstado.addItem((String)e.getProperty(PROPIEDAD_ESTADO_DESCRIPCION));
+		}
 		comboEstado.setBounds(139, 91, 72, 22);
 		panel_1.add(comboEstado);
 
@@ -203,12 +217,12 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 		lblTipo.setBounds(173, 39, 38, 14);
 		panel_1.add(lblTipo);
 
+		tipomoto = objGestor.DameTipoMoto();
 		comboTipo = new JComboBox<String>();
 		comboTipo.setFont(new Font("Tahoma", Font.PLAIN, 11));
-		comboTipo.addItem("Enduro");
-		comboTipo.addItem("Carretera");
-		comboTipo.addItem("Scooter");
-		comboTipo.addItem("Ciclomotor");
+		for (itfProperty t : tipomoto) {
+		comboTipo.addItem((String)t.getProperty(PROPIEDAD_TIPOMOTO_DESCRIPCION));
+		}
 		comboTipo.setBounds(204, 35, 77, 22);
 		panel_1.add(comboTipo);
 
@@ -255,7 +269,7 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 		
 		JLabel lblNewLabel = new JLabel("");
 		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
-		lblNewLabel.setBounds(0, 40, 720, 384);
+		lblNewLabel.setBounds(0, 0, 648, 372);
 		contentPane.add(lblNewLabel);
 
 	}
@@ -272,7 +286,7 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 				int idestado1;
 				int idtipo1;
 				String numbastidor1 = numbastidor.getText();
-				String marca1 = marca.getText();
+				String marca1 = (String)comboMarca.getSelectedItem();
 				String modelo1 = modelo.getText();
 				int cv1 = Integer.parseInt(cv.getText());
 				int cilindrada1 = Integer.parseInt(cilindrada.getText());
@@ -282,7 +296,7 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 				int valor1 = Integer.parseInt(valor.getText());
 				Date fecha1 = new Date();
 				
-				String tamaño1 = comboTamaño.getActionCommand();
+				String tamaño1 = (String)comboTamaño.getSelectedItem();
 				
 				int estadoIndex = comboEstado.getSelectedIndex();
 				idestado1 = estadoIndex + 1;
@@ -290,15 +304,13 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 				int tipoIndex = comboTipo.getSelectedIndex();
 				idtipo1 = tipoIndex + 1;
 				
-				
-				
 				/** Se muestra la moto registrada en ese momento */
 				listModelo.addElement("Nº Bastidor: " + numbastidor1 + ",   Marca: " + marca1 + ",   Modelo: " + modelo1 + ",   Valor: " + valor1);
 
 				/** Funcion de la clase Gestor para introducir una moto en la bbdd y en el ArrayList */
 				try {
 					objGestor.CrearMoto(numbastidor1, marca1, modelo1, cv1, aniofabricacion1, fecha1, color1, kilometros1,
-							idtipo1, cilindrada1, tamaño1, idestado1, valor1);
+							idtipo1, cilindrada1, tamaño1, idestado1, valor1, operario);
 				} catch (SQLException a) {
 					JOptionPane.showInternalMessageDialog(null, "Ha habido un problema al registrar una moto");
 					a.printStackTrace();
@@ -309,7 +321,6 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 			}
 			
 			numbastidor.setText(null);
-			marca.setText(null);
 			modelo.setText(null);
 			cv.setText(null);
 			aniofabricacion.setDate(null);

@@ -12,6 +12,7 @@ public class clsConstantes {
 	public static final String PROPIEDAD_KILOMETROS = "kilometros";
 	public static final String PROPIEDAD_IDESTADO = "idestado";
 	public static final String PROPIEDAD_VALOR = "valor";
+	public static final String PROPIEDAD_IDOPERARIO = "idoperario";
 	
 	public static final String PROPIEDAD_COCHE_IDTIPOCOCHE = "idtipocoche";
 	public static final String PROPIEDAD_COCHE_COMBUSTIBLE = "combustible";
@@ -39,7 +40,23 @@ public class clsConstantes {
 	
 	public static final String PROPIEDAD_USUARIO_IDOPERARIO = "idoperario";
 	public static final String PROPIEDAD_USUARIO_CONTRASEÑA = "contrasea";
-
-
+	public static final String PROPIEDAD_USUARIO_NOMBRE = "nombre";
+	public static final String PROPIEDAD_USUARIO_APELLIDO = "apellido";
+	public static final String PROPIEDAD_USUARIO_DNI = "dni";
 	
+	public static final String PROPIEDAD_RECAMBIOCOCHE_ID = "idrecambiocoche";
+	public static final String PROPIEDAD_RECAMBIOCOCHE_DESCRIPCION = "descripcion";
+	
+	public static final String PROPIEDAD_RECAMBIOMOTO_ID = "idrecambiomoto";
+	public static final String PROPIEDAD_RECAMBIOMOTO_DESCRIPCION = "descripcion";
+	
+	public static final String PROPIEDAD_RECAMBIOCAMION_ID = "idrecambiocamion";
+	public static final String PROPIEDAD_RECAMBIOCAMION_DESCRIPCION = "descripcion";
+
+	public static final String PROPIEDAD_PEDIDO_ID = "idpedido";
+	public static final String PROPIEDAD_PEDIDO_PRECIO = "precio";
+	public static final String PROPIEDAD_PEDIDO_NUMBASTIDOR = "numbastidor";
+	public static final String PROPIEDAD_PEDIDO_DNICLIENTE = "dnicliente";
+	public static final String PROPIEDAD_PEDIDO_IDOPERARIO = "idoperario";
+	public static final String PROPIEDAD_PEDIDO_TIPOPEDIDO = "tipopedido";
 }

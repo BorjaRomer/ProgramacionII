@@ -21,7 +21,6 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 	private static final long serialVersionUID = 1L;
 
 	private final String BOTON_SALIR = "boton_salir";
-
 	private final String BOTON_ENTRAR = "boton_entrar";
 
 	private JPanel contentPane;
@@ -101,29 +100,28 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 		switch (a.getActionCommand()) {
 
 		case BOTON_ENTRAR:
+				
+				String operario = Textoperario.getText();
+				@SuppressWarnings("deprecation") String contraseña = Textcontraseña.getText();
+				
+				/**Se comprueba que coincidan los operarios registrados con los que estan introduciendo*/
+				if (objGestor.comprobarOperario(operario, contraseña) == true) {
 
-			/**
-			 * Se comprueba que coincidan los operarios registrados con los que estan
-			 * introduciendo
-			 */
-			if (objGestor.comprobarOperario(Textoperario.getText(), Textcontraseña.getText()) == true) {
+					dispose();
 
-				dispose();
-
-				/** Si el usuario se logea correctamente se abre la ventana principal */
-				ventanaPrincipal = new JFrame_VentanaPrincipal(objGestor);
-				ventanaPrincipal.setLocationRelativeTo(null);
-				ventanaPrincipal.setVisible(true);
-
-			} else {
-
-				/**
-				 * Si no coinciden con los operarios autorizados salta un mensaje de incorrecto
-				 */
+					/** Si el usuario se logea correctamente se abre la ventana principal */
+					ventanaPrincipal = new JFrame_VentanaPrincipal(objGestor, operario);
+					ventanaPrincipal.setLocationRelativeTo(null);
+					ventanaPrincipal.setVisible(true);
+					
+				}else {
+				
+				/**Si no coinciden con los operarios autorizados salta un mensaje de incorrecto*/
 				JOptionPane.showInternalMessageDialog(null, "Usuario o contraseña incorrecto");
 				Textoperario.setText("");
 				Textcontraseña.setText("");
-			}
+				}
+			
 			break;
 
 		case BOTON_SALIR:

@@ -1,50 +1,75 @@
 package LP;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
-import Comun.clsConstantes;
+import static Comun.clsConstantes.*;
 import Comun.itfProperty;
 
 class ModeloTabla extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
-	private String[] nombreColumnas = {"Nº Bastidor", "Marca", "Modelo", "Potencia (cv)", "Año Fabricacion", "Estado", "Valor(€)"};
+	private String[] nombreColumnas = {"Nº Bastidor", "Marca", "Modelo", "Potencia (cv)", "Año Fabricacion", "Tipo coche", "Valor(€)"};
 	Object[][] data;
 
-	public ModeloTabla(ArrayList<itfProperty> vehiculos) {
+	public ModeloTabla(ArrayList<itfProperty> coches, ArrayList<itfProperty> tipocoche) {
 
-		int filas = vehiculos.size();
+		int row = coches.size();
 		int cont;
-		data = new Object[filas][];
+		data = new Object[row][];
 		cont = 0;
 
 		
-		for (itfProperty v : vehiculos) {
+		for (itfProperty v : coches) {
+			
+			for(itfProperty t : tipocoche) {
+				
+				if(v.getProperty(PROPIEDAD_COCHE_IDTIPOCOCHE).equals(t.getProperty(PROPIEDAD_TIPOCOCHE_ID))) {
+					
+					SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
+
+			
 			Object[] a = {
-					v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR), v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO),
-					v.getProperty(clsConstantes.PROPIEDAD_CV), v.getProperty(clsConstantes.PROPIEDAD_ANIOFABRICACION),
-					v.getProperty(clsConstantes.PROPIEDAD_COCHE_IDTIPOCOCHE), v.getProperty(clsConstantes.PROPIEDAD_VALOR)};
+					v.getProperty(PROPIEDAD_NUMBASTIDOR), v.getProperty(PROPIEDAD_MARCA), v.getProperty(PROPIEDAD_MODELO),
+					v.getProperty(PROPIEDAD_CV), dt.format(v.getProperty(PROPIEDAD_ANIOFABRICACION)),
+					t.getProperty(PROPIEDAD_TIPOCOCHE_DESCRIPCION), v.getProperty(PROPIEDAD_VALOR)};
 			data[cont] = a;
 			cont++;
+			
+			break;
+				}
+			}
+			
 		}
 
 	}
 
-	public void setData(ArrayList<itfProperty> vehiculos) {
+	public void setData(ArrayList<itfProperty> coches, ArrayList<itfProperty> tipocoche) {
 
-		int filas = vehiculos.size();
+		int row = coches.size();
 		int cont;
-		data = new Object[filas][];
+		data = new Object[row][];
 		cont = 0;
 
 		
-		for (itfProperty v : vehiculos) {
+		for (itfProperty v : coches) {
+			
+			for(itfProperty t : tipocoche) {
+				
+				if(v.getProperty(PROPIEDAD_COCHE_IDTIPOCOCHE).equals(t.getProperty(PROPIEDAD_TIPOCOCHE_ID))) {
+
+					SimpleDateFormat dt = new SimpleDateFormat("yyyy-mm-dd");
+			
 			Object[] a = {
-					v.getProperty(clsConstantes.PROPIEDAD_NUMBASTIDOR), v.getProperty(clsConstantes.PROPIEDAD_MARCA), v.getProperty(clsConstantes.PROPIEDAD_MODELO),
-					v.getProperty(clsConstantes.PROPIEDAD_CV), v.getProperty(clsConstantes.PROPIEDAD_ANIOFABRICACION),
-					v.getProperty(clsConstantes.PROPIEDAD_COCHE_IDTIPOCOCHE), v.getProperty(clsConstantes.PROPIEDAD_VALOR)};
+					v.getProperty(PROPIEDAD_NUMBASTIDOR), v.getProperty(PROPIEDAD_MARCA), v.getProperty(PROPIEDAD_MODELO),
+					v.getProperty(PROPIEDAD_CV), dt.format(v.getProperty(PROPIEDAD_ANIOFABRICACION)),
+					t.getProperty(PROPIEDAD_TIPOCOCHE_DESCRIPCION), v.getProperty(PROPIEDAD_VALOR)};
 			data[cont] = a;
 			cont++;
+				
+			break;
+				}
+			}
 		}
 
 	}

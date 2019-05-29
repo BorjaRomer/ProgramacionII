@@ -1,12 +1,12 @@
 package LN;
 import static Comun.clsConstantes.*;
+
+import Comun.clsRuntimeExceptionPropia;
 import Comun.itfProperty;
 
 public class clsEstado implements itfProperty{
 	
-	//Atributo id del estado
 	int idestado;
-	//Atributo descripcion del id
 	String descripcion;
 	
 	public clsEstado(int idestado, String descripcion) {
@@ -30,12 +30,12 @@ public class clsEstado implements itfProperty{
 		this.descripcion = descripcion;
 	}
 	
-	public Object getProperty (String propiedad) {
+	public Object getProperty (String propiedad) throws clsRuntimeExceptionPropia {
 		
 		switch(propiedad) {
 		case PROPIEDAD_ESTADO_ID: return this.getIdestado();
 		case PROPIEDAD_ESTADO_DESCRIPCION: return this.getDescripcion();
-		default: throw new RuntimeException("Propiedad no existente");
+		default: throw new clsRuntimeExceptionPropia();
 		}
 		
 		
