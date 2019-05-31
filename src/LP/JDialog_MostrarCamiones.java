@@ -34,6 +34,9 @@ import Comun.clsExcepcionPropia;
 import Comun.itfProperty;
 import LN.clsGestor;
 
+/*
+ * Clase de interfaz gráfica que muestra los camiones de la BBDD
+ */
 public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 
 	private static final long serialVersionUID = 1L;
@@ -73,6 +76,10 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 	private DefaultListModel<String> listModelo;
 	
 
+
+	/*
+	 * Constructor de la ventana
+	 */
 	public JDialog_MostrarCamiones(clsGestor _objGestor, String _operario) {
 
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
@@ -80,8 +87,7 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 		objGestor = _objGestor;
 		operario = _operario;
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JDialog_MostrarCamiones.class.getResource("/Data/icono.png")));
 		setTitle("DESGUACE - Mostrar camiones");
 		setBounds(100, 100, 747, 436);
 		contentPane = new JPanel();
@@ -90,15 +96,13 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 		contentPane.setLayout(null);
 
 		JButton botonRecargar = new JButton("");
-		botonRecargar.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_icons_reload_1564525 (1).png"));
+		botonRecargar.setIcon(new ImageIcon(JDialog_MostrarCamiones.class.getResource("/Data/recargar.png")));
 		botonRecargar.setActionCommand(CARGAR_TABLA);
 		botonRecargar.addActionListener(this);
 
 		internal_venta = new JInternalFrame("DESGUACE - Venta de camion");
 		internal_venta.setFont(new Font("Dialog", Font.PLAIN, 12));
-		internal_venta.setFrameIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
+		internal_venta.setFrameIcon(new ImageIcon(JDialog_MostrarCamiones.class.getResource("/Data/icono.png")));
 		internal_venta.setClosable(true);
 		internal_venta.setBounds(152, 79, 427, 239);
 		contentPane.add(internal_venta);
@@ -106,16 +110,14 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 		internal_venta.getContentPane().setLayout(null);
 
 		JButton btnInVender = new JButton("");
-		btnInVender.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_15_Tick_16x16_173960.png"));
+		btnInVender.setIcon(new ImageIcon(JDialog_MostrarCamiones.class.getResource("/Data/tick.png")));
 		btnInVender.setActionCommand(BOTON_INTERNAL_VENDER);
 		btnInVender.addActionListener(this);
 		btnInVender.setBounds(322, 89, 55, 41);
 		internal_venta.getContentPane().add(btnInVender);
 
 		JButton btnInAtras = new JButton("");
-		btnInAtras.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\cancelar.png"));
+		btnInAtras.setIcon(new ImageIcon(JDialog_MostrarCamiones.class.getResource("/Data/cancelar.png")));
 		btnInAtras.setActionCommand(BOTON_INTERNAL_SALIR);
 		btnInAtras.addActionListener(this);
 		btnInAtras.setBounds(322, 148, 55, 41);
@@ -158,7 +160,7 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 		internal_venta.getContentPane().add(lblInTitulo);
 
 		JLabel lblInFondo = new JLabel("");
-		lblInFondo.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\line_horizontal_light_color-680270.jpg"));
+		lblInFondo.setIcon(new ImageIcon(JDialog_MostrarCamiones.class.getResource("/Data/fondo.jpg")));
 		lblInFondo.setBounds(0, 0, 425, 223);
 		internal_venta.getContentPane().add(lblInFondo);
 
@@ -172,8 +174,7 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 		btnAtras.setOpaque(false);
 		btnAtras.setContentAreaFilled(false);
 		btnAtras.setBorderPainted(false);
-		btnAtras.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_back_38976.png"));
+		btnAtras.setIcon(new ImageIcon(JDialog_MostrarCamiones.class.getResource("/Data/iconfinder_back_38976.png")));
 		toolBar.add(btnAtras);
 		botonRecargar.setBounds(604, 100, 77, 42);
 		contentPane.add(botonRecargar);
@@ -218,8 +219,7 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 		contentPane.add(lblEncontrarCoches);
 
 		JLabel FondoSeparatorUp = new JLabel();
-		FondoSeparatorUp.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\line_horizontal_light_color-680270.jpg"));
+		FondoSeparatorUp.setIcon(new ImageIcon(JDialog_MostrarCamiones.class.getResource("/Data/fondo.jpg")));
 		FondoSeparatorUp.setVerticalAlignment(SwingConstants.TOP);
 		FondoSeparatorUp.setFont(new Font("Tahoma", Font.BOLD, 14));
 		FondoSeparatorUp.setForeground(Color.BLACK);
@@ -233,22 +233,19 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 		JButton btnEliminar = new JButton("");
 		btnEliminar.setActionCommand(BOTON_ELIMINAR);
 		btnEliminar.addActionListener(this);
-		btnEliminar.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_miscellaneous-30_809419.png"));
+		btnEliminar.setIcon(new ImageIcon(JDialog_MostrarCamiones.class.getResource("/Data/eliminar.png")));
 		btnEliminar.setBounds(623, 255, 89, 42);
 		contentPane.add(btnEliminar);
 
 		JButton btnVender = new JButton("");
-		btnVender.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_buy_2639786.png"));
+		btnVender.setIcon(new ImageIcon(JDialog_MostrarCamiones.class.getResource("/Data/vender.png")));
 		btnVender.setActionCommand(BOTON_VENDER);
 		btnVender.addActionListener(this);
 		btnVender.setBounds(623, 202, 89, 42);
 		contentPane.add(btnVender);
 
 		btnRecambio = new JButton("");
-		btnRecambio.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_BT_c3tool_905663.png"));
+		btnRecambio.setIcon(new ImageIcon(JDialog_MostrarCamiones.class.getResource("/Data/recambios.png")));
 		btnRecambio.setBounds(623, 308, 89, 48);
 		contentPane.add(btnRecambio);
 
@@ -261,6 +258,9 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 
 		switch (e.getActionCommand()) {
 
+		/*
+		 * Se recarga la tabla con los nuevos valores
+		 */
 		case CARGAR_TABLA:
 
 			int OrdenarIndex = comboOrdenar.getSelectedIndex();
@@ -271,6 +271,9 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 
 			break;
 
+			/*
+			 * Se crea un nuevo objeto pedido y se cambia el estado del camion a vendido
+			 */
 		case BOTON_VENDER:
 
 			fila = table_1.getSelectedRow();
@@ -306,6 +309,9 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 
 			break;
 
+			/*
+			 * Se selecciona el vehiculo y se elimina de memoria y de BBDD
+			 */
 		case BOTON_ELIMINAR:
 
 			fila = table_1.getSelectedRow();
@@ -327,18 +333,25 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 
 			break;
 
-		case BOTON_ATRAS:
 
 			/** Se cierra la venta */
+		case BOTON_ATRAS:
+
 			dispose();
 			break;
 			
+			/*
+			 * Salir del JInternalFrame
+			 */
 		case BOTON_INTERNAL_SALIR:
 
 			internal_venta.dispose();
 			listModelo.removeAllElements();
 			break;
 
+			/*
+			 * Cuando un camion se selecciona y se pulsa al boton de vender la ventana JInternalFrame se inicia 
+			 */
 		case BOTON_INTERNAL_VENDER:
 
 			try {
@@ -371,6 +384,9 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 
 	}
 
+	/*
+	 * Metodo que crea la ventana
+	 */
 	public void CrearTabla() {
 
 		camiones = objGestor.DameCamiones(orden, marca, estado);
@@ -397,7 +413,7 @@ public class JDialog_MostrarCamiones extends JDialog implements ActionListener{
 		}
 		
 		JLabel FondoSeparatorDown = new JLabel("");
-		FondoSeparatorDown.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\line_horizontal_light_color-680270.jpg"));
+		FondoSeparatorDown.setIcon(new ImageIcon(JDialog_MostrarCamiones.class.getResource("/Data/fondo.jpg")));
 		FondoSeparatorDown.setBounds(0, 166, 731, 231);
 		contentPane.add(FondoSeparatorDown);
 		

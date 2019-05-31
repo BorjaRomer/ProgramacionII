@@ -29,6 +29,9 @@ import static Comun.clsConstantes.*;
 import Comun.itfProperty;
 import javax.swing.DefaultComboBoxModel;
 
+/*
+ * Clase de interfaz visual para registrar una moto en la BBDD
+ */
 public class JDialog_AltaMoto extends JDialog implements ActionListener {
 
 	public final String BOTON_GUARDAR = "BOTON_GUARDAR";
@@ -56,6 +59,9 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 	private clsGestor objGestor;
 	private String operario;
 
+	/*
+	 * Constructor de la ventana
+	 */
 	public JDialog_AltaMoto(clsGestor _objGestor, String _operario) {
 		setResizable(false);
 		
@@ -66,8 +72,7 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 		objGestor = _objGestor;
 		operario = _operario;
 		
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JDialog_AltaMoto.class.getResource("/Data/icono.png")));
 		setTitle("DESGUACE - Registro de moto");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 664, 411);
@@ -238,8 +243,7 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 		BotonAtras.setBorderPainted(false);
 		BotonAtras.setActionCommand(BOTON_ATRAS);
 		BotonAtras.addActionListener(this);
-		BotonAtras.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_back_38976.png"));
+		BotonAtras.setIcon(new ImageIcon(JDialog_AltaMoto.class.getResource("/Data/iconfinder_back_38976.png")));
 		toolBar.add(BotonAtras);
 
 		JButton BotonGuardar = new JButton("");
@@ -249,8 +253,7 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 		BotonGuardar.setBorderPainted(false);
 		BotonGuardar.setActionCommand(BOTON_GUARDAR);
 		BotonGuardar.addActionListener(this);
-		BotonGuardar.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\guardar.png"));
+		BotonGuardar.setIcon(new ImageIcon(JDialog_AltaMoto.class.getResource("/Data/guardar.png")));
 		toolBar.add(BotonGuardar);
 
 		list = new JList<String>();
@@ -268,7 +271,7 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 		contentPane.add(scrollPane);
 		
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
+		lblNewLabel.setIcon(new ImageIcon(JDialog_AltaMoto.class.getResource("/Data/desguace.jpg")));
 		lblNewLabel.setBounds(0, 0, 648, 372);
 		contentPane.add(lblNewLabel);
 
@@ -278,6 +281,9 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 
 		switch (e.getActionCommand()) {
 
+		/*
+		 * Se recogen los datos del Frame y se crea el objeto insertandolo en memoria y en la BBDD
+		 */
 		case BOTON_GUARDAR:
 
 			try {
@@ -332,6 +338,9 @@ public class JDialog_AltaMoto extends JDialog implements ActionListener {
 			
 			break;
 			
+			/*
+			 * Se cierra la ventana y veulve a la principal
+			 */
 		case BOTON_ATRAS:
 			
 			/** Se cierra la venta */

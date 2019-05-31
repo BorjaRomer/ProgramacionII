@@ -30,7 +30,9 @@ import java.awt.Color;
 import com.toedter.calendar.JDateChooser;
 import static Comun.clsConstantes.*;
 import Comun.itfProperty;
-
+/*
+ * Clase de interfaz grafica en la que se registra un coche en memoria y en la BBDD
+ */
 public class JDialog_AltaCoche extends JDialog implements ActionListener {
 
 	public final String BOTON_GUARDAR = "BOTON_GUARDAR";
@@ -60,7 +62,10 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 	private clsGestor objGestor;
 	private String operario;
 	
-
+	
+	/*
+	 * Constructor de la ventana
+	 */
 	public JDialog_AltaCoche(clsGestor _objGestor, String _operario) {
 
 		setResizable(false);
@@ -68,8 +73,7 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 		operario = _operario;
 		objGestor = _objGestor;
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JDialog_AltaCoche.class.getResource("/Data/icono.png")));
 		setTitle("DESGUACE - Registro de coche");
 		setDefaultCloseOperation(JDialog.DISPOSE_ON_CLOSE);
 		setBounds(100, 100, 664, 411);
@@ -265,11 +269,9 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 		BotonAtras.setBorderPainted(false);
 		BotonAtras.setActionCommand(BOTON_ATRAS);
 		BotonAtras.addActionListener(this);
-		BotonAtras.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_back_38976.png"));
+		BotonAtras.setIcon(new ImageIcon(JDialog_AltaCoche.class.getResource("/Data/iconfinder_back_38976.png")));
 		toolBar.add(BotonAtras);
-		BotonGuardar.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\guardar.png"));
+		BotonGuardar.setIcon(new ImageIcon(JDialog_AltaCoche.class.getResource("/Data/guardar.png")));
 		toolBar.add(BotonGuardar);
 
 		list = new JList<String>();
@@ -286,10 +288,10 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 		scrollPane.setBounds(327, 221, 310, 141);
 		contentPane.add(scrollPane);
 
-		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon("C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\desguace.jpg"));
-		lblNewLabel.setBounds(0, 0, 648, 372);
-		contentPane.add(lblNewLabel);
+		JLabel lblFondo = new JLabel("");
+		lblFondo.setIcon(new ImageIcon(JDialog_AltaCoche.class.getResource("/Data/desguace.jpg")) );
+		lblFondo.setBounds(0, 0, 648, 372);
+		contentPane.add(lblFondo);
 
 	}
 
@@ -297,6 +299,9 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 
 		switch (e.getActionCommand()) {
 
+		/*
+		 * Se recogen los datos del Frame y se crea el objeto insertandolo en memoria y en la BBDD
+		 */
 		case BOTON_GUARDAR:
 
 			try {
@@ -358,7 +363,10 @@ public class JDialog_AltaCoche extends JDialog implements ActionListener {
 			valor.setText(null);
 
 			break;
-
+			
+			/*
+			 * Se cierra la ventana y veulve a la principal
+			 */
 		case BOTON_ATRAS:
 
 			/** Se cierra la venta */

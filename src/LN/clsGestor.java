@@ -10,6 +10,10 @@ import LD.clsDatos;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
+/**
+ * Clase Gestor que se encarga de gestionar la informacion entre LP y LN
+ *
+ */
 public class clsGestor {
 
 	/** Creamos objeto de la clase Datos para utilizar sus funciones */
@@ -17,7 +21,7 @@ public class clsGestor {
 
 	/** ArrayList donde se contiene todos los pedidos */
 	private ArrayList<clsPedido> pedidos = new ArrayList<>();
-	
+
 	/**
 	 * Funcion ArrayList itfProperty donde se devuelven los pedidos a la logica de
 	 * presentacion
@@ -63,6 +67,10 @@ public class clsGestor {
 	/** ArrayList donde van a contener los tipo de coches */
 	private ArrayList<clsTipoCoche> tipocoche = new ArrayList<>();
 
+	/*
+	 * Metodo que devuelve un ArrayList donde se devuelve lios los tipos de coche a
+	 * la capa de presentacion
+	 */
 	public ArrayList<itfProperty> DameTipoCoche() {
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
 		for (clsTipoCoche o : tipocoche) {
@@ -74,6 +82,10 @@ public class clsGestor {
 	/** ArrayList donde van a contener los tipos de motos */
 	private ArrayList<clsTipoMoto> tipomoto = new ArrayList<>();
 
+	/*
+	 * Metodo que devuelve un ArrayList donde se devuelve lios los tipos de motos a
+	 * la capa de presentacion
+	 */
 	public ArrayList<itfProperty> DameTipoMoto() {
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
 		for (clsTipoMoto m : tipomoto) {
@@ -86,6 +98,10 @@ public class clsGestor {
 	/** ArrayList donde van a contener los tipos de camiones */
 	private ArrayList<clsTipoCamion> tipocamion = new ArrayList<>();
 
+	/*
+	 * Metodo que devuelve un ArrayList donde se devuelve lios los tipos de camiones
+	 * a la capa de presentacion
+	 */
 	public ArrayList<itfProperty> DameTipoCamion() {
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
 		for (clsTipoCamion c : tipocamion) {
@@ -96,31 +112,40 @@ public class clsGestor {
 
 	/** Creamos ArrayList de vehiculos */
 	private ArrayList<clsVehiculo> vehiculos = new ArrayList<>();
-	
+
+	/*
+	 * Metodo que devuelven un ArrayList de todos los coches
+	 */
 	public ArrayList<itfProperty> DameCochesv2() {
 		ArrayList<itfProperty> retorno = new ArrayList<>();
 		for (clsVehiculo v : vehiculos) {
-			if(v instanceof clsCoche) {
+			if (v instanceof clsCoche) {
 				retorno.add(v);
 			}
 		}
 		return retorno;
 	}
-	
+
+	/*
+	 * Metodo que devuelven un ArrayList de todos los camiones
+	 */
 	public ArrayList<itfProperty> DameCamionesv2() {
 		ArrayList<itfProperty> retorno = new ArrayList<>();
 		for (clsVehiculo v : vehiculos) {
-			if(v instanceof clsCamion) {
+			if (v instanceof clsCamion) {
 				retorno.add(v);
 			}
 		}
 		return retorno;
 	}
-	
+
+	/*
+	 * Metodo que devuelven un ArrayList de todos los motos
+	 */
 	public ArrayList<itfProperty> DameMotosv2() {
 		ArrayList<itfProperty> retorno = new ArrayList<>();
 		for (clsVehiculo v : vehiculos) {
-			if(v instanceof clsMoto) {
+			if (v instanceof clsMoto) {
 				retorno.add(v);
 			}
 		}
@@ -128,33 +153,23 @@ public class clsGestor {
 	}
 
 	/**
-	 * Funcion ArrayList donde se guardan los vehiculos
+	 * Funcion ArrayList donde se devuelven los coches por odrden depende de los
+	 * parámetros recubidos
 	 */
 	public ArrayList<itfProperty> DameCoches(int orden, String marca, int estado) {
 
 		if (orden == 1) {
-			/** Se instancia la clase Comparator con el metodo CompareTo */
+
 			clsComparatorValor comparadorvalor = new clsComparatorValor();
-			/**
-			 * Con el metodo sort ordenamos los vehiculos mediante la clase Comparator
-			 * creada
-			 */
+
 			Collections.sort(vehiculos, comparadorvalor);
 		}
 		if (orden == 2) {
-			/**
-			 * Interfaz Comparable implementada en vehiculos que ordena por potencia en
-			 * caballos
-			 */
+
 			Collections.sort(vehiculos);
 		}
 
 		ArrayList<itfProperty> retorno = new ArrayList<itfProperty>();
-
-		/**
-		 * Se recorre el Array de vehiculos para devolver solo los que sean objetos de
-		 * la clase Coche
-		 */
 
 		for (clsVehiculo a : vehiculos) {
 
@@ -164,7 +179,7 @@ public class clsGestor {
 					if (a instanceof clsCoche) {
 						retorno.add(a);
 					}
-		
+
 				} else if (marca != null) {
 					if (a instanceof clsCoche) {
 						if (a.marca.equals(marca)) {
@@ -178,6 +193,10 @@ public class clsGestor {
 		return retorno;
 	}
 
+	/**
+	 * Funcion ArrayList donde se devuelven los camiones por odrden depende de los
+	 * parámetros recubidos
+	 */
 	public ArrayList<itfProperty> DameCamiones(int orden, String marca, int estado) {
 
 		if (orden == 1) {
@@ -220,22 +239,20 @@ public class clsGestor {
 		return retorno;
 	}
 
+	/**
+	 * Funcion ArrayList donde se devuelven las motos por odrden depende de los
+	 * parámetros recubidos
+	 */
 	public ArrayList<itfProperty> DameMotos(int orden, String marca, int estado) {
 
 		if (orden == 1) {
-			/** Se instancia la clase Comparator con el metodo CompareTo */
+
 			clsComparatorValor comparadorvalor = new clsComparatorValor();
-			/**
-			 * Con el metodo sort ordenamos los vehiculos mediante la clase Comparator
-			 * creada
-			 */
+
 			Collections.sort(vehiculos, comparadorvalor);
 		}
 		if (orden == 2) {
-			/**
-			 * Interfaz Comparable implementada en vehiculos que ordena por potencia en
-			 * caballos
-			 */
+
 			Collections.sort(vehiculos);
 		}
 
@@ -261,19 +278,23 @@ public class clsGestor {
 		}
 		return retorno;
 	}
-	
+
+	/*
+	 * Metodo que comprueba si un vehiculo esta en estado optimo entonces se puede
+	 * vender
+	 */
 	public void comprobarVenta(String numbastidor) throws clsExcepcionPropia {
-		
-		for (clsVehiculo v: vehiculos) {
-				if (v.numbastidor.equals(numbastidor)) {
-					if (v.idestado != 1) {
-						
-						throw new clsExcepcionPropia();
-					}
-					break;
+
+		for (clsVehiculo v : vehiculos) {
+			if (v.numbastidor.equals(numbastidor)) {
+				if (v.idestado != 1) {
+
+					throw new clsExcepcionPropia();
 				}
+				break;
+			}
 		}
-		
+
 	}
 
 	/**
@@ -283,10 +304,6 @@ public class clsGestor {
 
 		boolean retorno = false;
 
-		/**
-		 * Se recorren todos los operarios para comprobar que coinciden con los datos
-		 * introducidos desde la ventana JFrame_Loging
-		 */
 		for (clsOperario o : operarios) {
 			if (o.getIdoperario().equals(operario) && o.getContrasea().equals(contraseña)) {
 				retorno = true;
@@ -297,17 +314,21 @@ public class clsGestor {
 
 		return retorno;
 	}
-	
-	public void modificarEstadoCoche (String numbastidor) throws SQLException {
-		
+
+	/*
+	 * Metodo que modifica el estado de un coche en la BBDD y en memoria cuando ha
+	 * sido vendido
+	 */
+	public void modificarEstadoCoche(String numbastidor) throws SQLException {
+
 		int id;
 		/** Se crea conexion con BD */
 		objDatos.conectarBD();
-		
-		for (clsVehiculo v: vehiculos) {
-			for (clsEstado e: estados) {
-				if(v instanceof clsCoche) {
-					if(v.getNumbastidor().equals(numbastidor)) {
+
+		for (clsVehiculo v : vehiculos) {
+			for (clsEstado e : estados) {
+				if (v instanceof clsCoche) {
+					if (v.getNumbastidor().equals(numbastidor)) {
 						if (e.getDescripcion().equals("Vendido")) {
 							id = e.getIdestado();
 							v.setIdestado(id);
@@ -318,21 +339,25 @@ public class clsGestor {
 				}
 			}
 		}
-		
+
 		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 	}
-	
-	public void modificarEstadoCamion (String numbastidor) throws SQLException {
-		
+
+	/*
+	 * Metodo que modifica el estado de un camion en la BBDD y en memoria cuando ha
+	 * sido vendido
+	 */
+	public void modificarEstadoCamion(String numbastidor) throws SQLException {
+
 		int id;
 		/** Se crea conexion con BD */
 		objDatos.conectarBD();
-		
-		for (clsVehiculo v: vehiculos) {
-			for (clsEstado e: estados) {
-				if(v instanceof clsCamion) {
-					if(v.getNumbastidor().equals(numbastidor)) {
+
+		for (clsVehiculo v : vehiculos) {
+			for (clsEstado e : estados) {
+				if (v instanceof clsCamion) {
+					if (v.getNumbastidor().equals(numbastidor)) {
 						if (e.getDescripcion().equals("Vendido")) {
 							id = e.getIdestado();
 							v.setIdestado(id);
@@ -343,21 +368,25 @@ public class clsGestor {
 				}
 			}
 		}
-		
+
 		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 	}
-	
+
+	/*
+	 * Metodo que modifica el estado de una moto en la BBDD y en memoria cuando ha
+	 * sido vendido
+	 */
 	public void modificarEstadoMoto(String numbastidor) throws SQLException {
-		
+
 		int id;
 		/** Se crea conexion con BD */
 		objDatos.conectarBD();
-		
-		for (clsVehiculo v: vehiculos) {
-			for (clsEstado e: estados) {
-				if(v instanceof clsMoto) {
-					if(v.getNumbastidor().equals(numbastidor)) {
+
+		for (clsVehiculo v : vehiculos) {
+			for (clsEstado e : estados) {
+				if (v instanceof clsMoto) {
+					if (v.getNumbastidor().equals(numbastidor)) {
 						if (e.getDescripcion().equals("Vendido")) {
 							id = e.getIdestado();
 							v.setIdestado(id);
@@ -368,13 +397,14 @@ public class clsGestor {
 				}
 			}
 		}
-		
+
 		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 	}
-		
-		
 
+	/*
+	 * Metodo para recoger pedidos de la BBDD y meterlos en memoria
+	 */
 	public void RecogerpedidosBD() throws SQLException {
 		/** Se crea conexion con BD */
 		objDatos.conectarBD();
@@ -386,7 +416,8 @@ public class clsGestor {
 		/** Recorre el ResultSet añadiendo los objetos en el ArrayList */
 		while (rs.next()) {
 			clsPedido objPedido = new clsPedido(rs.getInt("idpedido"), rs.getDouble("precio"),
-					rs.getString("numbastidor"), rs.getString("dnicliente"), rs.getString("idoperario"),rs.getString("tipopedido"));
+					rs.getString("numbastidor"), rs.getString("dnicliente"), rs.getString("idoperario"),
+					rs.getString("tipopedido"));
 			pedidos.add(objPedido);
 		}
 
@@ -395,23 +426,32 @@ public class clsGestor {
 
 	}
 
-	public void Crearpedido(double precio, String numbastidor, String dnicliente, String idoperario, String tipopedido) throws SQLException {
-		
+	/*
+	 *Metodo que crea un nuevo pedido instanciando el objeto e insertando en la BBDD
+	 */
+	public void Crearpedido(double precio, String numbastidor, String dnicliente, String idoperario, String tipopedido)
+			throws SQLException {
+
 		/** Se crea el objeto pedido y se añade al ArrayList de pedidos */
 		clsPedido objPedido = new clsPedido(precio, numbastidor, dnicliente, idoperario, tipopedido);
 		pedidos.add(objPedido);
-		
+
 		/** Se conecta la BD */
 		objDatos.conectarBD();
-		
-		/** Se pasa por parámetro los atributos a la clase datos para introducir en la BD*/
+
+		/**
+		 * Se pasa por parámetro los atributos a la clase datos para introducir en la BD
+		 */
 		objDatos.insertatpedidosBD(precio, numbastidor, dnicliente, idoperario, tipopedido);
-		
+
 		/** Se desconecta la BD */
 		objDatos.desconectarBD();
 
 	}
 
+	/*
+	 * Metodo que recoge los operarios de BBDD
+	 */
 	public void RecogeroperariosBD() throws SQLException {
 		/** Se crea conexion con BD */
 		objDatos.conectarBD();
@@ -432,6 +472,9 @@ public class clsGestor {
 
 	}
 
+	/*
+	 * Recoge los tipos de coches de la BBDD
+	 */
 	public void RecogertipococheBD() throws SQLException {
 		/** Se crea conexion con BD */
 		objDatos.conectarBD();
@@ -451,6 +494,9 @@ public class clsGestor {
 
 	}
 
+	/*
+	 * Recoge los tipos de motos de la BBDD
+	 */
 	public void RecogertipomotoBD() throws SQLException {
 
 		/** Se crea conexion con BD */
@@ -471,6 +517,9 @@ public class clsGestor {
 
 	}
 
+	/*
+	 * Recoge los tipos de camiones de la BBDD
+	 */
 	public void RecogertipocamionBD() throws SQLException {
 
 		/** Se crea conexion con BD */
@@ -491,6 +540,9 @@ public class clsGestor {
 
 	}
 
+	/*
+	 * Metodo que recoge los estados de la BBDD
+	 */
 	public void RecogerestadosBD() throws SQLException {
 
 		/** Se crea conexion con BD */

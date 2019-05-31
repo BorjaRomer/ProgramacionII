@@ -5,8 +5,15 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Clase que se encarga de recoger de BBDD los tipos de vehiculos que hay
+ *
+ */
 public class clsTipovehiculoBD {
-
+	
+	/*
+	 * Método que recoge los tipos de coche
+	 */
 	public static ResultSet recogertipococheBD(Connection objConexion) throws SQLException {
 
 		/**Creamos la Tabla para recoger de BBDD*/
@@ -19,7 +26,10 @@ public class clsTipovehiculoBD {
 		return rs;
 
 	}
-
+	
+	/*
+	 * Metodo que recoge los tipos de camion
+	 */
 	public static ResultSet recogertipocamionBD(Connection objConexion) throws SQLException {
 
 		/** Creamos la Tabla para recoger de BBDD*/
@@ -32,7 +42,10 @@ public class clsTipovehiculoBD {
 		return rs;
 
 	}
-
+	
+	/*
+	 * Metodo que recoge los tipos de moto
+	 */
 	public static ResultSet recogertipomotoBD(Connection objConexion) throws SQLException {
 
 		/** Creamos la Tabla para recoger de BBDD*/

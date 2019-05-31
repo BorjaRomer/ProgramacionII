@@ -16,6 +16,9 @@ import javax.swing.JPasswordField;
 import java.awt.Toolkit;
 import java.awt.Color;
 
+/*
+ * Clase en el que se comprueba el usuario introducido
+ */
 public class JFrame_Loging extends JFrame implements ActionListener {
 
 	private static final long serialVersionUID = 1L;
@@ -30,16 +33,14 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 	
 	JFrame_VentanaPrincipal ventanaPrincipal;
 
+	/*
+	 * Constructor de la clase
+	 */
 	public JFrame_Loging(clsGestor _objGestor) {
 
-		/**
-		 * Se recibe el objGestor creado al inicio de la aplicacion porque es el objeto
-		 * que recoge todos los datos de la bbdd y los guarda en los ArrayList
-		 */
 		objGestor = _objGestor;
 
-		setIconImage(Toolkit.getDefaultToolkit().getImage(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_magnifier_and_car_1421622.png"));
+		setIconImage(Toolkit.getDefaultToolkit().getImage(JFrame_Loging.class.getResource("/Data/icono.png")));
 
 		setFont(new Font("Dialog", Font.BOLD, 14));
 		setTitle("DESGUACE");
@@ -83,14 +84,12 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 		contentPane.add(Salir);
 
 		JLabel lblNewLabel_1 = new JLabel("");
-		lblNewLabel_1.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\iconfinder_preferences-system-login_24276 (1).png"));
+		lblNewLabel_1.setIcon(new ImageIcon(JFrame_Loging.class.getResource("/Data/pc.png")));
 		lblNewLabel_1.setBounds(51, 58, 73, 96);
 		contentPane.add(lblNewLabel_1);
 
 		JLabel lblNewLabel = new JLabel("");
-		lblNewLabel.setIcon(new ImageIcon(
-				"C:\\Users\\Industria 4.0\\Desktop\\ProgramII\\ECLIPSE\\ProgramacionII\\Archivos gr\u00E1ficos\\119187.jpg"));
+		lblNewLabel.setIcon(new ImageIcon(JFrame_Loging.class.getResource("/Data/free-vector-texturas-background.jpg")));
 		lblNewLabel.setBounds(0, 0, 434, 261);
 		contentPane.add(lblNewLabel);
 	}
@@ -98,7 +97,10 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 	public void actionPerformed(ActionEvent a) {
 
 		switch (a.getActionCommand()) {
-
+		
+		/*
+		 * Se comprueba que el usuario existe y se abre la ventana principal
+		 */
 		case BOTON_ENTRAR:
 				
 				String operario = Textoperario.getText();
@@ -124,9 +126,9 @@ public class JFrame_Loging extends JFrame implements ActionListener {
 			
 			break;
 
+			/** El programa se cierra */
 		case BOTON_SALIR:
 
-			/** El programa se cierra */
 			System.exit(0);
 			break;
 		}

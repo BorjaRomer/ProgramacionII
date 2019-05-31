@@ -6,17 +6,29 @@ import Comun.clsRuntimeExceptionPropia;
 
 import static Comun.clsConstantes.*;
 
-
 /**
- * Clase hija que se instancia en la clase Gestor.
+ * Clase hija que herada del padre clsVehiculo 
+ *
  */
 
 public class clsCamion extends clsVehiculo {
 
+	/*
+	 * Tipo de camion
+	 */
 	int idtipocamion;
+	/*
+	 * Altura del camion
+	 */
 	int altura;
+	/*
+	 * Caraga(Kg) del camion
+	 */
 	int carga;
 	
+	/*
+	 * Constructor
+	 */
 	public clsCamion(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha, String color, int kilometros,
 			int idtipocamion, int altura, int carga, int idestado, int valor, String idoperario) {
 		super(numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idestado, valor, idoperario);
@@ -49,6 +61,7 @@ public class clsCamion extends clsVehiculo {
 	public void setCarga(int carga) {
 		this.carga = carga;
 	}
+	
 	
 	public Object getProperty (String propiedad) throws clsRuntimeExceptionPropia {
 		

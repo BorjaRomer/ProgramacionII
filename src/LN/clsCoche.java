@@ -6,11 +6,25 @@ import Comun.clsRuntimeExceptionPropia;
 
 import static Comun.clsConstantes.*;
 
-/**Clase Coche hijo de clsVehiculo  */
-	public class clsCoche extends clsVehiculo {
 
+	
+/**
+ * Clase hija que hereda del padre clsVehiculo
+ *
+ */
+	public class clsCoche extends clsVehiculo {
+	
+	/*	
+	 * Tipo de coche
+	 */
 	int idtipocoche;
+	/*
+	 * Cilindrada del coche
+	 */
 	int cilindrada;
+	/*
+	 * Combustible que usa el coche
+	 */
 	String combustible;
 	
 	/**Constructor de clsCoche*/

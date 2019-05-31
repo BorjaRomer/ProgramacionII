@@ -5,13 +5,24 @@ import static Comun.clsConstantes.*;
 import Comun.clsRuntimeExceptionPropia;
 import Comun.itfProperty;
 
-
+/**
+ * Clase que crea el objeto de tipo moto
+ *
+ */
 public class clsTipoMoto implements itfProperty {
 
+	/*
+	 * Id tipo moto
+	 */
 	int idtipomoto;
-	
+	/*
+	 * Descripcion
+	 */
 	String descripcion;
 
+	/*
+	 * Constructor
+	 */
 	public clsTipoMoto(int idtipomoto, String descripcion) {
 		this.idtipomoto = idtipomoto;
 		this.descripcion = descripcion;

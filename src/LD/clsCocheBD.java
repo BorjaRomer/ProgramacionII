@@ -7,33 +7,38 @@ import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.Date;
 
+/**
+ * Clase de consultas a BBDD relacionadas con los coches en la aplicacion *
+ */
+
 public class clsCocheBD {
 
+	/** Recoger de BBDD todos los coches */
 	public static ResultSet recogerBD(Connection objConexion) throws SQLException {
 
-		/**Creamos la Tabla para recoger de BBDD*/
+		/** Creamos la Tabla para recoger de BBDD */
 		ResultSet rs = null;
 
-		/**Preparamos la consulta*/
+		/** Preparamos la consulta */
 		Statement st = objConexion.createStatement();
 		rs = st.executeQuery("select * from coche");
 
 		return rs;
 	}
 
-	public static void insertarBD(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha,
-			String color, int kilometros, int idtipocoche, String combustible, int cilindrada, int idestado, int valor, String idoperario,
-			Connection objConexion) throws SQLException {
+	/** Insertar en BBDD un ccoche */
+	public static void insertarBD(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion,
+			Date fecha, String color, int kilometros, int idtipocoche, String combustible, int cilindrada, int idestado,
+			int valor, String idoperario, Connection objConexion) throws SQLException {
 
-		/** Convertimos el tipo util.Date a sql.Date que entiende el MySQL*/
+		/** Convertimos el tipo util.Date a sql.Date que entiende el MySQL */
 		java.sql.Date fechasql = new java.sql.Date(fecha.getTime());
 		java.sql.Date aniofabricacion1 = new java.sql.Date(aniofabricacion.getTime());
 
-
-		/**Preparamos la insert*/
+		/** Preparamos la insert */
 		String query = "insert into coche (numbastidor, marca, modelo, cv, aniofabricacion, fecha, color, kilometros, idtipocoche, combustible, cilindrada, idestado, valor, idoperario) values (?,?,?,?,?,?,?,?,?,?,?,?,?,?)";
 
-		/**Creamos las preparedstaments*/
+		/** Creamos las preparedstaments */
 		PreparedStatement objSt = objConexion.prepareStatement(query);
 		objSt.setString(1, numbastidor);
 		objSt.setString(2, marca);
@@ -50,28 +55,28 @@ public class clsCocheBD {
 		objSt.setInt(13, valor);
 		objSt.setString(14, idoperario);
 
-		/** Ejecutamos la query que hemos preparado*/
+		/** Ejecutamos la query que hemos preparado */
 		objSt.execute();
 
-		/** Cerramos el preparedStatement*/
+		/** Cerramos el preparedStatement */
 		objSt.close();
 
 	}
 
-	/** Elimnar de la query un coche*/
+	/** Elimnar de la query un coche */
 	public static void eliminarBD(String numbastidor, Connection objConexion) throws SQLException {
 
-		/** Preparamos la query con la sentencia de MySQL*/
+		/** Preparamos la query con la sentencia de MySQL */
 		String query = "delete from coche where numbastidor = ?";
 
-		/** Creamos las preparedstaments*/
+		/** Creamos las preparedstaments */
 		PreparedStatement objSt = objConexion.prepareStatement(query);
 		objSt.setString(1, numbastidor);
 
-		/** Ejecutamos la query que hemos preparado*/
+		/** Ejecutamos la query que hemos preparado */
 		objSt.execute();
-		
-		/** Cerramos el preparedStatement*/
+
+		/** Cerramos el preparedStatement */
 		objSt.close();
 
 	}

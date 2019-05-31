@@ -6,6 +6,10 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+/**
+ * Clase que relaiza las consultas a BBDD realacionadas con los pedidos
+ *
+ */
 public class clsPedidoBD {
 
 	public static ResultSet recogerBD(Connection objConexion) throws SQLException {

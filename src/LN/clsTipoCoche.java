@@ -5,12 +5,26 @@ import static Comun.clsConstantes.*;
 import Comun.clsRuntimeExceptionPropia;
 import Comun.itfProperty;
 
+
+/**
+ * Clase para crear objeto de tipo coche
+ *
+ */
 public class clsTipoCoche implements itfProperty {
 	
+	/*
+	 * Id de tipo coche
+	 */
 	int idtipocoche;
 	
+	/*
+	 * Descripcion
+	 */
 	String descripcion;
 
+	/*
+	 * Constructor
+	 */
 	public clsTipoCoche(int idtipocoche, String descripcion) {
 		this.idtipocoche = idtipocoche;
 		this.descripcion = descripcion;

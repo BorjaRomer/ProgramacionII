@@ -4,22 +4,60 @@ import java.util.Date;
 import Comun.itfProperty;
 
 /**
- * Clase Padre que es abstracta porque nunca se va a instanciar.
+ * Clase padre abstracta que nunca se va a instanciar
+ * Implementada por dos Interfaces una de tipo itfProperty y otra de tipo Comparable
+ *
  */
 public abstract class clsVehiculo implements itfProperty, Comparable <clsVehiculo> {
 	
+	/*
+	 * Numero de bastidor de los cehiculos
+	 */
 	String numbastidor;
+	/*
+	 * Marca de los vehiculos
+	 */
 	String marca;
+	/*
+	 * Modelo de los vehiculos
+	 */
 	String modelo;
+	/*
+	 * Cavallos de los vehiculos
+	 */
 	Integer cv;
+	/*
+	 * Año de fabricacion de los vehiculos
+	 */
 	Date aniofabricacion;
+	/*
+	 * Fecha de registro
+	 */
 	Date fecha;
+	/*
+	 * Color del vehiculo
+	 */
 	String color;
+	/*
+	 * Kilometros que tiene el vehiculo
+	 */
 	int kilometros;
+	/*
+	 * Id de estado para relacionarlo con los objetos estado
+	 */
 	int idestado;
+	/*
+	 * Valor del vehiculo
+	 */
 	int valor;
+	/*
+	 * Id de operario
+	 */
 	String idoperario;
 	
+	/*
+	 * Constructor
+	 */
 	public clsVehiculo(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha, String color, int kilometros,
 			int idestado, int valor, String idoperario) {
 		this.numbastidor = numbastidor;

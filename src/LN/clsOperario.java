@@ -5,16 +5,35 @@ import static Comun.clsConstantes.*;
 
 import Comun.clsRuntimeExceptionPropia;
 
-
+/**
+ * Clase para crear objetos que contengan a cada operario *
+ */
 public class clsOperario implements itfProperty{
 	
+	/*
+	 * Id del operario
+	 */
 	private String idoperario;
+	/*
+	 * Contraseña del oeprario
+	 */
 	private String contrasea;
+	/*
+	 * Nombre
+	 */
 	private String nombre;
+	/*
+	 * Apellido
+	 */
 	private String apellido;
+	/*
+	 * Dni
+	 */
 	private String dni;
 	
-	
+	/*
+	 * Constructor
+	 */
 	public clsOperario(String idoperario, String contrasea, String nombre, String apellido, String dni) {
 		this.idoperario = idoperario;
 		this.contrasea = contrasea;

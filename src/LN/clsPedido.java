@@ -4,15 +4,39 @@ import Comun.clsRuntimeExceptionPropia;
 import Comun.itfProperty;
 import static Comun.clsConstantes.*;
 
+/**
+ * Clase para crear objetos pedido *
+ */
 public class clsPedido implements itfProperty {
 	
+	/*
+	 * Id del pedido
+	 */
 	int idpedido;
+	/*
+	 * Precio del pedido
+	 */
 	double precio;
+	/*
+	 * N de bastidor del vehiculo a vender
+	 */
 	String numbastidor;
+	/*
+	 * Dni del comprador
+	 */
 	String dnicliente;
+	/*
+	 * Id de operario
+	 */
 	String idoperario;
+	/*
+	 * Tipo de pedido
+	 */
 	String tipopedido;
 	
+	/*
+	 * Constructor para recoger de BBDD
+	 */
 	public clsPedido(int idpedido, double precio, String numbastidor, String dnicliente, String idoperario, String tipopedido) {
 		this.idpedido = idpedido;
 		this.precio = precio;
@@ -22,6 +46,9 @@ public class clsPedido implements itfProperty {
 		this.tipopedido = tipopedido;
 	}
 
+	/*
+	 * Constructor para insertar el objeto en BBDD
+	 */
 	public clsPedido(double precio, String numbastidor, String dnicliente, String idoperario, String tipopedido) {
 		this.precio = precio;
 		this.numbastidor = numbastidor;

@@ -5,11 +5,21 @@ import static Comun.clsConstantes.*;
 import Comun.clsRuntimeExceptionPropia;
 import Comun.itfProperty;
 
+/**
+ * Clase para crear un objeto de tipo camion
+ *
+ */
 
 public class clsTipoCamion implements itfProperty{
 
+	/*
+	 * Id tipo camion
+	 */
 	int idtipocamion;
 	
+	/*
+	 * Descripcion
+	 */
 	String descripcion;
 
 	public clsTipoCamion(int idtipocamion, String descripcion) {

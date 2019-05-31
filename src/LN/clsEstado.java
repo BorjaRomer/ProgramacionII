@@ -4,11 +4,24 @@ import static Comun.clsConstantes.*;
 import Comun.clsRuntimeExceptionPropia;
 import Comun.itfProperty;
 
+/**
+ * Clase para crear objetos estados que estan relacionados con los vehiculos
+ *
+ */
 public class clsEstado implements itfProperty{
 	
+	/*
+	 * Id de estado 
+	 */
 	int idestado;
+	/*
+	 * Descripcion
+	 */
 	String descripcion;
 	
+	/*
+	 * Constructor
+	 */
 	public clsEstado(int idestado, String descripcion) {
 		this.idestado = idestado;
 		this.descripcion = descripcion;

@@ -5,6 +5,11 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 
+
+/**
+ * Clase que recoge los oeprarios en la BBDD
+ *
+ */
 public class clsOperarioBD {
 	
 	public static ResultSet recogerBD(Connection objConexion) throws SQLException {

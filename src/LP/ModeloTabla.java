@@ -10,10 +10,10 @@ class ModeloTabla extends AbstractTableModel {
 
 	private static final long serialVersionUID = 1L;
 	private String[] nombreColumnas = {"Nº Bastidor", "Marca", "Modelo", "Potencia (cv)", "Año Fabricacion", "Tipo coche", "Valor(€)"};
-	Object[][] data;
-
+	private Object[][] data;
+	
 	public ModeloTabla(ArrayList<itfProperty> coches, ArrayList<itfProperty> tipocoche) {
-
+		
 		int row = coches.size();
 		int cont;
 		data = new Object[row][];
@@ -45,7 +45,7 @@ class ModeloTabla extends AbstractTableModel {
 	}
 
 	public void setData(ArrayList<itfProperty> coches, ArrayList<itfProperty> tipocoche) {
-
+		
 		int row = coches.size();
 		int cont;
 		data = new Object[row][];
@@ -73,7 +73,6 @@ class ModeloTabla extends AbstractTableModel {
 		}
 
 	}
-	
 
 	public int getColumnCount() {
 		return nombreColumnas.length;

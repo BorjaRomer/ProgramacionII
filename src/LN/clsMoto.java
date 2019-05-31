@@ -7,14 +7,27 @@ import Comun.clsRuntimeExceptionPropia;
 import static Comun.clsConstantes.*;
 
 /**
- * Clase hija que se instancia en la clase Gestor.
+ * Clase hija que hereda de clsVehiculo
+ *
  */
 public class clsMoto extends clsVehiculo {
 
+	/*
+	 * Id tipo de moto
+	 */
 	int idtipomoto;
+	/*
+	 * Cilindrada de la moto
+	 */
 	int cilindrada;
+	/*
+	 * Tamaño de la moto
+	 */
 	String tamaño;
 
+	/*
+	 * Constructor
+	 */
 	public clsMoto(String numbastidor, String marca, String modelo, int cv, Date aniofabricacion, Date fecha,
 			String color, int kilometros, int idtipomoto, int cilindrada, String tamaño, int idestado, int valor,
 			String idoperario) {
